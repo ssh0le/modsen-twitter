@@ -8,6 +8,7 @@ export const RegistrationPageContainer = styled(FullPageWrapper)`
   justify-content: start;
   align-items: center;
   padding-top: 50px;
+  height: fit-content;
 `;
 
 export const LogoContainer = styled.div`

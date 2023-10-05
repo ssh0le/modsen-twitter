@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { ThemeProvider } from 'styled-components';
 
+import LoginPage from './pages/Login';
 import RegistrationPage from './pages/Registration';
 import SignUpPage from './pages/SignUp';
 import { GlobalStyles } from './styles/global';
@@ -12,6 +13,7 @@ const App: FC = () => {
       <GlobalStyles />
       <SignUpPage />
       <RegistrationPage />
+      <LoginPage />
     </ThemeProvider>
   );
 };
