@@ -13,6 +13,5 @@ export interface ButtonProps {
 
 export interface ButtonWrapperProps {
   $type: ButtonType;
-  $typeface: ButtonTypeface;
   $isActive: boolean;
 }

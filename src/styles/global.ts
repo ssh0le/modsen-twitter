@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+        font-family: 'Roboto', serif;
     }
 
     html,
@@ -12,7 +13,6 @@ export const GlobalStyles = createGlobalStyle`
         height: 100vh;
         width: 100vw;
         overflow-x: hidden;
-        font-family: 'Roboto', serif;
         font-weight: 400;
     }
 

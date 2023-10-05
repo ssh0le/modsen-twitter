@@ -13,7 +13,6 @@ const signUpButtonStyle = css`
   font-weight: ${({ theme }) => theme.fontWeigth.lightBold};
   background-color: ${({ theme }) => theme.signUpButton.backgroundColor};
   border: 1px solid ${({ theme }) => theme.signUpButton.border};
-  font-family: 'Roboto';
   height: 62px;
 `;
 
@@ -33,8 +32,6 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   justify-content: center;
   align-items: center;
 
-  font-family: ${({ $typeface }) =>
-    $typeface === 'serif' ? 'Roboto Serif' : 'Roboto'};
   ${({ $isActive }) => ($isActive ? 'cursor: pointer' : 'opacity: 40%')};
   ${({ $type }) => $type === 'colored' && coloredButtonStyle};
   ${({ $type }) => $type === 'sign-up' && signUpButtonStyle};
