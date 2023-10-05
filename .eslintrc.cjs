@@ -21,7 +21,7 @@ module.exports = {
       {
         groups: [
           ['^@?\\w'],
-          ['@/styles/\\w*.css$', '^@/', '^@appTypes/', '^@helpers'],
+          ['@/styles/\\w*.css$', '^@/', '^@helpers', '^@shared'],
           ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
           ['^\\u0000', '^\\./\\w'],
         ],
