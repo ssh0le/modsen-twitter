@@ -6,6 +6,7 @@ const coloredButtonStyle = css`
   color: ${({ theme }) => theme.coloredButton.color};
   background-color: ${({ theme }) => theme.coloredButton.backgroundColor};
   border: ${({ theme }) => theme.coloredButton.color};
+  font-weight: ${({ theme }) => theme.fontWeigth.bold};
 `;
 
 const signUpButtonStyle = css`
