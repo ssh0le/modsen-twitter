@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import googleLogo from '@/assets/icons/googleLogo.svg';
 import Logo from '@/components/Logo';
 import SignUpFooter from '@/components/SignUpFooter';
+import { icons } from '@/constants';
 import { Box, Button, Link } from '@shared';
 
 import {
@@ -39,7 +39,7 @@ const SignUpPage: FC = () => {
                   <Button type="sign-up" onClick={handleMockClick}>
                     <GoogleButtonContent>
                       <GoogleLogoContainer>
-                        <img src={googleLogo} alt="Google Logo" />
+                        <img src={icons.googleLogo} alt="Google Logo" />
                       </GoogleLogoContainer>
                       Sign up with Google
                     </GoogleButtonContent>
