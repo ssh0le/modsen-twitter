@@ -4,6 +4,7 @@ import Logo from '../Logo';
 import { Button, SerifText } from '../shared';
 import UserCard from '../UserCard';
 
+import Header from './Header';
 import { PageLayoutProps } from './interfaces';
 import MenuSidebar from './Menu';
 import Search from './Search';
@@ -42,7 +43,10 @@ const PageLayout: FC<PageLayoutProps> = ({ children }) => {
           </Button>
         </CurrentUserContainer>
       </LeftAside>
-      <ContentWrapper>{children}</ContentWrapper>
+      <ContentWrapper>
+        <Header user={{ name: 'Barbar', tweetsAmount: 0 }} />
+        <main>{children}</main>
+      </ContentWrapper>
       <RigthAside>
         <Search />
       </RigthAside>

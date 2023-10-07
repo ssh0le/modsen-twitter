@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import backgroundImage from '@/assets/images/signUpBack.jpg';
 import { FullPageWrapper } from '@/components/shared/FullPageWrapper';
+import { images } from '@/constants';
 
 export const SignUpPageWrapper = styled(FullPageWrapper)`
   display: flex;
@@ -42,7 +42,7 @@ export const GoogleLogoContainer = styled.span`
 `;
 
 export const SignUpImageContainer = styled.div`
-  background-image: url(${backgroundImage});
+  background-image: url(${images.signUpBackground});
   display: flex;
   flex-grow: 1;
   height: 100%;

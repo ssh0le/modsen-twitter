@@ -6,7 +6,7 @@ import { CustomSelect, SelectOption, SelectWraper } from './styled';
 export const Select: FC<SelectProps> = ({ placeholder }) => {
   return (
     <SelectWraper>
-      <CustomSelect>
+      <CustomSelect value={'value'}>
         {placeholder && (
           <SelectOption selected disabled hidden>
             {placeholder}

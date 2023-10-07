@@ -1,6 +1,12 @@
+import { colors } from '@/constants';
+
 export interface Theme {
   color: string;
   backgroundColor: string;
+  border: string;
+  colors: {
+    [key in keyof typeof colors]: string;
+  };
   link: Pick<ElementStyle, 'color'>;
   coloredButton: Omit<ElementStyle, 'border'>;
   followButton: Omit<ElementStyle, 'border'>;
@@ -25,6 +31,9 @@ export interface Theme {
   search: Pick<ElementStyle, 'backgroundColor' | 'color'> & {
     placeholder: string;
   };
+  opacity: {
+    medium: number;
+  };
 }
 
 type FontSize = `fs${
@@ -33,6 +42,7 @@ type FontSize = `fs${
   | '16'
   | '18'
   | '20'
+  | '22'
   | '24'
   | '30'
   | '42'

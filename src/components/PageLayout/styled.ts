@@ -16,22 +16,24 @@ export const MenuContainer = styled.div`
   margin-bottom: 30px;
 `;
 
-export const ContentWrapper = styled.main`
+export const ContentWrapper = styled.div`
   flex-grow: 1;
-  height: 200vh;
+  ${flexColumn}
 `;
 
 const AsideBar = styled.aside`
   ${flexColumn};
+  align-self: flex-start;
+  position: sticky;
+  top: 0;
+  height: fit-content;
+  min-height: 100vh;
 `;
 
 export const LeftAside = styled(AsideBar)`
   padding: 30px;
   width: 290px;
-  align-self: flex-start;
-  position: sticky;
-  top: 0;
-  height: auto;
+  border-right: 1px solid ${({ theme }) => theme.border};
 `;
 
 export const CurrentUserContainer = styled.div`
@@ -47,4 +49,5 @@ export const UserCardContainer = styled.div`
 
 export const RigthAside = styled(AsideBar)`
   padding: 28px 20px;
+  border-left: 1px solid ${({ theme }) => theme.border};
 `;

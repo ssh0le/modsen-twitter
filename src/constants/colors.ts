@@ -10,4 +10,5 @@ export const colors = {
   transperentGray: '#00000033',
   transparent: 'transparent',
   darkGray: '#5C6C79',
+  red: '#EF1C5C',
 };

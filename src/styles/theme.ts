@@ -18,6 +18,8 @@ const {
 const light: Theme = {
   color: black,
   backgroundColor: white,
+  border: lightGray,
+  colors,
   link: {
     color: lightBlue,
   },
@@ -49,6 +51,7 @@ const light: Theme = {
     fs16: 16,
     fs18: 18,
     fs20: 20,
+    fs22: 22,
     fs24: 24,
     fs30: 30,
     fs42: 42,
@@ -76,6 +79,9 @@ const light: Theme = {
     color: black,
     backgroundColor: searchGray,
     placeholder: darkGray,
+  },
+  opacity: {
+    medium: 60,
   },
 };
 
