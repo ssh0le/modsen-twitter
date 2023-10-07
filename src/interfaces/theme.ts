@@ -1,12 +1,11 @@
 export interface Theme {
   color: string;
   backgroundColor: string;
-  link: {
-    color: string;
-  };
-  coloredButton: Omit<ButtonStyle, 'border'>;
-  signUpButton: ButtonStyle;
-  logOutButton: ButtonStyle;
+  link: Pick<ElementStyle, 'color'>;
+  coloredButton: Omit<ElementStyle, 'border'>;
+  followButton: Omit<ElementStyle, 'border'>;
+  signUpButton: ElementStyle;
+  logOutButton: ElementStyle;
   fontSizes: {
     [key in FontSize]: number;
   };
@@ -15,20 +14,38 @@ export interface Theme {
     bold: number;
     superBold: number;
     lightBold: number;
+    mediumBold: number;
   };
   lineHeight: {
     medium: 20;
   };
-  inputField: {
-    border: string;
-    color: string;
+  inputField: Pick<ElementStyle, 'border' | 'color'>;
+  avatarSize: AvatarSize;
+  recommendation: Pick<ElementStyle, 'backgroundColor'>;
+  search: Pick<ElementStyle, 'backgroundColor' | 'color'> & {
+    placeholder: string;
   };
 }
 
-type FontSize = `fs${'13' | '14' | '16' | '18' | '20' | '30' | '42' | '84'}`;
+type FontSize = `fs${
+  | '13'
+  | '14'
+  | '16'
+  | '18'
+  | '20'
+  | '24'
+  | '30'
+  | '42'
+  | '84'}`;
 
-interface ButtonStyle {
+interface ElementStyle {
   color: string;
   backgroundColor: string;
   border: string;
+}
+
+export interface AvatarSize {
+  small: number;
+  medium: number;
+  large: number;
 }

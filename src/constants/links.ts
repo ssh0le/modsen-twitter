@@ -29,3 +29,14 @@ export const searchLinks = [
   'More ···',
   copyRight,
 ];
+
+export const menuLinks = [
+  'Home',
+  'Explore',
+  'Notifications',
+  'Messages',
+  'Bookmarks',
+  'Lists',
+  'Profile',
+  'More',
+] as const;
