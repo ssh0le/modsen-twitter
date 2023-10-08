@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { serifText } from '@/styles/common';
+import { serifText, themedSvgFilter } from '@/styles/common';
 
 import { MenuLinkWrapperProps } from './interfaces';
 
@@ -20,4 +20,5 @@ export const MenuLinkWrapper = styled.li<MenuLinkWrapperProps>`
 export const MenuLinkIcon = styled.img`
   width: 28px;
   height: 28px;
+  ${themedSvgFilter}
 `;

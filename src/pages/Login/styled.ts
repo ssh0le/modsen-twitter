@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { FullPageWrapper } from '@shared';
+import { FullPageWrapper } from '@UI';
 
 export const LoginPageContainer = styled(FullPageWrapper)`
   display: flex;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { flexColumn } from '@/styles/common';
+import { flexColumn, themedSvgFilter } from '@/styles/common';
 
 export const HeaderContainer = styled.header`
   padding: 22px 30px 15px 17px;
@@ -42,4 +42,5 @@ export const BackButtonContainer = styled.div`
   align-items: center;
   gap: 7px;
   cursor: pointer;
+  ${themedSvgFilter}
 `;

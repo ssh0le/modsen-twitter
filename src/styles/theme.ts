@@ -19,6 +19,7 @@ const light: Theme = {
   color: black,
   backgroundColor: white,
   border: lightGray,
+  svgFilter: '',
   colors,
   link: {
     color: lightBlue,
@@ -87,6 +88,17 @@ const light: Theme = {
 
 const dark: Theme = {
   ...light,
+  color: white,
+  backgroundColor: black,
+  border: darkGray,
+  svgFilter: 'invert(100%)',
+  recommendation: {
+    backgroundColor: black,
+  },
+  followButton: {
+    color: black,
+    backgroundColor: white,
+  },
 };
 
 export const theme = {

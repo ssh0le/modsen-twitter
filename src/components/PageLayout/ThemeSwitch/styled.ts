@@ -18,7 +18,6 @@ export const Toggler = styled.label`
     bottom: -1px;
     left: -1px;
     aspect-ratio: 1 / 1;
-    background: #fff;
     border-radius: 90px;
     border: 2px solid ${({ theme }) => theme.border};
     transition: 0.3s;

@@ -4,6 +4,7 @@ export interface Theme {
   color: string;
   backgroundColor: string;
   border: string;
+  svgFilter: string;
   colors: {
     [key in keyof typeof colors]: string;
   };

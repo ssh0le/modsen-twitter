@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { Link } from '@/components/shared';
 import { flexColumn, serifText } from '@/styles/common';
+import { Link } from '@UI';
 
 export const RecommendationContainer = styled.section`
   ${flexColumn};
@@ -43,4 +43,6 @@ export const FollowButton = styled.button`
   height: fit-content;
   border-radius: 50px;
   cursor: pointer;
+  border-width: 2px;
+  border: none;
 `;

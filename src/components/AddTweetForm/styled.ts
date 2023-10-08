@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { flexColumn } from '@/styles/common';
+import { flexColumn, themedColor } from '@/styles/common';
 
 export const AddTweetFormContainer = styled.div`
   display: flex;
@@ -17,6 +17,8 @@ export const TweetInputContainer = styled.div`
 export const TweetInput = styled.textarea`
   border: none;
   font-size: ${({ theme }) => theme.fontSizes.fs20}px;
+  background-color: ${({ theme }) => theme.backgroundColor};
+  ${themedColor};
   height: fit-content;
   width: 100%;
   resize: none;

@@ -1,5 +1,5 @@
-import { SerifText } from '@/components/shared';
 import UserCard from '@/components/UserCard';
+import { SerifText } from '@UI';
 
 import { UserListProps } from './interfaces';
 import {

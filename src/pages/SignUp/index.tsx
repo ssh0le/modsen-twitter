@@ -3,7 +3,7 @@ import { FC } from 'react';
 import Logo from '@/components/Logo';
 import SignUpFooter from '@/components/SignUpFooter';
 import { icons } from '@/constants';
-import { Box, Button, Link } from '@shared';
+import { Box, Button, Link } from '@UI';
 
 import {
   ButtonsWrapper,

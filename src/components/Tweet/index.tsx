@@ -1,7 +1,7 @@
 import UserAvatar from '@/components/UserAvatar';
 import { icons } from '@/constants';
 import { getTweetPublishTime } from '@/helpers';
-import { BoldText, OpacityText } from '@shared';
+import { BoldText, OpacityText } from '@UI';
 
 import {
   AtionsButtonContainer,

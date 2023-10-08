@@ -1,5 +1,5 @@
-import { BoldText, SerifText } from '@/components/shared';
 import { icons } from '@/constants';
+import { BoldText, SerifText } from '@UI';
 
 import ThemeSwitch from '../ThemeSwitch';
 

@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
+import { Button, SerifText } from '@UI';
+
 import Logo from '../Logo';
-import { Button, SerifText } from '../shared';
 import UserCard from '../UserCard';
 
 import Header from './Header';

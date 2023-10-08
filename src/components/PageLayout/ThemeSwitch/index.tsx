@@ -1,20 +1,26 @@
-import { MouseEvent, useState } from 'react';
+import { MouseEvent } from 'react';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
+import { selectCurrentTheme } from '@/store/selectors';
+import { toggleTheme } from '@/store/slices/theme';
 
 import { Checkbox, Toggler } from './styled';
 
 const ThemeSwitch = () => {
-  const [isToggled, toggle] = useState(false);
+  const theme = useAppSelector(selectCurrentTheme);
+  const dispatch = useAppDispatch();
+  const isDark = theme === 'dark';
 
-  const callback = (event: MouseEvent<HTMLDivElement>) => {
+  const handleSwitchClick = (event: MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
-    console.log('click ', isToggled);
-    toggle(!isToggled);
+    console.log('click');
+    dispatch(toggleTheme());
   };
 
   return (
-    <div onClick={callback}>
-      <Toggler className={isToggled ? 'active' : ''}>
-        <Checkbox type="checkbox" defaultChecked={isToggled} />
+    <div onClick={handleSwitchClick}>
+      <Toggler className={isDark ? 'active' : ''}>
+        <Checkbox type="checkbox" defaultChecked={isDark} />
       </Toggler>
     </div>
   );

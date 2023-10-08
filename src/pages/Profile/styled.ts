@@ -38,7 +38,7 @@ export const EditButton = styled.button`
   background-color: ${({ theme }) => theme.backgroundColor};
   color: ${({ theme }) => theme.color};
   font-size: ${({ theme }) => theme.fontSizes.fs18}px;
-  border-color: ${({ theme }) => theme.color};
+  border: 2px solid ${({ theme }) => theme.color};
   padding: 10px 15px;
   height: fit-content;
   border-radius: 50px;

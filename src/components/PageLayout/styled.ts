@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 import { flexColumn } from '@/styles/common';
-import { FullPageWrapper } from '@shared';
+import { FullPageWrapper } from '@UI';
 
 export const PageLayoutContainer = styled(FullPageWrapper)`
   display: flex;
   width: 100%;
   position: relative;
   height: fit-content;
+  color: ${({ theme }) => theme.color};
+  background-color: ${({ theme }) => theme.backgroundColor};
 `;
 
 export const MenuContainer = styled.div`

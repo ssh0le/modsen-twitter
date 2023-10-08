@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
 import AddTweetForm from '@/components/AddTweetForm';
-import { BoldText, SerifText } from '@/components/shared';
 import Tweet from '@/components/Tweet';
 import UserAvatar from '@/components/UserAvatar';
 import { images } from '@/constants';
+import { BoldText, SerifText } from '@UI';
 
 import {
   AddTweetFormContainer,

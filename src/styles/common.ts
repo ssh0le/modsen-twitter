@@ -27,3 +27,15 @@ export const topBottomBorder = css`
   border-top: 1px solid ${({ theme }) => theme.border};
   border-bottom: 1px solid ${({ theme }) => theme.border};
 `;
+
+export const themedSvgFilter = css`
+  filter: ${({ theme }) => theme.svgFilter};
+`;
+
+export const themedColor = css`
+  color: ${({ theme }) => theme.color};
+`;
+
+export const themedBackgroundColor = css`
+  background-color: ${({ theme }) => theme.backgroundColor};
+`;

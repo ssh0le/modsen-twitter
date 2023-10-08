@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { FullPageWrapper } from '@/components/shared/FullPageWrapper';
 import { images } from '@/constants';
+import { FullPageWrapper } from '@UI';
 
 export const SignUpPageWrapper = styled(FullPageWrapper)`
   display: flex;

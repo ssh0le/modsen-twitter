@@ -21,6 +21,10 @@ export const GlobalStyles = createGlobalStyle`
         color: inherit;
     }
 
+    button {
+        border: none;
+    }
+
     ul {
         list-style: none;
     }

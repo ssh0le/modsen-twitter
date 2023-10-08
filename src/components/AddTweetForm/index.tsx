@@ -1,5 +1,5 @@
 import { icons } from '@/constants';
-import { Button, SerifText } from '@shared';
+import { Button, SerifText } from '@UI';
 
 import UserAvatar from '../UserAvatar';
 

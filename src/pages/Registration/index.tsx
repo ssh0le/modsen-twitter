@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import Logo from '@/components/Logo';
-import { Button, InputField, Link, Select, SerifText } from '@shared';
+import { Button, InputField, Link, Select, SerifText } from '@UI';
 
 import {
   DateOfBirthMessage,

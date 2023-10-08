@@ -6,7 +6,7 @@ export const TweetContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px 25px 21px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGray};
+  border-bottom: 1px solid ${({ theme }) => theme.border};
 `;
 
 export const TweetContentWrapper = styled.div`

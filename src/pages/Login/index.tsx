@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import Logo from '@/components/Logo';
-import { Button, InputField, Link } from '@shared';
+import { Button, InputField, Link } from '@UI';
 
 import {
   Heading,

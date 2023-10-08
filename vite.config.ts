@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
-      '@shared': resolve(__dirname, 'src/components/shared/index.ts'),
+      '@UI': resolve(__dirname, 'src/components/UI/index.ts'),
     },
   },
 });
