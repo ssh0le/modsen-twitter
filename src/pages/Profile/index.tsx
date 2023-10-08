@@ -42,7 +42,9 @@ const ProfilePage: FC = () => {
           </AvatarContainer>
           <EditButton>Edit profile</EditButton>
         </ProfileHeaderContainer>
-        <UserName>{name}</UserName>
+        <UserName>
+          <SerifText>{name}</SerifText>
+        </UserName>
         <UserId>{id}</UserId>
         <UserStatus>{status}</UserStatus>
         <UserSubsctriptionsContainer>
