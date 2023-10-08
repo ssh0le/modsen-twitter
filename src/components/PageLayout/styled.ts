@@ -7,7 +7,7 @@ export const PageLayoutContainer = styled(FullPageWrapper)`
   display: flex;
   width: 100%;
   position: relative;
-  height: 200vh;
+  height: fit-content;
 `;
 
 export const MenuContainer = styled.div`
@@ -18,6 +18,7 @@ export const MenuContainer = styled.div`
 
 export const ContentWrapper = styled.div`
   flex-grow: 1;
+  height: fit-content;
   ${flexColumn}
 `;
 

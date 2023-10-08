@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { flexColumn } from '@/styles/common';
+import { flexColumn, topBottomBorder } from '@/styles/common';
 
 const opacityStyle = css`
   opacity: ${({ theme }) => theme.opacity.medium}%;
@@ -8,6 +8,7 @@ const opacityStyle = css`
 
 export const ProfilePageContainer = styled.section`
   ${flexColumn};
+  height: fit-content;
 `;
 
 export const ProfileBackground = styled.div<{ $src: string }>`
@@ -75,8 +76,7 @@ export const SubscriptionType = styled.span`
 export const AddTweetFormContainer = styled.div`
   margin-top: 51px;
   padding: 18px 11px 13px 27px;
-  border-top: 1px solid ${({ theme }) => theme.border};
-  border-bottom: 1px solid ${({ theme }) => theme.border};
+  ${topBottomBorder}
 `;
 
 export const UserTweetsContainer = styled.div`
@@ -86,6 +86,7 @@ export const UserTweetsContainer = styled.div`
 export const TweetListHeading = styled.h2`
   text-align: center;
   padding-bottom: 20px;
+  margin-bottom: 48px;
   margin-top: 20px;
   width: 215px;
   border-bottom: 1px solid ${({ theme }) => theme.border};

@@ -22,3 +22,8 @@ export const flexColumn = css`
   display: flex;
   flex-direction: column;
 `;
+
+export const topBottomBorder = css`
+  border-top: 1px solid ${({ theme }) => theme.border};
+  border-bottom: 1px solid ${({ theme }) => theme.border};
+`;

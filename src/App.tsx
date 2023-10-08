@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import PageLayout from './components/PageLayout';
+import FeedPage from './pages/Feed';
 import LoginPage from './pages/Login';
 import ProfilePage from './pages/Profile';
 import RegistrationPage from './pages/Registration';
@@ -18,6 +19,9 @@ const App: FC = () => {
       <LoginPage />
       <PageLayout>
         <ProfilePage />
+      </PageLayout>
+      <PageLayout>
+        <FeedPage />
       </PageLayout>
     </ThemeProvider>
   );

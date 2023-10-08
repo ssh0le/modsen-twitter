@@ -4,6 +4,7 @@ import { getTweetPublishTime } from '@/helpers';
 import { BoldText, OpacityText } from '@shared';
 
 import {
+  AtionsButtonContainer,
   LikeContainer,
   LikeCountContainer,
   TweetContainer,
@@ -39,6 +40,9 @@ const Tweet = () => {
           </LikeContainer>
         </TweetMainContainer>
       </TweetContentWrapper>
+      <AtionsButtonContainer>
+        <img src={icons.actions} alt="Post actions" />
+      </AtionsButtonContainer>
     </TweetContainer>
   );
 };

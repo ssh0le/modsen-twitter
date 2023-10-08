@@ -1,4 +1,5 @@
 import actions from '@/assets/icons/actions.svg';
+import backArrow from '@/assets/icons/backArrow.svg';
 import bookmarks from '@/assets/icons/bookmarks.svg';
 import bookmarksFilled from '@/assets/icons/bookmarksFilled.svg';
 import explore from '@/assets/icons/explore.svg';
@@ -20,12 +21,14 @@ import profile from '@/assets/icons/profile.svg';
 import profileFilled from '@/assets/icons/profileFilled.svg';
 import searchIcon from '@/assets/icons/searchIcon.svg';
 import twitterLogo from '@/assets/icons/twitterLogo.svg';
+import verticalDelimeter from '@/assets/icons/verticalDelimeter.svg';
 import defaultAvatar from '@/assets/images/defaultAvatar.svg';
 import defaultUserBackground from '@/assets/images/defaultUserBackground.png';
 import signUpBackground from '@/assets/images/signUpBack.jpg';
 
 export const icons = {
   actions,
+  backArrow,
   bookmarks,
   bookmarksFilled,
   explore,
@@ -46,6 +49,7 @@ export const icons = {
   media,
   searchIcon,
   like,
+  verticalDelimeter,
   likeFilled,
 };
 

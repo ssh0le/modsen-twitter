@@ -44,3 +44,7 @@ export const LikeCountContainer = styled.span<{ $isLiked: boolean }>`
     $isLiked,
   }) => ($isLiked ? mediumBold : regular)};
 `;
+
+export const AtionsButtonContainer = styled.div`
+  padding: 10px;
+`;
