@@ -20,7 +20,7 @@ export const Heading = styled.h1`
   font-weight: ${({ theme }) => theme.fontWeigth.superBold};
 `;
 
-export const LoginForm = styled.form`
+export const LoginForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -28,5 +28,7 @@ export const LoginForm = styled.form`
 `;
 
 export const SignUpLinkContainer = styled.div`
-  text-align: right;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
 `;

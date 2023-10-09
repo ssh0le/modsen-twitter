@@ -18,7 +18,6 @@ export const RecommendationUserListContainer = styled.div`
 
 export const RecommendationUserContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 5px;
 `;

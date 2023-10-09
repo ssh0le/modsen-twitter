@@ -1,8 +1,7 @@
-import { menuLinks } from '@/constants';
-
 export interface MenuLinkProps {
   isSelected: boolean;
-  title: (typeof menuLinks)[number];
+  title: string;
+  route: string;
 }
 
 export interface MenuLinkWrapperProps {

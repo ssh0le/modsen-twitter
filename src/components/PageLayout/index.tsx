@@ -1,12 +1,14 @@
-import { FC } from 'react';
+import { Outlet } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
+import { selectCurrentUser } from '@/store/selectors';
+import { setUser } from '@/store/slices/currentUser';
 import { Button, SerifText } from '@UI';
 
 import Logo from '../Logo';
 import UserCard from '../UserCard';
 
 import Header from './Header';
-import { PageLayoutProps } from './interfaces';
 import MenuSidebar from './Menu';
 import Search from './Search';
 import {
@@ -19,7 +21,14 @@ import {
   UserCardContainer,
 } from './styled';
 
-const PageLayout: FC<PageLayoutProps> = ({ children }) => {
+const PageLayout = () => {
+  const { name, avatar, link } = useAppSelector(selectCurrentUser)!;
+  const dispatch = useAppDispatch();
+
+  const handleLogOutClick = () => {
+    dispatch(setUser(null));
+  };
+
   return (
     <PageLayoutContainer>
       <LeftAside>
@@ -34,19 +43,21 @@ const PageLayout: FC<PageLayoutProps> = ({ children }) => {
           <UserCardContainer>
             <UserCard
               size={'log-out'}
-              name={'asdasd'}
-              id={'@asdasd'}
-              avatar={''}
+              name={name || 'Anonymous'}
+              id={link}
+              avatar={avatar}
             />
           </UserCardContainer>
-          <Button type="log-out" onClick={() => 0}>
+          <Button type="log-out" onClick={handleLogOutClick}>
             <SerifText>Log out</SerifText>
           </Button>
         </CurrentUserContainer>
       </LeftAside>
       <ContentWrapper>
-        <Header user={{ name: 'Barbar', tweetsAmount: 0 }} />
-        <main>{children}</main>
+        <Header user={{ name, tweetsAmount: 0 }} />
+        <main>
+          <Outlet />
+        </main>
       </ContentWrapper>
       <RigthAside>
         <Search />

@@ -3,6 +3,7 @@ import { icons } from '@/constants';
 import { getTweetPublishTime } from '@/helpers';
 import { BoldText, OpacityText } from '@UI';
 
+import { TweetProps } from './interfaces';
 import {
   AtionsButtonContainer,
   LikeContainer,
@@ -15,19 +16,19 @@ import {
 
 const { like, likeFilled } = icons;
 
-const Tweet = () => {
-  const name = '@barbar';
+const Tweet = ({ user }: TweetProps) => {
+  const { name, link, avatar } = user;
   const isLiked = true;
   const totalLikes = 9;
   return (
     <TweetContainer>
       <TweetContentWrapper>
-        <UserAvatar size="small" />
+        <UserAvatar size="small" src={avatar} />
         <TweetMainContainer>
           <div>
-            <BoldText>Barbar</BoldText>{' '}
+            <BoldText>{name}</BoldText>{' '}
             <OpacityText>
-              {name} · {getTweetPublishTime(new Date(2023, 2, 9))}
+              {link} · {getTweetPublishTime(new Date(2023, 2, 9))}
             </OpacityText>
           </div>
           <TweetText>asdasdasd</TweetText>

@@ -11,15 +11,14 @@ const ThemeSwitch = () => {
   const dispatch = useAppDispatch();
   const isDark = theme === 'dark';
 
-  const handleSwitchClick = (event: MouseEvent<HTMLDivElement>) => {
+  const handleSwitchClick = (event: MouseEvent<HTMLLabelElement>) => {
     event.preventDefault();
-    console.log('click');
     dispatch(toggleTheme());
   };
 
   return (
-    <div onClick={handleSwitchClick}>
-      <Toggler className={isDark ? 'active' : ''}>
+    <div>
+      <Toggler onClick={handleSwitchClick} className={isDark ? 'active' : ''}>
         <Checkbox type="checkbox" defaultChecked={isDark} />
       </Toggler>
     </div>

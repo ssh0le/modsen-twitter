@@ -1,6 +1,11 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
+import { routePathes } from '@/constants';
+import { useAppDispatch } from '@/hooks/storeHooks';
+import { setUser } from '@/store/slices/currentUser';
+import { firebaseAuth } from '@/utils';
 import { Button, InputField, Link, Select, SerifText } from '@UI';
 
 import {
@@ -14,7 +19,21 @@ import {
   Subheading,
 } from './styled';
 
+const { createUserWithEmail } = firebaseAuth;
+
 const RegistrationPage: FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleNextClick = async () => {
+    createUserWithEmail('boristepanovv@gmail.com', '12345678', 'Borisss')
+      .then((user) => {
+        dispatch(setUser(user));
+        navigate(routePathes.profile);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <RegistrationPageContainer>
       <RegistrationPageContentWrapper>
@@ -44,7 +63,7 @@ const RegistrationPage: FC = () => {
           <Select placeholder="Day" />
           <Select placeholder="Year" />
         </SelectContainer>
-        <Button onClick={() => 0} type="colored">
+        <Button onClick={handleNextClick} type="colored">
           <SerifText>Next</SerifText>
         </Button>
       </RegistrationPageContentWrapper>

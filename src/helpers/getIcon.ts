@@ -1,4 +1,4 @@
-import { icons, menuLinks } from '@/constants';
+import { icons } from '@/constants';
 
 const {
   profile,
@@ -18,10 +18,7 @@ const {
   more,
 } = icons;
 
-export const getMenuIcon = (
-  linkName: (typeof menuLinks)[number],
-  isSelected: boolean,
-) => {
+export const getMenuIcon = (linkName: string, isSelected: boolean) => {
   switch (linkName) {
     case 'Home':
       return isSelected ? homeFilled : home;

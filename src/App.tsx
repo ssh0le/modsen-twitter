@@ -1,13 +1,9 @@
 import { FC } from 'react';
+import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import PageLayout from './components/PageLayout';
 import { useAppSelector } from './hooks/storeHooks';
-import FeedPage from './pages/Feed';
-import LoginPage from './pages/Login';
-import ProfilePage from './pages/Profile';
-import RegistrationPage from './pages/Registration';
-import SignUpPage from './pages/SignUp';
+import { router } from './router';
 import { selectCurrentTheme } from './store/selectors';
 import { GlobalStyles } from './styles/global';
 import { theme } from './styles/theme';
@@ -19,15 +15,7 @@ const App: FC = () => {
   return (
     <ThemeProvider theme={currentTheme === 'dark' ? dark : light}>
       <GlobalStyles />
-      <SignUpPage />
-      <RegistrationPage />
-      <LoginPage />
-      <PageLayout>
-        <ProfilePage />
-      </PageLayout>
-      <PageLayout>
-        <FeedPage />
-      </PageLayout>
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 };

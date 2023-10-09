@@ -1,8 +1,14 @@
-import { FC } from 'react';
+import { GoogleAuthProvider } from 'firebase/auth';
+import { FC, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
 import SignUpFooter from '@/components/SignUpFooter';
-import { icons } from '@/constants';
+import { icons, routePathes } from '@/constants';
+import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
+import { selectCurrentUser } from '@/store/selectors';
+import { setUser } from '@/store/slices/currentUser';
+import { firebaseAuth } from '@/utils';
 import { Box, Button, Link } from '@UI';
 
 import {
@@ -19,8 +25,37 @@ import {
   Subheading,
 } from './styled';
 
+const { profile, registration, login } = routePathes;
+
 const SignUpPage: FC = () => {
-  const handleMockClick = () => console.log('');
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const user = useAppSelector(selectCurrentUser);
+
+  useEffect(() => {
+    if (user) {
+      navigate(profile);
+    }
+  }, [user, navigate]);
+
+  const handleGoogleAuthClick = async () => {
+    firebaseAuth
+      .googleSignIn()
+      .then((user) => {
+        // const credential = GoogleAuthProvider.credentialFromResult(result);
+        // console.log(credential);
+        if (user) {
+          dispatch(setUser(user));
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleEmailAuthClick = () => {
+    navigate(registration);
+  };
 
   return (
     <SignUpPageWrapper>
@@ -36,7 +71,7 @@ const SignUpPage: FC = () => {
               </Box>
               <ButtonsWrapper>
                 <Box $gap={21}>
-                  <Button type="sign-up" onClick={handleMockClick}>
+                  <Button type="sign-up" onClick={handleGoogleAuthClick}>
                     <GoogleButtonContent>
                       <GoogleLogoContainer>
                         <img src={icons.googleLogo} alt="Google Logo" />
@@ -44,7 +79,7 @@ const SignUpPage: FC = () => {
                       Sign up with Google
                     </GoogleButtonContent>
                   </Button>
-                  <Button type="sign-up" onClick={handleMockClick}>
+                  <Button type="sign-up" onClick={handleEmailAuthClick}>
                     Sign up with email
                   </Button>
                 </Box>
@@ -56,7 +91,7 @@ const SignUpPage: FC = () => {
                   <Link>Cookie Use</Link>.
                 </SignUpMessageWrapper>
                 <LoginMessageWrapper>
-                  Already have an account? <Link>Log in</Link>
+                  Already have an account? <Link href={login}>Log in</Link>
                 </LoginMessageWrapper>
               </Box>
             </Box>

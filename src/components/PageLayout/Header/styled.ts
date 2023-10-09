@@ -4,6 +4,8 @@ import { flexColumn, themedSvgFilter } from '@/styles/common';
 
 export const HeaderContainer = styled.header`
   padding: 22px 30px 15px 17px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const CurrentUserContainer = styled.div`

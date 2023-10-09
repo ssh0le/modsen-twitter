@@ -4,6 +4,8 @@ import AddTweetForm from '@/components/AddTweetForm';
 import Tweet from '@/components/Tweet';
 import UserAvatar from '@/components/UserAvatar';
 import { images } from '@/constants';
+import { useAppSelector } from '@/hooks/storeHooks';
+import { selectCurrentUser } from '@/store/selectors';
 import { BoldText, SerifText } from '@UI';
 
 import {
@@ -24,13 +26,13 @@ import {
 } from './styled';
 
 const ProfilePage: FC = () => {
-  const { name, id, followers, following, status, avatar } = {
-    name: 'Barbar',
-    id: '@barbar',
+  const user = useAppSelector(selectCurrentUser)!;
+  const { name, id, avatar } = user;
+  console.log(user);
+  const { followers, following, status } = {
     followers: 67,
     following: 69,
     status: 'Developer',
-    avatar: undefined,
   };
   return (
     <ProfilePageContainer>
@@ -70,9 +72,9 @@ const ProfilePage: FC = () => {
           <SerifText>Tweets</SerifText>
         </BoldText>
       </TweetListHeading>
-      {[1, 2, 3, 4, 5].map(() => (
-        <Tweet />
-      ))}
+      {/* {[1, 2, 3, 4, 5].map(() => (
+        <Tweet user={user}/>
+      ))} */}
     </ProfilePageContainer>
   );
 };

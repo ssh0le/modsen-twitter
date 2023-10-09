@@ -30,7 +30,7 @@ export const searchLinks = [
   copyRight,
 ];
 
-export const menuLinks = [
+export const menuTitles = [
   'Home',
   'Explore',
   'Notifications',
@@ -40,3 +40,62 @@ export const menuLinks = [
   'Profile',
   'More',
 ] as const;
+
+const defaultPath = '/';
+const home = '/home';
+const userProfile = '/profile/:userId';
+const profile = '/profile';
+const signUp = '/sign-up';
+const login = '/login';
+const registration = '/registartion';
+const notifications = '/notifications';
+const messages = '/messages';
+const bookmarks = '/bookmarks';
+const explore = '/explore';
+const lists = '/lists';
+const more = '/more';
+
+export const routePathes = {
+  home,
+  profile,
+  signUp,
+  login,
+  registration,
+  userProfile,
+  defaultPath,
+};
+
+export const menuLinks: { title: string; route: string }[] = [
+  {
+    title: 'Home',
+    route: home,
+  },
+  {
+    title: 'Explore',
+    route: explore,
+  },
+  {
+    title: 'Notifications',
+    route: notifications,
+  },
+  {
+    title: 'Messages',
+    route: messages,
+  },
+  {
+    title: 'Bookmarks',
+    route: bookmarks,
+  },
+  {
+    title: 'Lists',
+    route: lists,
+  },
+  {
+    title: 'Profile',
+    route: profile,
+  },
+  {
+    title: 'More',
+    route: more,
+  },
+];

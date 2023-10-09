@@ -15,6 +15,7 @@ export const MenuLinkWrapper = styled.li<MenuLinkWrapperProps>`
   display: flex;
   align-items: center;
   gap: 20px;
+  cursor: pointer;
 `;
 
 export const MenuLinkIcon = styled.img`

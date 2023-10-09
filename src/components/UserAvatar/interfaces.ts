@@ -2,7 +2,7 @@ import { AvatarSize } from '@/interfaces';
 
 export interface UserCardProps {
   size?: keyof AvatarSize;
-  src?: string;
+  src?: string | null;
   alt?: string;
 }
 

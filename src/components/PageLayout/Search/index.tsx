@@ -14,7 +14,11 @@ import {
 const users: { name: string; id: string; src?: string }[] = [
   { name: 'anotanson', id: '@skdankndas', src: undefined },
   { name: 'bamkbnaksnb', id: '@vaknsononasd', src: undefined },
-  { name: 'laksmdlkamsd sad ', id: '@asdkjnasjdbjkas', src: undefined },
+  {
+    name: 'laksmdlkamsd sad ',
+    id: 'thebestikberchik1682@gmail.com',
+    src: undefined,
+  },
 ];
 
 const Search = () => {

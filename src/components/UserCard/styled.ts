@@ -7,13 +7,14 @@ import { StyledContainerProps } from './interfaces';
 export const UserCardContainer = styled.div<StyledContainerProps>`
   display: flex;
   align-items: center;
-  width: fit-content;
+  width: 100%;
   gap: ${({ $size }) => ($size === 'log-out' ? 37 : 13)}px;
 `;
 
 export const UserInfoContainer = styled.div`
   ${flexColumn}
   gap: 4px;
+  max-width: 120px;
 `;
 
 export const UserNameWrapper = styled.span`
@@ -22,4 +23,5 @@ export const UserNameWrapper = styled.span`
 
 export const UserIdWrapper = styled.span`
   opacity: 60%;
+  word-wrap: break-word;
 `;

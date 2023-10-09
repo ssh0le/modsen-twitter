@@ -8,13 +8,13 @@ import {
   UserNameWrapper,
 } from './styled';
 
-const UserCard = ({ size, name, id }: UserCardProps) => {
+const UserCard = ({ size, name, id, avatar }: UserCardProps) => {
   return (
     <UserCardContainer $size={size}>
-      <UserAvatar size={size === 'log-out' ? 'small' : 'medium'} />
+      <UserAvatar size={size === 'log-out' ? 'small' : 'medium'} src={avatar} />
       <UserInfoContainer>
         <UserNameWrapper>{name}</UserNameWrapper>
-        <UserIdWrapper>{id}</UserIdWrapper>
+        <UserIdWrapper>{id || 'Anonymous'}</UserIdWrapper>
       </UserInfoContainer>
     </UserCardContainer>
   );
