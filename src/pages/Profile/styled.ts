@@ -51,7 +51,7 @@ export const UserName = styled.h2`
   margin-bottom: 4px;
 `;
 
-export const UserId = styled.span`
+export const UserTag = styled.span`
   ${opacityStyle}
 `;
 

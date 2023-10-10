@@ -22,7 +22,7 @@ import {
 } from './styled';
 
 const PageLayout = () => {
-  const { name, avatar, link } = useAppSelector(selectCurrentUser)!;
+  const { name, avatar, tag: link } = useAppSelector(selectCurrentUser)!;
   const dispatch = useAppDispatch();
 
   const handleLogOutClick = () => {

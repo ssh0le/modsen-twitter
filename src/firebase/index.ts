@@ -19,8 +19,16 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+const userInfoDbName = 'userInfo';
+const tweetsDbName = 'tweets';
+
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-export const userInfoRef = collection(db, 'userInfo');
-export const tweetsRef = collection(db, 'tweets');
+export const userInfoRef = collection(db, userInfoDbName);
+export const tweetsRef = collection(db, tweetsDbName);
+
+export const databaseName = {
+  users: userInfoDbName,
+  tweets: tweetsDbName,
+};

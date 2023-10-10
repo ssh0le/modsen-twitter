@@ -1,13 +1,16 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { FC } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
 import { routePathes } from '@/constants';
+import { createValidationOptions } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { setUser } from '@/store/slices/currentUser';
 import { firebaseAuth } from '@/utils';
 import { Button, InputField, Link } from '@UI';
 
+import { ILoginForm } from './interfaces';
 import {
   Heading,
   LoginContentWrapper,
@@ -19,12 +22,18 @@ import {
 const { emailSignUp, googleSignIn } = firebaseAuth;
 
 const LoginPage: FC = () => {
-  const [login, setLogin] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILoginForm>();
 
-  const handleLoginClick = () => {
+  const { login, password } = errors;
+
+  const handleLoginClick = (data: ILoginForm) => {
+    const { login, password } = data;
     emailSignUp(login, password)
       .then((user) => {
         dispatch(setUser(user));
@@ -44,14 +53,6 @@ const LoginPage: FC = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleLoginChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setLogin(event.target.value);
-  };
-
-  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
-
   return (
     <LoginPageContainer>
       <LoginContentWrapper>
@@ -59,17 +60,17 @@ const LoginPage: FC = () => {
         <Heading>Log in to Twitter</Heading>
         <LoginForm>
           <InputField
-            value={login}
-            onChange={handleLoginChange}
+            error={login}
+            {...register('login', createValidationOptions('login'))}
             placeholder="Phone number, email adress"
           />
           <InputField
+            error={password}
             type="password"
-            value={password}
-            onChange={handlePasswordChange}
+            {...register('password', createValidationOptions('password'))}
             placeholder="Password"
           />
-          <Button type="colored" onClick={handleLoginClick}>
+          <Button type="colored" onClick={handleSubmit(handleLoginClick)}>
             Log in
           </Button>
         </LoginForm>

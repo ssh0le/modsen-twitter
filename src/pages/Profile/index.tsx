@@ -6,6 +6,7 @@ import UserAvatar from '@/components/UserAvatar';
 import { images } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
+import { firestore } from '@/utils';
 import { BoldText, SerifText } from '@UI';
 
 import {
@@ -19,21 +20,24 @@ import {
   SubscriptionCount,
   SubscriptionType,
   TweetListHeading,
-  UserId,
   UserName,
   UserStatus,
   UserSubsctriptionsContainer,
+  UserTag,
 } from './styled';
 
 const ProfilePage: FC = () => {
   const user = useAppSelector(selectCurrentUser)!;
-  const { name, id, avatar } = user;
-  console.log(user);
-  const { followers, following, status } = {
+  const { name, avatar, status, tag, profileId, id } = user;
+  const { followers, following } = {
     followers: 67,
     following: 69,
-    status: 'Developer',
   };
+
+  const handleEditClick = () => {
+    firestore.updateUser(id, { name: `BarBar${new Date().getMinutes()}` });
+  };
+
   return (
     <ProfilePageContainer>
       <ProfileBackground $src={images.defaultUserBackground} />
@@ -42,13 +46,16 @@ const ProfilePage: FC = () => {
           <AvatarContainer>
             <UserAvatar size="large" src={avatar} alt={`${name} avatar`} />
           </AvatarContainer>
-          <EditButton>Edit profile</EditButton>
+          <EditButton onClick={handleEditClick}>Edit profile</EditButton>
         </ProfileHeaderContainer>
         <UserName>
           <SerifText>{name}</SerifText>
         </UserName>
-        <UserId>{id}</UserId>
-        <UserStatus>{status}</UserStatus>
+        <UserTag>
+          {tag}
+          {profileId}
+        </UserTag>
+        <UserStatus>{status || 'No status'}</UserStatus>
         <UserSubsctriptionsContainer>
           <div>
             <SubscriptionCount>

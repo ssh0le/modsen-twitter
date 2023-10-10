@@ -1,13 +1,24 @@
 import { User as FBUser } from 'firebase/auth';
+import { QueryDocumentSnapshot } from 'firebase/firestore';
 
-import { User } from '@/interfaces/ententies';
+import { FBUserInfo, FormUser, User } from '@/interfaces';
 
-export const transformUserRedentials = (user: FBUser): User => {
+export const transformNewUserFromAuth = (user: FBUser): FormUser => {
   const { uid, photoURL, displayName, email } = user;
   return {
-    id: uid,
+    profileId: uid,
     name: displayName || 'Anonymous',
     avatar: photoURL,
-    link: email || 'Unknown',
+    tag: email || 'Unknown',
+    status: null,
+  };
+};
+
+export const transformExistingUserFromAuth = (
+  userSnapshot: QueryDocumentSnapshot,
+): User => {
+  return {
+    id: userSnapshot.id,
+    ...(userSnapshot.data() as FormUser),
   };
 };

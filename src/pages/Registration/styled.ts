@@ -17,7 +17,7 @@ export const LogoContainer = styled.div`
   margin-bottom: 43px;
 `;
 
-export const RegistrationPageContentWrapper = styled.div`
+export const RegistrationPageContentWrapper = styled.form`
   width: 750px;
   padding: 30px 40px 40px 40px;
 `;

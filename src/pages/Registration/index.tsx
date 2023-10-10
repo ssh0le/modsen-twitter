@@ -1,13 +1,16 @@
 import { FC } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
 import { routePathes } from '@/constants';
+import { createValidationOptions } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { setUser } from '@/store/slices/currentUser';
 import { firebaseAuth } from '@/utils';
 import { Button, InputField, Link, Select, SerifText } from '@UI';
 
+import { RegistrationForm } from './interfaces';
 import {
   DateOfBirthMessage,
   Heading,
@@ -24,12 +27,22 @@ const { createUserWithEmail } = firebaseAuth;
 const RegistrationPage: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegistrationForm>();
 
-  const handleNextClick = async () => {
-    createUserWithEmail('boristepanovv@gmail.com', '12345678', 'Borisss')
+  const { name, phone, email, password } = errors;
+
+  const handleNextClick = async (data: RegistrationForm) => {
+    const { email, password, name, phone } = data;
+    createUserWithEmail(email, password, name, phone)
       .then((user) => {
-        dispatch(setUser(user));
-        navigate(routePathes.profile);
+        if (user) {
+          dispatch(setUser(user));
+          navigate(routePathes.profile);
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -44,9 +57,30 @@ const RegistrationPage: FC = () => {
           <SerifText>Create an account</SerifText>
         </Heading>
         <InputFieldsContainer>
-          <InputField placeholder="Name" />
-          <InputField placeholder="Phone number" />
-          <InputField placeholder="Email" />
+          <InputField
+            type="text"
+            error={name}
+            {...register('name', createValidationOptions('name'))}
+            placeholder="Name"
+          />
+          <InputField
+            error={phone}
+            {...register('phone', createValidationOptions('phone'))}
+            placeholder="Phone number"
+          />
+          <InputField
+            error={email}
+            {...register('email', {
+              ...createValidationOptions('email'),
+            })}
+            placeholder="Email"
+          />
+          <InputField
+            error={password}
+            {...register('password', createValidationOptions('password'))}
+            placeholder="Password"
+            type="password"
+          />
         </InputFieldsContainer>
         <Link>Use email</Link>
         <Subheading>
@@ -63,7 +97,7 @@ const RegistrationPage: FC = () => {
           <Select placeholder="Day" />
           <Select placeholder="Year" />
         </SelectContainer>
-        <Button onClick={handleNextClick} type="colored">
+        <Button onClick={handleSubmit(handleNextClick)} type="colored">
           <SerifText>Next</SerifText>
         </Button>
       </RegistrationPageContentWrapper>

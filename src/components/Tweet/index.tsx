@@ -17,7 +17,7 @@ import {
 const { like, likeFilled } = icons;
 
 const Tweet = ({ user }: TweetProps) => {
-  const { name, link, avatar } = user;
+  const { name, tag: link, avatar } = user;
   const isLiked = true;
   const totalLikes = 9;
   return (

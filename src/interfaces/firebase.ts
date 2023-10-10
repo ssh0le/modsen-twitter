@@ -1,10 +1,8 @@
-export interface GoogleSignUpResponse {
-  user: UserInfo;
-}
-
-export interface UserInfo {
-  uid: string;
-  email: string;
-  displayName: string;
-  photoURL: string;
+export interface FBUserInfo {
+  id: string;
+  profileId: string;
+  tag: string;
+  name: string;
+  avatar: string | null;
+  status: string | null;
 }
