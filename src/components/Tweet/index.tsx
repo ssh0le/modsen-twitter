@@ -1,7 +1,8 @@
 import { MouseEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import UserAvatar from '@/components/UserAvatar';
-import { icons } from '@/constants';
+import { icons, routePathes } from '@/constants';
 import { getTweetPublishTime } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { deleteUserTweet } from '@/store/slices/thunk/user';
@@ -12,6 +13,7 @@ import { TweetProps } from './interfaces';
 import {
   ActionListContainer,
   ActionsContainer,
+  ActionsIcon,
   ActionWrapper,
   AtionsButtonContainer,
   LikeContainer,
@@ -42,6 +44,7 @@ const Tweet = ({ info, currentUserId, onAfterDelete }: TweetProps) => {
   const [likes, setLikes] = useState<string[]>(initialLikes);
   const [isActionsOpen, setIsActionsOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const isOwnUserTweet = userId === currentUserId;
 
@@ -81,7 +84,13 @@ const Tweet = ({ info, currentUserId, onAfterDelete }: TweetProps) => {
         userId: currentUserId,
       }),
     );
-    onAfterDelete();
+    if (onAfterDelete) {
+      onAfterDelete();
+    }
+  };
+
+  const handleUserInfoClick = () => {
+    navigate(`${routePathes.profile}/${userId}`);
   };
 
   const isLiked = likes.includes(currentUserId);
@@ -91,7 +100,7 @@ const Tweet = ({ info, currentUserId, onAfterDelete }: TweetProps) => {
       <TweetContentWrapper>
         <UserAvatar size="small" src={userAvatar} />
         <TweetMainContainer>
-          <div>
+          <div onClick={handleUserInfoClick}>
             <BoldText>{userName}</BoldText>{' '}
             <OpacityText>
               {userTag} · {getTweetPublishTime(new Date(postedAt))}
@@ -124,7 +133,7 @@ const Tweet = ({ info, currentUserId, onAfterDelete }: TweetProps) => {
       </TweetContentWrapper>
       <ActionsContainer>
         <AtionsButtonContainer onClick={handleActionMenuButtonClick}>
-          <img src={icons.actions} alt="Post actions" />
+          <ActionsIcon src={icons.actions} alt="Post actions" />
         </AtionsButtonContainer>
         {isActionsOpen && (
           <ActionListContainer>

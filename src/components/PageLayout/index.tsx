@@ -1,11 +1,16 @@
-import { Outlet } from 'react-router-dom';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 
+import { routePathes } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
+import { Tweet as ITweet, User } from '@/interfaces';
 import { selectCurrentUser } from '@/store/selectors';
-import { setUser } from '@/store/slices/currentUser';
+import { logOutUser } from '@/store/slices/currentUser';
+import { firestore } from '@/utils';
 import { Button, SerifText } from '@UI';
 
 import Logo from '../Logo';
+import Tweet from '../Tweet';
 import UserCard from '../UserCard';
 
 import Header from './Header';
@@ -18,15 +23,58 @@ import {
   MenuContainer,
   PageLayoutContainer,
   RigthAside,
+  SearchContainer,
   UserCardContainer,
 } from './styled';
+import UserList from './UserList';
 
 const PageLayout = () => {
-  const { name, avatar, tag: link } = useAppSelector(selectCurrentUser)!;
+  const { name, avatar, tag, profileId } = useAppSelector(selectCurrentUser)!;
+  const { getRecommendedUsers, getTweetsByQuery, getUsersByQuery } = firestore;
   const dispatch = useAppDispatch();
+  const [query, setQuery] = useState<string>('');
+  const [recommendedUsers, setRecommendedUsers] = useState<User[]>([]);
+  const [searchUsers, setSearchUsers] = useState<User[]>([]);
+  const [searchTweets, setSearchTweets] = useState<ITweet[]>([]);
+  const { pathname } = useLocation();
+
+  const isTweetSearch = pathname.includes(routePathes.home);
+
+  useEffect(() => {
+    const fetchRecommendedUsers = async () => {
+      const users = await getRecommendedUsers(profileId);
+      setRecommendedUsers(users);
+    };
+
+    fetchRecommendedUsers();
+  }, [profileId]);
+
+  useEffect(() => {
+    const searchByQuery = async () => {
+      if (query) {
+        if (isTweetSearch) {
+          const tweets = await getTweetsByQuery(query);
+          setSearchTweets(tweets);
+        } else {
+          const users = await getUsersByQuery(query);
+          setSearchUsers(users);
+        }
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      searchByQuery();
+    }, 400);
+
+    return () => clearTimeout(timeoutId);
+  }, [query, isTweetSearch]);
 
   const handleLogOutClick = () => {
-    dispatch(setUser(null));
+    dispatch(logOutUser());
+  };
+
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
   };
 
   return (
@@ -44,8 +92,9 @@ const PageLayout = () => {
             <UserCard
               size={'log-out'}
               name={name || 'Anonymous'}
-              id={link}
+              tag={tag}
               avatar={avatar}
+              userId={profileId}
             />
           </UserCardContainer>
           <Button type="log-out" onClick={handleLogOutClick}>
@@ -54,13 +103,29 @@ const PageLayout = () => {
         </CurrentUserContainer>
       </LeftAside>
       <ContentWrapper>
-        <Header user={{ name, tweetsAmount: 0 }} />
+        <Header />
         <main>
-          <Outlet />
+          {!isTweetSearch || query.length === 0 ? (
+            <Outlet />
+          ) : (
+            <>
+              {searchTweets.map((info) => (
+                <Tweet info={info} currentUserId={profileId} />
+              ))}
+            </>
+          )}
         </main>
       </ContentWrapper>
       <RigthAside>
-        <Search />
+        <SearchContainer>
+          <Search onChange={handleSearchChange} />
+          {(isTweetSearch || query.length === 0) && (
+            <UserList title={'You might like'} users={recommendedUsers} />
+          )}
+          {!isTweetSearch && query.length !== 0 && (
+            <UserList title="Search results" users={searchUsers} />
+          )}
+        </SearchContainer>
       </RigthAside>
     </PageLayoutContainer>
   );

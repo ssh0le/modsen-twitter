@@ -4,13 +4,8 @@ import { firestore } from '@/utils/firebase';
 
 import { AddTweetProps, DeleteTweetProps } from './interfaces';
 
-const {
-  getUserTweets,
-  getUserFollowers,
-  getUserFollowing,
-  createTweet,
-  deleteTweet,
-} = firestore;
+const { getUserTweets, fetchUserActivity, createTweet, deleteTweet } =
+  firestore;
 
 export const fetchUserTweets = createAsyncThunk(
   'user/fetchUserTweets',
@@ -23,14 +18,8 @@ export const fetchUserTweets = createAsyncThunk(
 export const getUserDetails = createAsyncThunk(
   'user/getUserProfile',
   async (userId: string) => {
-    const tweets = await getUserTweets(userId);
-    const followers = (await getUserFollowers(userId))?.length || 0;
-    const following = (await getUserFollowing(userId))?.length || 0;
-    return {
-      tweets,
-      followers,
-      following,
-    };
+    const deatils = await fetchUserActivity(userId);
+    return deatils;
   },
 );
 

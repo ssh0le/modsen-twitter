@@ -1,11 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { icons } from '@/constants';
+import { icons, routePathes } from '@/constants';
+import { useAppSelector } from '@/hooks/storeHooks';
+import { selectCurrentUser, selectUserDetails } from '@/store/selectors';
 import { BoldText, SerifText } from '@UI';
 
 import ThemeSwitch from '../ThemeSwitch';
 
-import { HeaderProps } from './interfaces';
 import {
   BackButtonContainer,
   CurrentLocationContainer,
@@ -18,14 +19,15 @@ import {
 
 const { backArrow, verticalDelimeter } = icons;
 
-const Header = ({ user }: HeaderProps) => {
-  const { name, tweetsAmount } = user;
+const Header = () => {
   const { pathname } = useLocation();
+  const { name } = useAppSelector(selectCurrentUser)!;
+  const { tweets } = useAppSelector(selectUserDetails);
   const navigate = useNavigate();
-  const hasBackButton = pathname.indexOf('/') !== pathname.lastIndexOf('/');
+  const hasBackButton = pathname !== routePathes.profile;
 
   const handleBackButtonClick = () => {
-    navigate(-1);
+    navigate(routePathes.profile);
   };
 
   return (
@@ -37,7 +39,7 @@ const Header = ({ user }: HeaderProps) => {
               <BoldText>{name}</BoldText>
             </SerifText>
           </UserNameContainer>
-          <TweetsCountContainer>{tweetsAmount} Tweets</TweetsCountContainer>
+          <TweetsCountContainer>{tweets.length} Tweets</TweetsCountContainer>
         </CurrentUserContainer>
       )}
       {hasBackButton && (

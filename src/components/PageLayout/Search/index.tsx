@@ -1,48 +1,14 @@
-import { ChangeEvent, useState } from 'react';
-
 import { icons } from '@/constants';
 
-import UserList from '../UserList';
+import { SearchProps } from './interfaces';
+import { SearchIcon, SearchInput, SearchInputContainer } from './styled';
 
-import {
-  SearchContainer,
-  SearchIcon,
-  SearchInput,
-  SearchInputContainer,
-} from './styled';
-
-const users: { name: string; id: string; src?: string }[] = [
-  { name: 'anotanson', id: '@skdankndas', src: undefined },
-  { name: 'bamkbnaksnb', id: '@vaknsononasd', src: undefined },
-  {
-    name: 'laksmdlkamsd sad ',
-    id: 'thebestikberchik1682@gmail.com',
-    src: undefined,
-  },
-];
-
-const Search = () => {
-  const [query, setQuery] = useState<string>('');
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
-
+const Search = ({ onChange }: SearchProps) => {
   return (
-    <SearchContainer>
-      <SearchInputContainer>
-        <SearchIcon src={icons.searchIcon} />
-        <SearchInput
-          value={query}
-          onChange={handleInputChange}
-          placeholder="Search Twitter"
-        />
-      </SearchInputContainer>
-      {!query.length && <UserList users={users} title="You might like" />}
-      {!!query.length && (
-        <UserList users={users.slice(1)} title="Search results" />
-      )}
-    </SearchContainer>
+    <SearchInputContainer>
+      <SearchIcon src={icons.searchIcon} />
+      <SearchInput onChange={onChange} placeholder="Search Twitter" />
+    </SearchInputContainer>
   );
 };
 

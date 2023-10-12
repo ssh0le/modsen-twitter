@@ -19,9 +19,8 @@ import {
   SignUpLinkContainer,
 } from './styled';
 
-const { emailSignUp, googleSignIn } = firebaseAuth;
-
 const LoginPage: FC = () => {
+  const { emailSignUp, googleSignIn } = firebaseAuth;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {

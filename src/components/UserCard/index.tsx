@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useAppSelector } from '@/hooks/storeHooks';
-import { selectCurrentUser } from '@/store/selectors';
+import { selectCurrentUser, selectUserDetails } from '@/store/selectors';
 import { firestore } from '@/utils';
 
 import { SerifText } from '../UI';
@@ -19,7 +19,10 @@ import {
 const { updateFollowers } = firestore;
 
 const UserCard = ({ size, name, tag, avatar, userId }: UserCardProps) => {
-  const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  const { following } = useAppSelector(selectUserDetails);
+  const [isFollowing, setIsFollowing] = useState<boolean>(() =>
+    following.includes(userId),
+  );
   const { profileId } = useAppSelector(selectCurrentUser)!;
 
   const handleFollowClick = () => {

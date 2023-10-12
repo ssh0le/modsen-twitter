@@ -7,8 +7,8 @@ import { fetchUserTweets, getUserDetails } from '../thunk/user';
 const initialState: CurrentUserState = {
   user: null,
   tweets: [],
-  followers: 0,
-  following: 0,
+  followers: [],
+  following: [],
   isFetchingTweets: false,
 };
 
@@ -24,7 +24,7 @@ const currentUserSlice = createSlice({
     },
     setFollowersAndFollowing: (
       state,
-      action: PayloadAction<{ following: number; followers: number }>,
+      action: PayloadAction<{ following: string[]; followers: string[] }>,
     ) => {
       const { following, followers } = action.payload;
       state.followers = followers;

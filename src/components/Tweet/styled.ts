@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { flexColumn } from '@/styles/common';
+import { flexColumn, themedSvgFilter } from '@/styles/common';
 
 export const TweetContainer = styled.div`
   display: flex;
@@ -53,6 +53,10 @@ export const AtionsButtonContainer = styled.div`
 export const ActionsContainer = styled.div`
   position: relative;
   height: fit-content;
+`;
+
+export const ActionsIcon = styled.img`
+  ${themedSvgFilter}
 `;
 
 export const ActionListContainer = styled.div`

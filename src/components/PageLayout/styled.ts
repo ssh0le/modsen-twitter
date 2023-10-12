@@ -54,3 +54,10 @@ export const RigthAside = styled(AsideBar)`
   padding: 28px 20px;
   border-left: 1px solid ${({ theme }) => theme.border};
 `;
+
+export const SearchContainer = styled.div`
+  ${flexColumn};
+  width: 100%;
+  border-radius: 31px;
+  gap: 32px;
+`;

@@ -1,6 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RootState } from '..';
+
 import { Tweet, User } from '@/interfaces';
+
+import { RootState } from '..';
 
 export const selectCurrentUserSlice = (state: RootState) => state.currentUser;
 
@@ -13,7 +15,7 @@ export const selectCurrentUser = createSelector(
 
 export const selectUserDetails = createSelector(
   selectCurrentUserSlice,
-  (slice): { tweets: Tweet[]; followers: number; following: number } => {
+  (slice): { tweets: Tweet[]; followers: string[]; following: string[] } => {
     const { tweets, followers, following } = slice;
     return { tweets, followers, following };
   },

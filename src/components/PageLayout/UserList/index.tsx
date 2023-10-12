@@ -3,7 +3,6 @@ import { SerifText } from '@UI';
 
 import { UserListProps } from './interfaces';
 import {
-  FollowButton,
   RecommendationContainer,
   RecommendationHeading,
   RecommendationUserContainer,
@@ -18,10 +17,15 @@ const UserList = ({ title, users }: UserListProps) => {
         <SerifText>{title}</SerifText>
       </RecommendationHeading>
       <RecommendationUserListContainer>
-        {users.map(({ name, id }) => (
+        {users.map(({ name, id, avatar, tag, profileId }) => (
           <RecommendationUserContainer key={id}>
-            <UserCard size={'recommendation'} name={name} id={id} avatar={''} />
-            <FollowButton>Follow</FollowButton>
+            <UserCard
+              size={'recommendation'}
+              name={name}
+              tag={tag}
+              userId={profileId}
+              avatar={avatar}
+            />
           </RecommendationUserContainer>
         ))}
       </RecommendationUserListContainer>

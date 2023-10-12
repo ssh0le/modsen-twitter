@@ -1,3 +1,3 @@
 export interface AddTweetFormProps {
-  onAfterAdd: () => void;
+  onAfterAdd?: () => void;
 }

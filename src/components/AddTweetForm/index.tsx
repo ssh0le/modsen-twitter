@@ -61,7 +61,9 @@ const AddTweetForm = ({ onAfterAdd }: AddTweetFormProps) => {
         user,
       }),
     );
-    onAfterAdd();
+    if (onAfterAdd) {
+      onAfterAdd();
+    }
     setTweetText('');
     setImage(null);
   };

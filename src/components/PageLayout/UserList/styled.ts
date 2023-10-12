@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { flexColumn, serifText } from '@/styles/common';
+import { flexColumn } from '@/styles/common';
 import { Link } from '@UI';
 
 export const RecommendationContainer = styled.section`
@@ -30,18 +30,4 @@ export const RecommendationHeading = styled.h2`
 export const ShowMoreButton = styled(Link)`
   font-size: ${({ theme }) => theme.fontSizes.fs18}px;
   width: fit-content;
-`;
-
-export const FollowButton = styled.button`
-  ${serifText}
-  background-color: ${({ theme }) => theme.followButton.backgroundColor};
-  color: ${({ theme }) => theme.followButton.color};
-  font-weight: ${({ theme }) => theme.fontWeigth.bold};
-  font-size: ${({ theme }) => theme.fontSizes.fs18}px;
-  padding: 10px 18px;
-  height: fit-content;
-  border-radius: 50px;
-  cursor: pointer;
-  border-width: 2px;
-  border: none;
 `;

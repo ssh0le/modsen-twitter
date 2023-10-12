@@ -22,9 +22,8 @@ import {
   Subheading,
 } from './styled';
 
-const { createUserWithEmail } = firebaseAuth;
-
 const RegistrationPage: FC = () => {
+  const { createUserWithEmail } = firebaseAuth;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {

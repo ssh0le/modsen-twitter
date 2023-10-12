@@ -8,9 +8,11 @@ import {
   addDoc,
   arrayRemove,
   arrayUnion,
+  CollectionReference,
   deleteDoc,
   doc,
   DocumentReference,
+  getDoc,
   getDocs,
   orderBy,
   query,
@@ -45,7 +47,7 @@ const getUserInfo = async (id: string) => {
   const userInfoQuery = query(userInfoRef, where('profileId', '==', id));
   const { docs } = await getDocs(userInfoQuery);
   if (docs.length !== 0) {
-    return docs[0];
+    return convertEntetyFromSnapshot<User>(docs[0]);
   } else {
     return null;
   }
@@ -54,12 +56,12 @@ const getUserInfo = async (id: string) => {
 const googleSignIn = async (): Promise<User | void | null> => {
   return signInWithPopup(auth, provider)
     .then(async (result) => {
-      const user = result.user;
-      const userSnapshot = await getUserInfo(user.uid);
-      if (userSnapshot) {
-        return convertEntetyFromSnapshot<User>(userSnapshot);
+      const authUser = result.user;
+      const user = await getUserInfo(authUser.uid);
+      if (user) {
+        return user;
       } else {
-        const transformedUser = convertNewUserFromAuth(user);
+        const transformedUser = convertNewUserFromAuth(authUser);
         const newUserInfoSnapshot = await addNewUserToDb(transformedUser);
         if (newUserInfoSnapshot) {
           return {
@@ -103,13 +105,9 @@ const createUserWithEmail = async (
 const emailSignUp = async (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password)
     .then(async (result) => {
-      const user = result.user;
-      const userSnapshot = await getUserInfo(user.uid);
-      if (userSnapshot) {
-        return convertEntetyFromSnapshot<User>(userSnapshot);
-      } else {
-        return null;
-      }
+      const authUser = result.user;
+      const user = await getUserInfo(authUser.uid);
+      return user;
     })
     .catch((error) => Promise.reject(error));
 };
@@ -275,6 +273,64 @@ const updateUser = (id: string, newInfo: Partial<FormUser>) => {
   });
 };
 
+const fetchUserActivity = async (
+  userId: string,
+): Promise<{
+  tweets: Tweet[];
+  followers: string[];
+  following: string[];
+}> => {
+  const tweets = await getUserTweets(userId);
+  const followers = await getUserFollowers(userId);
+  const following = await getUserFollowing(userId);
+  return {
+    tweets,
+    followers,
+    following,
+  };
+};
+
+const fetchUserFullInfo = async (userId: string) => {
+  const user = await getUserInfo(userId);
+  if (!user) {
+    return null;
+  }
+  const activity = await fetchUserActivity(userId);
+  console.log(user, activity);
+  return {
+    user,
+    activity,
+  };
+};
+
+const getDocsByQuery = async <T>(
+  collectionRef: CollectionReference,
+  field: string,
+  customQuery: string,
+) => {
+  const docsQuery = query(
+    collectionRef,
+    where(field, '>=', customQuery),
+    where(field, '<=', `${customQuery}~`),
+  );
+  const { docs } = await getDocs(docsQuery);
+  if (docs?.length) {
+    return docs.map(convertEntetyFromSnapshot<T>);
+  } else {
+    return [];
+  }
+};
+
+const getTweetsByQuery = async (queryFromUser: string) => {
+  const tweets = await getDocsByQuery<Tweet>(tweetsRef, 'text', queryFromUser);
+  return tweets;
+};
+
+const getUsersByQuery = async (queryFromUser: string) => {
+  const users = await getDocsByQuery<User>(userInfoRef, 'tag', queryFromUser);
+  return users;
+};
+
 export const firebaseAuth = {
   googleSignIn,
   createUserWithEmail,
@@ -285,12 +341,14 @@ export const firestore = {
   getUserInfo,
   createTweet,
   deleteTweet,
+  getTweetsByQuery,
+  getUsersByQuery,
   updateUser,
   getUserTweets,
   updateLike,
   getRecommendedUsers,
   updateFollowers,
-  getUserFollowers,
-  getUserFollowing,
+  fetchUserActivity,
+  fetchUserFullInfo,
   getUserFeed,
 };
