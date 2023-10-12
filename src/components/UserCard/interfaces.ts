@@ -1,9 +1,10 @@
 type CardType = 'log-out' | 'recommendation';
 
 export interface UserCardProps {
+  userId: string;
   size: CardType;
   name: string;
-  id: string | null;
+  tag: string | null;
   avatar: string | null;
 }
 

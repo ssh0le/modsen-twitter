@@ -1,49 +1,143 @@
+import { MouseEvent, useEffect, useState } from 'react';
+
 import UserAvatar from '@/components/UserAvatar';
 import { icons } from '@/constants';
 import { getTweetPublishTime } from '@/helpers';
+import { useAppDispatch } from '@/hooks/storeHooks';
+import { deleteUserTweet } from '@/store/slices/thunk/user';
+import { firestore } from '@/utils/firebase';
 import { BoldText, OpacityText } from '@UI';
 
 import { TweetProps } from './interfaces';
 import {
+  ActionListContainer,
+  ActionsContainer,
+  ActionWrapper,
   AtionsButtonContainer,
   LikeContainer,
   LikeCountContainer,
+  LikeIcon,
   TweetContainer,
   TweetContentWrapper,
+  TweetImage,
   TweetMainContainer,
   TweetText,
 } from './styled';
 
 const { like, likeFilled } = icons;
 
-const Tweet = ({ user }: TweetProps) => {
-  const { name, tag: link, avatar } = user;
-  const isLiked = true;
-  const totalLikes = 9;
+const Tweet = ({ info, currentUserId, onAfterDelete }: TweetProps) => {
+  const { updateLike } = firestore;
+  const {
+    id,
+    userAvatar,
+    userName,
+    userId,
+    userTag,
+    text,
+    postedAt,
+    likes: initialLikes,
+    image,
+  } = info;
+  const [likes, setLikes] = useState<string[]>(initialLikes);
+  const [isActionsOpen, setIsActionsOpen] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+
+  const isOwnUserTweet = userId === currentUserId;
+
+  const handleActionMenuButtonClick = (event: MouseEvent<HTMLImageElement>) => {
+    event.stopPropagation();
+    if (isOwnUserTweet) {
+      setIsActionsOpen((prevIsOpen) => !prevIsOpen);
+    }
+  };
+
+  useEffect(() => {
+    const handleWindowClick = () => {
+      setIsActionsOpen(false);
+    };
+
+    window.addEventListener('click', handleWindowClick);
+
+    () => window.removeEventListener('click', handleWindowClick);
+  }, []);
+
+  const handleSetLikeClick = () => {
+    updateLike(id, currentUserId, 'set').then(() => {
+      setLikes((prevLikes) => [...prevLikes, currentUserId]);
+    });
+  };
+
+  const handleUnsetLikeClick = () => {
+    updateLike(id, currentUserId, 'unset').then(() => {
+      setLikes((prevLikes) => prevLikes.filter((id) => id !== currentUserId));
+    });
+  };
+
+  const handelDeleteClick = async () => {
+    await dispatch(
+      deleteUserTweet({
+        tweetId: id,
+        userId: currentUserId,
+      }),
+    );
+    onAfterDelete();
+  };
+
+  const isLiked = likes.includes(currentUserId);
+
   return (
     <TweetContainer>
       <TweetContentWrapper>
-        <UserAvatar size="small" src={avatar} />
+        <UserAvatar size="small" src={userAvatar} />
         <TweetMainContainer>
           <div>
-            <BoldText>{name}</BoldText>{' '}
+            <BoldText>{userName}</BoldText>{' '}
             <OpacityText>
-              {link} · {getTweetPublishTime(new Date(2023, 2, 9))}
+              {userTag} · {getTweetPublishTime(new Date(postedAt))}
             </OpacityText>
           </div>
-          <TweetText>asdasdasd</TweetText>
+          {text && <TweetText>{text}</TweetText>}
+          {image && <TweetImage src={image} />}
           <LikeContainer $isLiked={isLiked}>
-            {isLiked && <img src={likeFilled} alt="Setted like" />}
-            {!isLiked && <img src={like} alt="Like" />}
-            <LikeCountContainer $isLiked={isLiked}>
-              {totalLikes}
-            </LikeCountContainer>
+            {isLiked && (
+              <LikeIcon
+                src={likeFilled}
+                alt="Setted like"
+                onClick={handleUnsetLikeClick}
+              />
+            )}
+            {!isLiked && (
+              <LikeIcon
+                src={like}
+                alt="Unsetted like"
+                onClick={handleSetLikeClick}
+              />
+            )}
+            {likes.length > 0 && (
+              <LikeCountContainer $isLiked={isLiked}>
+                {likes.length}
+              </LikeCountContainer>
+            )}
           </LikeContainer>
         </TweetMainContainer>
       </TweetContentWrapper>
-      <AtionsButtonContainer>
-        <img src={icons.actions} alt="Post actions" />
-      </AtionsButtonContainer>
+      <ActionsContainer>
+        <AtionsButtonContainer onClick={handleActionMenuButtonClick}>
+          <img src={icons.actions} alt="Post actions" />
+        </AtionsButtonContainer>
+        {isActionsOpen && (
+          <ActionListContainer>
+            {isOwnUserTweet && (
+              <>
+                <ActionWrapper onClick={handelDeleteClick}>
+                  Delete
+                </ActionWrapper>
+              </>
+            )}
+          </ActionListContainer>
+        )}
+      </ActionsContainer>
     </TweetContainer>
   );
 };

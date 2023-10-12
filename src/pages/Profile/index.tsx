@@ -1,12 +1,12 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 import AddTweetForm from '@/components/AddTweetForm';
 import Tweet from '@/components/Tweet';
 import UserAvatar from '@/components/UserAvatar';
 import { images } from '@/constants';
-import { useAppSelector } from '@/hooks/storeHooks';
-import { selectCurrentUser } from '@/store/selectors';
-import { firestore } from '@/utils';
+import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
+import { selectCurrentUser, selectUserDetails } from '@/store/selectors';
+import { fetchUserTweets, getUserDetails } from '@/store/slices/thunk/user';
 import { BoldText, SerifText } from '@UI';
 
 import {
@@ -28,14 +28,20 @@ import {
 
 const ProfilePage: FC = () => {
   const user = useAppSelector(selectCurrentUser)!;
-  const { name, avatar, status, tag, profileId, id } = user;
-  const { followers, following } = {
-    followers: 67,
-    following: 69,
+  const { name, avatar, status, tag, profileId } = user;
+  const dispatch = useAppDispatch();
+  const { tweets, followers, following } = useAppSelector(selectUserDetails);
+
+  useEffect(() => {
+    dispatch(getUserDetails(profileId));
+  }, [profileId, dispatch]);
+
+  const handleUserTweetsCahnge = () => {
+    dispatch(fetchUserTweets(profileId));
   };
 
   const handleEditClick = () => {
-    firestore.updateUser(id, { name: `BarBar${new Date().getMinutes()}` });
+    // firestore.updateUser(id, { name: `BarBar${new Date().getMinutes()}` });
   };
 
   return (
@@ -72,16 +78,25 @@ const ProfilePage: FC = () => {
         </UserSubsctriptionsContainer>
       </ProfileContentWrapper>
       <AddTweetFormContainer>
-        <AddTweetForm />
+        <AddTweetForm onAfterAdd={handleUserTweetsCahnge} />
       </AddTweetFormContainer>
-      <TweetListHeading>
-        <BoldText $size="small">
-          <SerifText>Tweets</SerifText>
-        </BoldText>
-      </TweetListHeading>
-      {/* {[1, 2, 3, 4, 5].map(() => (
-        <Tweet user={user}/>
-      ))} */}
+      {tweets.length > 0 && (
+        <>
+          <TweetListHeading>
+            <BoldText $size="small">
+              <SerifText>Tweets</SerifText>
+            </BoldText>
+          </TweetListHeading>
+          {tweets.map((tweet) => (
+            <Tweet
+              onAfterDelete={handleUserTweetsCahnge}
+              key={tweet.id}
+              info={tweet}
+              currentUserId={profileId}
+            />
+          ))}
+        </>
+      )}
     </ProfilePageContainer>
   );
 };

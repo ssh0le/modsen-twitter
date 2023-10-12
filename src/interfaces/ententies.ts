@@ -14,13 +14,19 @@ export interface FormTweet {
   userId: string;
   userName: string;
   userTag: string;
-  avatar: string | null;
-  text: string;
-  images: string[];
+  userAvatar: string | null;
+  text: string | null;
+  image?: string | null;
 }
 
 export interface Tweet extends FormTweet {
   id: string;
   postedAt: Date;
   likes: string[];
+}
+
+export interface FollowerList {
+  id: string;
+  profileId: string;
+  followers: string[];
 }

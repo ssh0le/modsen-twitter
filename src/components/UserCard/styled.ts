@@ -25,3 +25,16 @@ export const UserIdWrapper = styled.span`
   opacity: 60%;
   word-wrap: break-word;
 `;
+
+export const FollowButton = styled.button`
+  background-color: ${({ theme }) => theme.followButton.backgroundColor};
+  color: ${({ theme }) => theme.followButton.color};
+  font-weight: ${({ theme }) => theme.fontWeigth.bold};
+  font-size: ${({ theme }) => theme.fontSizes.fs18}px;
+  padding: 10px 18px;
+  height: fit-content;
+  border-radius: 50px;
+  cursor: pointer;
+  border-width: 2px;
+  border: none;
+`;

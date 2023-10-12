@@ -1,5 +1,7 @@
-import { User } from '@/interfaces/ententies';
+import { Tweet } from '@/interfaces/ententies';
 
 export interface TweetProps {
-  user: User;
+  info: Tweet;
+  currentUserId: string;
+  onAfterDelete: () => void;
 }

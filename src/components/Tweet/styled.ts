@@ -47,4 +47,31 @@ export const LikeCountContainer = styled.span<{ $isLiked: boolean }>`
 
 export const AtionsButtonContainer = styled.div`
   padding: 10px;
+  cursor: pointer;
+`;
+
+export const ActionsContainer = styled.div`
+  position: relative;
+  height: fit-content;
+`;
+
+export const ActionListContainer = styled.div`
+  position: absolute;
+  right: 0;
+  background-color: orange;
+`;
+
+export const ActionWrapper = styled.div`
+  font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+  cursor: pointer;
+  padding: 5px 10px;
+`;
+
+export const LikeIcon = styled.img`
+  cursor: pointer;
+`;
+
+export const TweetImage = styled.img`
+  width: 100%;
+  margin-top: 15px;
 `;

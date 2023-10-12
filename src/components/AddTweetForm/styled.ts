@@ -41,3 +41,27 @@ export const TweetInputControlsContainer = styled.div`
 export const TweetButtonContainer = styled.div`
   width: 116px;
 `;
+
+export const FileInput = styled.input`
+  display: none;
+`;
+
+export const PreviewImageContainer = styled.div`
+  position: relative;
+  width: 100px;
+  height: 100px;
+`;
+
+export const PreviewImage = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+export const DeleteBadge = styled.div`
+  position: absolute;
+  padding: 5px;
+  right: 0;
+  top: 0;
+  color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+`;
