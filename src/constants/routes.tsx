@@ -6,10 +6,11 @@ import LoginPage from '@/pages/Login';
 import ProfilePage from '@/pages/Profile';
 import RegistrationPage from '@/pages/Registration';
 import SignUpPage from '@/pages/SignUp';
+import UserDetailsPage from '@/pages/UserDetails';
 
 import { routePathes } from './links';
 
-const { signUp, login, registration, profile, home } = routePathes;
+const { signUp, login, registration, profile, home, userDetails } = routePathes;
 
 export const safeRoutes: RouteInfo[] = [
   {
@@ -38,6 +39,10 @@ export const protectedRoutes: RouteInfo[] = [
   {
     path: home,
     element: <FeedPage />,
+  },
+  {
+    path: userDetails,
+    element: <UserDetailsPage />,
   },
 ];
 

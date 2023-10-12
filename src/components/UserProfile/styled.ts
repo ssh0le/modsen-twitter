@@ -91,3 +91,8 @@ export const TweetListHeading = styled.h2`
   width: 215px;
   border-bottom: 1px solid ${({ theme }) => theme.border};
 `;
+
+export const NoTweetsMessage = styled.p`
+  text-align: center;
+  padding: 60px 0;
+`;

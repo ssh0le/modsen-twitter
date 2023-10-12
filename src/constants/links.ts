@@ -43,7 +43,7 @@ export const menuTitles = [
 
 const defaultPath = '/';
 const home = '/home';
-const userProfile = '/profile/:userId';
+const userDetails = '/profile/:userId';
 const profile = '/profile';
 const signUp = '/sign-up';
 const login = '/login';
@@ -61,7 +61,7 @@ export const routePathes = {
   signUp,
   login,
   registration,
-  userProfile,
+  userDetails,
   defaultPath,
 };
 
