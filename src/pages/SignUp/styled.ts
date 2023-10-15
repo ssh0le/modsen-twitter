@@ -43,15 +43,9 @@ export const GoogleLogoContainer = styled.span`
 
 export const SignUpImageContainer = styled.div`
   background-image: url(${images.signUpBackground});
-  display: flex;
   flex-grow: 1;
   height: 100%;
   background-position: center;
-`;
-
-export const SignUpImage = styled.img`
-  display: flex;
-  height: 100%;
 `;
 
 export const ButtonsWrapper = styled.div`

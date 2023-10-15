@@ -1,3 +1,4 @@
+import { getAuth } from 'firebase/auth';
 import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
@@ -7,8 +8,16 @@ import { selectCurrentUser } from '@/store/selectors';
 
 const ProtectedRoutes = ({ children }: { children: ReactNode }) => {
   const currentUser = useAppSelector(selectCurrentUser);
+
+  const auth = getAuth();
   return (
-    <>{currentUser ? children : <Navigate to={routePathes.login} replace />}</>
+    <>
+      {currentUser || auth.currentUser ? (
+        children
+      ) : (
+        <Navigate to={routePathes.login} replace />
+      )}
+    </>
   );
 };
 

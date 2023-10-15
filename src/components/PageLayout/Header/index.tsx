@@ -2,7 +2,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { icons, routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
-import { selectCurrentUser, selectUserDetails } from '@/store/selectors';
+import {
+  isFetchingTweets,
+  selectCurrentUser,
+  selectUserDetails,
+} from '@/store/selectors';
 import { BoldText, SerifText } from '@UI';
 
 import ThemeSwitch from '../ThemeSwitch';
@@ -25,10 +29,15 @@ const Header = () => {
   const { tweets } = useAppSelector(selectUserDetails);
   const navigate = useNavigate();
   const hasBackButton = pathname !== routePathes.profile;
+  const isLoading = useAppSelector(isFetchingTweets);
 
   const handleBackButtonClick = () => {
     navigate(routePathes.profile);
   };
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <HeaderContainer>

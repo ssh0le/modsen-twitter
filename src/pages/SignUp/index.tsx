@@ -1,4 +1,3 @@
-import { GoogleAuthProvider } from 'firebase/auth';
 import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -42,8 +41,6 @@ const SignUpPage: FC = () => {
     firebaseAuth
       .googleSignIn()
       .then((user) => {
-        // const credential = GoogleAuthProvider.credentialFromResult(result);
-        // console.log(credential);
         if (user) {
           dispatch(setUser(user));
         }

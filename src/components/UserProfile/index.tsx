@@ -2,12 +2,15 @@ import UserAvatar from '@/components/UserAvatar';
 import { images } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
-import { BoldText, SerifText } from '@UI';
+import { BoldText, Loader, SerifText } from '@UI';
+
+import { PageLayoutContainer } from '../PageLayout/styled';
 
 import { UserProfileProps } from './interfaces';
 import {
   AddTweetFormContainer,
   AvatarContainer,
+  LoaderContainer,
   NoTweetsMessage,
   ProfileBackground,
   ProfileHeaderContainer,
@@ -30,12 +33,23 @@ const UserProfile = (props: UserProfileProps) => {
     following,
     addTweetForm = null,
     editButton = null,
+    isLoading,
     renderTweet,
   } = props;
   const { name, avatar, status, tag, profileId } = user;
   const { profileId: currentUserId } = useAppSelector(selectCurrentUser)!;
 
   const isCurrentUserProfile = currentUserId === profileId;
+
+  if (isLoading) {
+    return (
+      <PageLayoutContainer>
+        <LoaderContainer>
+          <Loader />
+        </LoaderContainer>
+      </PageLayoutContainer>
+    );
+  }
 
   return (
     <ProfilePageContainer>

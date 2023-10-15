@@ -20,3 +20,10 @@ export const selectUserDetails = createSelector(
     return { tweets, followers, following };
   },
 );
+
+export const isFetchingTweets = createSelector(
+  selectCurrentUserSlice,
+  (state): boolean => {
+    return state.isFetchingTweets;
+  },
+);

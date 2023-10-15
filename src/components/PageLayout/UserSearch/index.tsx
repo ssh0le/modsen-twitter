@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Loader } from '@/components/UI';
@@ -11,11 +11,13 @@ import { firestore } from '@/utils';
 
 import UserList from '../UserList';
 
-const UserSearch = () => {
+const UserSearch = memo(() => {
   const { getRecommendedUsers, getUsersByQuery } = firestore;
   const { pathname } = useLocation();
   const { profileId } = useAppSelector(selectCurrentUser)!;
   const [recommendedUsers, setRecommendedUsers] = useState<User[]>([]);
+  const [isRecommendsLoading, setIsRecommendsLoading] =
+    useState<boolean>(false);
   const isUserSearch = pathname.includes(routePathes.profile);
 
   const {
@@ -26,14 +28,16 @@ const UserSearch = () => {
 
   useEffect(() => {
     const fetchRecommendedUsers = async () => {
+      setIsRecommendsLoading(true);
       const users = await getRecommendedUsers(profileId);
       setRecommendedUsers(users);
+      setIsRecommendsLoading(false);
     };
 
     fetchRecommendedUsers();
   }, [profileId, getRecommendedUsers]);
 
-  if (isLoading) {
+  if (isLoading || isRecommendsLoading) {
     return <Loader />;
   }
 
@@ -47,6 +51,6 @@ const UserSearch = () => {
       )}
     </>
   );
-};
+});
 
 export default UserSearch;

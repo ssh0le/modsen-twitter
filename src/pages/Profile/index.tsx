@@ -6,7 +6,11 @@ import Tweet from '@/components/Tweet';
 import UserProfile from '@/components/UserProfile';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { Tweet as ITweet } from '@/interfaces';
-import { selectCurrentUser, selectUserDetails } from '@/store/selectors';
+import {
+  isFetchingTweets,
+  selectCurrentUser,
+  selectUserDetails,
+} from '@/store/selectors';
 import { fetchUserTweets, getUserDetails } from '@/store/slices/thunk/user';
 import { publisher } from '@/utils';
 
@@ -14,6 +18,7 @@ const ProfilePage: FC = () => {
   const user = useAppSelector(selectCurrentUser)!;
   const { profileId } = user;
   const { tweets, followers, following } = useAppSelector(selectUserDetails);
+  const isLoading = useAppSelector(isFetchingTweets);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -43,6 +48,7 @@ const ProfilePage: FC = () => {
       addTweetForm={<AddTweetForm />}
       editButton={<EditProfileModal />}
       renderTweet={renderTweet}
+      isLoading={isLoading}
     />
   );
 };

@@ -44,6 +44,7 @@ const currentUserSlice = createSlice({
         state.tweets = tweets;
         state.followers = followers;
         state.following = following;
+        state.isFetchingTweets = false;
       })
       .addCase(getUserDetails.pending, (state) => {
         state.isFetchingTweets = true;

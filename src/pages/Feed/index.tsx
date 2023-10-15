@@ -23,6 +23,8 @@ const FeedPage = () => {
   const [feedTweets, setFeedTweets] = useState<ITweet[]>([]);
   const { getUserFeed, getTweetsByQuery } = firestore;
   const { pathname } = useLocation();
+  const [isFeedLoading, setIsFeedLoading] = useState<boolean>(false);
+
   const isTweetSearch = pathname.includes(routePathes.home);
 
   const {
@@ -32,8 +34,10 @@ const FeedPage = () => {
   } = useSearch<ITweet>(getTweetsByQuery, isTweetSearch);
 
   const fetchFeed = useCallback(async () => {
+    setIsFeedLoading(true);
     const feed = await getUserFeed(profileId);
     setFeedTweets(feed);
+    setIsFeedLoading(false);
   }, [profileId, getUserFeed]);
 
   useEffect(() => {
@@ -50,7 +54,7 @@ const FeedPage = () => {
     <Tweet key={tweet.id} info={tweet} currentUserId={profileId} />
   );
 
-  if (isLoading) {
+  if (isLoading || isFeedLoading) {
     return (
       <FeedPageContainer>
         <LoaderContainer>

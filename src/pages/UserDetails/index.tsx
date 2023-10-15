@@ -14,6 +14,7 @@ const UserDetailsPage: FC = () => {
   const { profileId } = useAppSelector(selectCurrentUser)!;
   const { userId } = useParams();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
   const [activity, setActivity] = useState<{
     tweets: ITweet[];
@@ -28,6 +29,7 @@ const UserDetailsPage: FC = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       if (userId) {
+        setIsLoading(true);
         const details = await fetchUserFullInfo(userId);
         if (details) {
           const { user, activity } = details;
@@ -36,8 +38,10 @@ const UserDetailsPage: FC = () => {
         } else {
           navigate('user-not-found');
         }
+        setIsLoading(false);
       } else {
         navigate('user-not-found');
+        setIsLoading(false);
       }
     };
 
@@ -63,6 +67,7 @@ const UserDetailsPage: FC = () => {
           followers={followers.length}
           following={following.length}
           renderTweet={renderTweet}
+          isLoading={isLoading}
         />
       )}
     </>

@@ -86,3 +86,8 @@ export const NoTweetsMessage = styled.p`
   text-align: center;
   padding: 60px 0;
 `;
+
+export const LoaderContainer = styled.div`
+  width: 100%;
+  align-self: center;
+`;

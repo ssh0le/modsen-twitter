@@ -9,5 +9,6 @@ export interface UserProfileProps {
   following: number;
   addTweetForm?: ReactNode | null;
   editButton?: ReactNode | null;
+  isLoading?: boolean;
   renderTweet: (tweetInfo: Tweet) => ReactNode;
 }

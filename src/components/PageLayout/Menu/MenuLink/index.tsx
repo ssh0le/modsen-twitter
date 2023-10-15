@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { getMenuIcon } from '@/helpers/getIcon';
 
@@ -7,9 +7,12 @@ import { MenuLinkIcon, MenuLinkWrapper } from './styled';
 
 const MenuLink = ({ isSelected, title, route }: MenuLinkProps) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleLinkClick = () => {
-    navigate(route);
+    if (pathname !== route) {
+      navigate(route);
+    }
   };
 
   return (
