@@ -5,11 +5,14 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from '@/store';
 
 import App from './App.tsx';
+import ErrorBoundary from './components/ErrorBoundary/index.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <PersistGate persistor={persistor}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </PersistGate>,
+  <ErrorBoundary>
+    <PersistGate persistor={persistor}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </PersistGate>
+  </ErrorBoundary>,
 );

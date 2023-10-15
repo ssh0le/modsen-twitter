@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import { Button, SerifText } from '../UI';
+import { SerifText } from '../UI';
 
 import { ErrorBoundaryProps, ErrorBoundaryState } from './interfaces';
 import {
@@ -9,7 +9,10 @@ import {
   MessageContainer,
 } from './styled';
 
-class ErrorBounday extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export default class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = {
@@ -17,10 +20,8 @@ class ErrorBounday extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     };
   }
 
-  componentDidCatch(): void {
-    this.setState({
-      hasError: true,
-    });
+  static getDerivedStateFromError() {
+    return { hasError: true };
   }
 
   handleButtonClick = () => {
@@ -33,21 +34,19 @@ class ErrorBounday extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     const { hasError } = this.state;
     const { children } = this.props;
 
-    if (!hasError) {
-      return children;
+    if (hasError) {
+      return (
+        <ErrorBoundaryContainer>
+          <MessageContainer>
+            <SerifText>Something went wrong!</SerifText>
+          </MessageContainer>
+          <ButtonContainer>
+            <button onClick={this.handleButtonClick}>Go to home</button>
+          </ButtonContainer>
+        </ErrorBoundaryContainer>
+      );
     }
 
-    return (
-      <ErrorBoundaryContainer>
-        <MessageContainer>
-          <SerifText>Something went wrong!</SerifText>
-        </MessageContainer>
-        <ButtonContainer>
-          <Button onClick={this.handleButtonClick}>Go to home</Button>
-        </ButtonContainer>
-      </ErrorBoundaryContainer>
-    );
+    return children;
   }
 }
-
-export default ErrorBounday;

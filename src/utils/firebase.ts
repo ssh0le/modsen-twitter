@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   updatePassword,
+  updateProfile,
 } from 'firebase/auth';
 import {
   addDoc,
@@ -31,13 +32,7 @@ import {
   userInfoRef,
 } from '@/firebase';
 import { convertEntetyFromSnapshot, convertNewUserFromAuth } from '@/helpers';
-import {
-  FollowerList,
-  FormTweet,
-  FormUser,
-  Tweet,
-  User,
-} from '@/interfaces/ententies';
+import { FollowerList, FormUser, Tweet, User } from '@/interfaces/ententies';
 
 const provider = new GoogleAuthProvider();
 
@@ -88,6 +83,9 @@ const createUserWithEmail = async (
   return createUserWithEmailAndPassword(auth, email, password)
     .then(async (result) => {
       const user = result.user;
+      await updateProfile(user, {
+        displayName,
+      });
       const transformedUser = convertNewUserFromAuth(user);
       const newUserInfoSnapshot = await addNewUserToDb(transformedUser);
       if (newUserInfoSnapshot) {
@@ -163,10 +161,7 @@ const getUserTweets = async (profileId: string) => {
     orderBy('postedAt', 'desc'),
   );
   const { docs } = await getDocs(tweetsQuery);
-  const userTweets = docs.map(
-    (doc) => ({ ...doc.data(), id: doc.id }) as Tweet,
-  );
-  return userTweets;
+  return docs ? docs.map(convertEntetyFromSnapshot<Tweet>) : [];
 };
 
 const updateLike = async (
