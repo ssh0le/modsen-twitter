@@ -3,6 +3,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updatePassword,
 } from 'firebase/auth';
 import {
   addDoc,
@@ -12,7 +13,6 @@ import {
   deleteDoc,
   doc,
   DocumentReference,
-  getDoc,
   getDocs,
   orderBy,
   query,
@@ -83,6 +83,7 @@ const createUserWithEmail = async (
   password: string,
   displayName: string,
   phone: string,
+  dateOfBirth: number,
 ): Promise<User | void | null> => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then(async (result) => {
@@ -266,11 +267,42 @@ const getUserFeed = async (userId: string): Promise<Tweet[]> => {
   return docs ? docs.map(convertEntetyFromSnapshot<Tweet>) : [];
 };
 
-const updateUser = (id: string, newInfo: Partial<FormUser>) => {
-  const userRef = doc(db, usersInfo, id);
-  updateDoc(userRef, {
-    ...newInfo,
+const updateUser = async (
+  id: string,
+  profileId: string,
+  newInfo: Partial<Pick<FormUser, 'name' | 'tag' | 'status'>> & {
+    gender: string;
+  },
+) => {
+  return new Promise((resolve, reject) => {
+    const userRef = doc(db, usersInfo, id);
+    updateDoc(userRef, {
+      ...newInfo,
+    })
+      .then(async () => {
+        const tweetsQuery = query(tweetsRef, where('userId', '==', profileId));
+        const { docs } = await getDocs(tweetsQuery);
+        const { name, tag } = newInfo;
+        Promise.all(
+          docs.map((doc) => {
+            return updateDoc(doc.ref, {
+              userName: name,
+              userTag: tag,
+            });
+          }),
+        )
+          .then(resolve)
+          .catch(reject);
+      })
+      .catch((err) => reject(err));
   });
+};
+
+const updateUserPassword = async (newPassword: string) => {
+  const user = auth.currentUser;
+  if (user) {
+    return updatePassword(user, newPassword);
+  }
 };
 
 const fetchUserActivity = async (
@@ -296,7 +328,6 @@ const fetchUserFullInfo = async (userId: string) => {
     return null;
   }
   const activity = await fetchUserActivity(userId);
-  console.log(user, activity);
   return {
     user,
     activity,
@@ -335,6 +366,7 @@ export const firebaseAuth = {
   googleSignIn,
   createUserWithEmail,
   emailSignUp,
+  updateUserPassword,
 };
 
 export const firestore = {

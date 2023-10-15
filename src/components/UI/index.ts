@@ -4,6 +4,7 @@ export * from './Button';
 export * from './FullPageWrapper';
 export * from './InputField';
 export * from './Link';
+export * from './Modal';
 export * from './OpacityText';
 export * from './Select';
 export * from './SerifText';

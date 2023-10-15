@@ -1,11 +1,27 @@
 import { css } from 'styled-components';
 
 export const inputStyle = css`
-  border-radius: 6px;
   font-size: ${({ theme }) => theme.fontSizes.fs18}px;
-  border: 1px solid ${({ theme }) => theme.inputField.border};
   color: ${({ theme }) => theme.inputField.color};
+  border: none;
+  width: 100%;
+  background-color: ${({ theme }) => theme.inputField.backgroundColor};
+  &::placeholder {
+    color: ${({ theme }) => theme.inputField.placeholderColor};
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const inputContainerStyle = css`
+  border: 1px solid ${({ theme }) => theme.inputField.border};
   padding: 23px 20px 26px;
+  background-color: ${({ theme }) => theme.inputField.backgroundColor};
+  border-radius: 6px;
+  &:focus-within {
+    outline: solid ${({ theme }) => theme.inputField.color};
+  }
 `;
 
 export const serifText = css`

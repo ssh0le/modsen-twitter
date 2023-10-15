@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { CurrentUserState, Tweet, User } from '@/interfaces';
 
-import { fetchUserTweets, getUserDetails } from '../thunk/user';
+import { fetchUserTweets, getUserDetails, updateUserInfo } from '../thunk/user';
 
 const initialState: CurrentUserState = {
   user: null,
@@ -32,7 +32,9 @@ const currentUserSlice = createSlice({
     },
     logOutUser: (state) => {
       state.user = null;
-      state = initialState;
+      state = {
+        ...initialState,
+      };
     },
   },
   extraReducers: (builder) => {
@@ -51,6 +53,19 @@ const currentUserSlice = createSlice({
       })
       .addCase(fetchUserTweets.fulfilled, (state, action) => {
         state.tweets = action.payload;
+      })
+      .addCase(updateUserInfo.fulfilled, (state, action) => {
+        const payload = action.payload;
+        if (payload) {
+          const {
+            user,
+            activity: { followers, following, tweets },
+          } = payload;
+          state.user = user;
+          state.followers = followers;
+          state.following = following;
+          state.tweets = tweets;
+        }
       });
   },
 });

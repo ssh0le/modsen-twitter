@@ -11,3 +11,7 @@ export interface CurrentUserState {
 export interface ThemeState {
   currentTheme: 'light' | 'dark';
 }
+
+export interface SearchState {
+  query: string;
+}

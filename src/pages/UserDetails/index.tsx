@@ -1,17 +1,22 @@
 import { FC, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
+import Tweet from '@/components/Tweet';
 import UserProfile from '@/components/UserProfile';
-import { Tweet, User } from '@/interfaces';
+import { routePathes } from '@/constants';
+import { useAppSelector } from '@/hooks/storeHooks';
+import { Tweet as ITweet, User } from '@/interfaces';
+import { selectCurrentUser } from '@/store/selectors';
 import { firestore } from '@/utils';
 
 const UserDetailsPage: FC = () => {
   const { fetchUserFullInfo } = firestore;
+  const { profileId } = useAppSelector(selectCurrentUser)!;
   const { userId } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [activity, setActivity] = useState<{
-    tweets: Tweet[];
+    tweets: ITweet[];
     followers: string[];
     following: string[];
   }>({
@@ -39,11 +44,15 @@ const UserDetailsPage: FC = () => {
     fetchUserProfile();
   }, [userId, fetchUserFullInfo, navigate]);
 
-  // const handleEditClick = () => {
-  //   // firestore.updateUser(id, { name: `BarBar${new Date().getMinutes()}` });
-  // };
+  if (userId === profileId) {
+    return <Navigate to={routePathes.profile} replace />;
+  }
 
   const { tweets, followers, following } = activity;
+
+  const renderTweet = (tweetInfo: ITweet) => (
+    <Tweet key={tweetInfo.id} info={tweetInfo} currentUserId={profileId} />
+  );
 
   return (
     <>
@@ -53,7 +62,7 @@ const UserDetailsPage: FC = () => {
           tweets={tweets}
           followers={followers.length}
           following={following.length}
-          isCurrentUserProfile={false}
+          renderTweet={renderTweet}
         />
       )}
     </>

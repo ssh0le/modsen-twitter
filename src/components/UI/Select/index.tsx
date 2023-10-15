@@ -1,18 +1,45 @@
-import { FC } from 'react';
+import { forwardRef } from 'react';
+
+import { SerifText } from '../SerifText';
 
 import { SelectProps } from './interfaces';
-import { CustomSelect, SelectOption, SelectWraper } from './styled';
+import {
+  CustomSelect,
+  InputLabel,
+  SelecetContainer,
+  SelectOption,
+  SelectWraper,
+} from './styled';
 
-export const Select: FC<SelectProps> = ({ placeholder }) => {
-  return (
-    <SelectWraper>
-      <CustomSelect value={'value'}>
-        {placeholder && (
-          <SelectOption selected disabled hidden>
-            {placeholder}
-          </SelectOption>
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+  (props, ref) => {
+    const { placeholder, options, error, label, ...remainedProps } = props;
+
+    const placeholderValue = '';
+
+    return (
+      <SelecetContainer>
+        {label && (
+          <InputLabel>
+            <SerifText>{label}</SerifText>
+          </InputLabel>
         )}
-      </CustomSelect>
-    </SelectWraper>
-  );
-};
+        <SelectWraper>
+          <CustomSelect ref={ref} {...remainedProps}>
+            {placeholder && (
+              <SelectOption key={placeholderValue} value={placeholderValue}>
+                {placeholder}
+              </SelectOption>
+            )}
+            {options.map(({ name, value }) => (
+              <SelectOption key={value} value={value}>
+                {name}
+              </SelectOption>
+            ))}
+          </CustomSelect>
+        </SelectWraper>
+        {error && <p>{error.message}</p>}
+      </SelecetContainer>
+    );
+  },
+);

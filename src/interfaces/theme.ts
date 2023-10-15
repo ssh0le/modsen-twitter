@@ -26,7 +26,7 @@ export interface Theme {
   lineHeight: {
     medium: 20;
   };
-  inputField: Pick<ElementStyle, 'border' | 'color'>;
+  inputField: ElementStyle & { placeholderColor: string };
   avatarSize: AvatarSize;
   recommendation: Pick<ElementStyle, 'backgroundColor'>;
   search: Pick<ElementStyle, 'backgroundColor' | 'color'> & {

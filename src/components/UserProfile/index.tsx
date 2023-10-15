@@ -1,5 +1,3 @@
-import AddTweetForm from '@/components/AddTweetForm';
-import Tweet from '@/components/Tweet';
 import UserAvatar from '@/components/UserAvatar';
 import { images } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
@@ -10,7 +8,6 @@ import { UserProfileProps } from './interfaces';
 import {
   AddTweetFormContainer,
   AvatarContainer,
-  EditButton,
   NoTweetsMessage,
   ProfileBackground,
   ProfileHeaderContainer,
@@ -25,14 +22,16 @@ import {
   UserTag,
 } from './styled';
 
-const UserProfile = ({
-  user,
-  tweets,
-  followers,
-  following,
-  onEditClick,
-  onTweetsUpdate,
-}: UserProfileProps) => {
+const UserProfile = (props: UserProfileProps) => {
+  const {
+    user,
+    tweets,
+    followers,
+    following,
+    addTweetForm = null,
+    editButton = null,
+    renderTweet,
+  } = props;
   const { name, avatar, status, tag, profileId } = user;
   const { profileId: currentUserId } = useAppSelector(selectCurrentUser)!;
 
@@ -46,9 +45,7 @@ const UserProfile = ({
           <AvatarContainer>
             <UserAvatar size="large" src={avatar} alt={`${name} avatar`} />
           </AvatarContainer>
-          {isCurrentUserProfile && (
-            <EditButton onClick={onEditClick}>Edit profile</EditButton>
-          )}
+          {editButton}
         </ProfileHeaderContainer>
         <UserName>
           <SerifText>{name}</SerifText>
@@ -70,10 +67,8 @@ const UserProfile = ({
           </div>
         </UserSubsctriptionsContainer>
       </ProfileContentWrapper>
-      {isCurrentUserProfile && (
-        <AddTweetFormContainer>
-          <AddTweetForm onAfterAdd={onTweetsUpdate} />
-        </AddTweetFormContainer>
+      {addTweetForm !== null && (
+        <AddTweetFormContainer>{addTweetForm}</AddTweetFormContainer>
       )}
       {tweets.length > 0 && (
         <>
@@ -82,14 +77,7 @@ const UserProfile = ({
               <SerifText>Tweets</SerifText>
             </BoldText>
           </TweetListHeading>
-          {tweets.map((tweet) => (
-            <Tweet
-              onAfterDelete={onTweetsUpdate}
-              key={tweet.id}
-              info={tweet}
-              currentUserId={currentUserId}
-            />
-          ))}
+          {tweets.map(renderTweet)}
         </>
       )}
       {tweets.length === 0 && (

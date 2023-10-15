@@ -1,3 +1,4 @@
+import { getAuth } from 'firebase/auth';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
@@ -6,6 +7,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { Tweet as ITweet, User } from '@/interfaces';
 import { selectCurrentUser } from '@/store/selectors';
 import { logOutUser } from '@/store/slices/currentUser';
+import { toggleTheme } from '@/store/slices/theme';
+import { updateUserInfo } from '@/store/slices/thunk/user';
 import { firestore } from '@/utils';
 import { Button, SerifText } from '@UI';
 
@@ -38,7 +41,14 @@ const PageLayout = () => {
   const [searchTweets, setSearchTweets] = useState<ITweet[]>([]);
   const { pathname } = useLocation();
 
+  const auth = getAuth();
+  console.log(auth.currentUser);
+
   const isTweetSearch = pathname.includes(routePathes.home);
+
+  useEffect(() => {
+    dispatch(updateUserInfo(profileId));
+  }, []);
 
   useEffect(() => {
     const fetchRecommendedUsers = async () => {
@@ -71,6 +81,7 @@ const PageLayout = () => {
 
   const handleLogOutClick = () => {
     dispatch(logOutUser());
+    dispatch(toggleTheme());
   };
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {

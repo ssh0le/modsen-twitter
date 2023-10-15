@@ -4,8 +4,13 @@ import { firestore } from '@/utils/firebase';
 
 import { AddTweetProps, DeleteTweetProps } from './interfaces';
 
-const { getUserTweets, fetchUserActivity, createTweet, deleteTweet } =
-  firestore;
+const {
+  getUserTweets,
+  fetchUserActivity,
+  createTweet,
+  deleteTweet,
+  fetchUserFullInfo,
+} = firestore;
 
 export const fetchUserTweets = createAsyncThunk(
   'user/fetchUserTweets',
@@ -34,5 +39,17 @@ export const deleteUserTweet = createAsyncThunk(
   'user/deleteTweet',
   async ({ tweetId }: DeleteTweetProps) => {
     await deleteTweet(tweetId);
+  },
+);
+
+export const updateUserInfo = createAsyncThunk(
+  'user/updateUserinfo',
+  async (userId: string) => {
+    const response = await fetchUserFullInfo(userId);
+    if (response) {
+      return response;
+    } else {
+      return null;
+    }
   },
 );

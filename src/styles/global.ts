@@ -14,6 +14,7 @@ export const GlobalStyles = createGlobalStyle`
         width: 100vw;
         overflow-x: hidden;
         font-weight: 400;
+        background-color: ${({ theme }) => theme.backgroundColor};
     }
 
     a {

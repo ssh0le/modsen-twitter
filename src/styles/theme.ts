@@ -45,6 +45,8 @@ const light: Theme = {
   inputField: {
     border: transperentGray,
     color: black,
+    backgroundColor: white,
+    placeholderColor: black,
   },
   fontSizes: {
     fs13: 13,
@@ -98,6 +100,12 @@ const dark: Theme = {
   followButton: {
     color: black,
     backgroundColor: white,
+  },
+  inputField: {
+    color: lightGray,
+    border: lightGray,
+    backgroundColor: darkGray,
+    placeholderColor: lightGray,
   },
 };
 

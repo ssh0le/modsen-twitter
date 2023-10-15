@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
-import { inputStyle } from '@/styles/common';
+import { inputContainerStyle, inputStyle } from '@/styles/common';
+
+export const InputContainer = styled.div`
+  ${inputContainerStyle}
+`;
 
 export const Input = styled.input`
   width: 100%;
+  border: none;
   ${inputStyle};
+`;
 
-  &:focus {
-    outline: solid orange;
-  }
-
-  &::placeholder {
-    color: #00000099;
-  }
+export const InputLabel = styled.label`
+  color: ${({ theme }) => theme.color};
 `;
 
 export const ErrorMessageContainer = styled.p`

@@ -1,21 +1,28 @@
 import styled from 'styled-components';
 
-import { inputStyle } from '@/styles/common';
+import { inputContainerStyle, inputStyle } from '@/styles/common';
+
+export const SelecetContainer = styled.div`
+  display: inline-block;
+`;
 
 export const SelectWraper = styled.div`
-  ${inputStyle}
+  ${inputContainerStyle}
+  padding: 20px;
   min-width: 160px;
 `;
 
 export const CustomSelect = styled.select`
-  font-size: inherit;
-  border: none;
-  outline: none;
-  width: 100%;
+  font-size: ${({ theme }) => theme.fontSizes.fs18};
+  ${inputStyle}
+`;
+
+export const InputLabel = styled.label`
+  color: ${({ theme }) => theme.color};
+  font-size: ${({ theme }) => theme.fontSizes.fs18};
 `;
 
 export const SelectOption = styled.option`
   width: 100%;
   padding: 20px;
-  font-size: ${({ theme }) => theme.fontSizes.fs18};
 `;

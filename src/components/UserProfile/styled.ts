@@ -34,17 +34,6 @@ export const AvatarContainer = styled.div`
   left: 0;
 `;
 
-export const EditButton = styled.button`
-  background-color: ${({ theme }) => theme.backgroundColor};
-  color: ${({ theme }) => theme.color};
-  font-size: ${({ theme }) => theme.fontSizes.fs18}px;
-  border: 2px solid ${({ theme }) => theme.color};
-  padding: 10px 15px;
-  height: fit-content;
-  border-radius: 50px;
-  cursor: pointer;
-`;
-
 export const UserName = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeigth.bold};
   font-size: ${({ theme }) => theme.fontSizes.fs24}px;

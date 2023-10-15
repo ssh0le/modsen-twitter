@@ -1,18 +1,33 @@
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
+
+import { SerifText } from '../SerifText';
 
 import { InputFieldProps } from './interfaces';
-import { ErrorMessageContainer, Input } from './styled';
+import {
+  ErrorMessageContainer,
+  Input,
+  InputContainer,
+  InputLabel,
+} from './styled';
 
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
   (props, ref) => {
-    const { error, ...remainProps } = props;
+    const { error, label, ...remainedProps } = props;
+    const id = useId();
     return (
-      <div>
-        <Input ref={ref} {...remainProps} />
+      <>
+        {label && (
+          <InputLabel htmlFor={id}>
+            <SerifText>{label}</SerifText>
+          </InputLabel>
+        )}
+        <InputContainer>
+          <Input ref={ref} id={id} {...remainedProps} />
+        </InputContainer>
         {error && (
           <ErrorMessageContainer>{error.message}</ErrorMessageContainer>
         )}
-      </div>
+      </>
     );
   },
 );

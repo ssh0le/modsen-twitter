@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import { Tweet, User } from '@/interfaces';
 
 export interface UserProfileProps {
@@ -5,7 +7,7 @@ export interface UserProfileProps {
   tweets: Tweet[];
   followers: number;
   following: number;
-  isCurrentUserProfile: boolean;
-  onEditClick?: () => void;
-  onTweetsUpdate?: () => void;
+  addTweetForm?: ReactNode | null;
+  editButton?: ReactNode | null;
+  renderTweet: (tweetInfo: Tweet) => ReactNode;
 }
