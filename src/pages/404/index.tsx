@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, SerifText } from '@/components/UI';
 import { routePathes } from '@/constants';
 
-import { ContentWrapper, NotFoundPageWrapper } from './styled';
+import { ContentWrapper, NotFoundMessage, NotFoundPageWrapper } from './styled';
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -15,7 +15,9 @@ const NotFoundPage = () => {
   return (
     <NotFoundPageWrapper>
       <ContentWrapper>
-        <SerifText>This page wasn't found</SerifText>
+        <NotFoundMessage>
+          <SerifText>This page wasn't found</SerifText>
+        </NotFoundMessage>
         <Button type={'colored'} onClick={handleButtonClick}>
           Go to home
         </Button>

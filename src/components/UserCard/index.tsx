@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser, selectUserDetails } from '@/store/selectors';
 import { firestore } from '@/utils';
@@ -11,9 +13,10 @@ import { UserCardProps } from './interfaces';
 import {
   FollowButton,
   UserCardContainer,
-  UserIdWrapper,
   UserInfoContainer,
+  UserNamesContainer,
   UserNameWrapper,
+  UserTagWrapper,
 } from './styled';
 
 const { updateFollowers } = firestore;
@@ -23,6 +26,7 @@ const UserCard = ({ size, name, tag, avatar, userId }: UserCardProps) => {
   const [isFollowing, setIsFollowing] = useState<boolean>(() =>
     following.includes(userId),
   );
+  const navigate = useNavigate();
   const { profileId } = useAppSelector(selectCurrentUser)!;
 
   const handleFollowClick = () => {
@@ -35,12 +39,23 @@ const UserCard = ({ size, name, tag, avatar, userId }: UserCardProps) => {
     }
   };
 
+  const handleCardClick = () => {
+    if (size === 'recommendation') {
+      navigate(`${routePathes.profile}/${userId}`);
+    }
+  };
+
   return (
-    <UserCardContainer $size={size}>
-      <UserAvatar size={size === 'log-out' ? 'small' : 'medium'} src={avatar} />
-      <UserInfoContainer>
-        <UserNameWrapper>{name}</UserNameWrapper>
-        <UserIdWrapper>{tag || 'Anonymous'}</UserIdWrapper>
+    <UserCardContainer>
+      <UserInfoContainer $size={size}>
+        <UserAvatar
+          size={size === 'log-out' ? 'small' : 'medium'}
+          src={avatar}
+        />
+        <UserNamesContainer onClick={handleCardClick}>
+          <UserNameWrapper>{name}</UserNameWrapper>
+          <UserTagWrapper>{tag || 'Anonymous'}</UserTagWrapper>
+        </UserNamesContainer>
       </UserInfoContainer>
 
       {size == 'recommendation' && (

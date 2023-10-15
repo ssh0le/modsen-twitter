@@ -13,3 +13,7 @@ export const ContentWrapper = styled.div`
   width: 300px;
   gap: 20px;
 `;
+
+export const NotFoundMessage = styled.p`
+  color: ${({ theme }) => theme.color};
+`;

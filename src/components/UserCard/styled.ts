@@ -4,26 +4,34 @@ import { flexColumn } from '@/styles/common';
 
 import { StyledContainerProps } from './interfaces';
 
-export const UserCardContainer = styled.div<StyledContainerProps>`
+export const UserCardContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
+`;
+
+export const UserInfoContainer = styled.div<StyledContainerProps>`
+  display: flex;
+  margin-right: 10px;
   gap: ${({ $size }) => ($size === 'log-out' ? 37 : 13)}px;
 `;
 
-export const UserInfoContainer = styled.div`
+export const UserNamesContainer = styled.div`
   ${flexColumn}
   gap: 4px;
-  max-width: 120px;
+  flex-grow: 1;
+  cursor: pointer;
 `;
 
 export const UserNameWrapper = styled.span`
   font-weight: ${({ theme }) => theme.fontWeigth.mediumBold};
+  word-break: break-all;
 `;
 
-export const UserIdWrapper = styled.span`
+export const UserTagWrapper = styled.span`
   opacity: 60%;
-  word-wrap: break-word;
+  word-break: break-all;
 `;
 
 export const FollowButton = styled.button`
@@ -34,6 +42,7 @@ export const FollowButton = styled.button`
   padding: 10px 18px;
   height: fit-content;
   border-radius: 50px;
+  justify-self: flex-end;
   cursor: pointer;
   border-width: 2px;
   border: none;

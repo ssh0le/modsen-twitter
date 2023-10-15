@@ -14,6 +14,7 @@ export const ProfilePageContainer = styled.section`
 export const ProfileBackground = styled.div<{ $src: string }>`
   background-image: url(${({ $src }) => $src});
   height: 280px;
+  background-position: center;
 `;
 
 export const ProfilerContentWrapper = styled.div`
