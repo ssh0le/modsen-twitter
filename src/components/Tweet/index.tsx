@@ -6,6 +6,7 @@ import { icons, routePathes } from '@/constants';
 import { getTweetPublishTime } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { deleteUserTweet } from '@/store/slices/thunk/user';
+import { publisher } from '@/utils';
 import { firestore } from '@/utils/firebase';
 import { BoldText, OpacityText } from '@UI';
 
@@ -22,13 +23,14 @@ import {
   TweetContainer,
   TweetContentWrapper,
   TweetImage,
+  TweetImageContainer,
   TweetMainContainer,
   TweetText,
 } from './styled';
 
 const { like, likeFilled } = icons;
 
-const Tweet = ({ info, currentUserId, onAfterDelete }: TweetProps) => {
+const Tweet = ({ info, currentUserId }: TweetProps) => {
   const { updateLike } = firestore;
   const {
     id,
@@ -84,9 +86,7 @@ const Tweet = ({ info, currentUserId, onAfterDelete }: TweetProps) => {
         userId: currentUserId,
       }),
     );
-    if (onAfterDelete) {
-      onAfterDelete();
-    }
+    publisher.notify('tweetsUpdate');
   };
 
   const handleUserInfoClick = () => {
@@ -107,7 +107,11 @@ const Tweet = ({ info, currentUserId, onAfterDelete }: TweetProps) => {
             </OpacityText>
           </div>
           {text && <TweetText>{text}</TweetText>}
-          {image && <TweetImage src={image} />}
+          {image && (
+            <TweetImageContainer>
+              <TweetImage src={image} />
+            </TweetImageContainer>
+          )}
           <LikeContainer $isLiked={isLiked}>
             {isLiked && (
               <LikeIcon

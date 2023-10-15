@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-import { flexColumn, themedSvgFilter } from '@/styles/common';
+import { flexCenter, flexColumn, themedSvgFilter } from '@/styles/common';
 
 export const TweetContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px 25px 21px;
+  width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.border};
 `;
 
@@ -16,6 +17,7 @@ export const TweetContentWrapper = styled.div`
 
 export const TweetMainContainer = styled.div`
   ${flexColumn}
+  flex-grow: 1;
 `;
 
 export const TweetText = styled.p`
@@ -75,7 +77,13 @@ export const LikeIcon = styled.img`
   cursor: pointer;
 `;
 
-export const TweetImage = styled.img`
+export const TweetImageContainer = styled.div`
   width: 100%;
   margin-top: 15px;
+  ${flexCenter}
+`;
+
+export const TweetImage = styled.img`
+  width: 100%;
+  display: flex;
 `;

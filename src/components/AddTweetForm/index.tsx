@@ -4,11 +4,11 @@ import { icons } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
 import { addTweet } from '@/store/slices/thunk/user';
+import { publisher } from '@/utils';
 import { Button, SerifText } from '@UI';
 
 import UserAvatar from '../UserAvatar';
 
-import { AddTweetFormProps } from './interfaces';
 import {
   AddTweetFormContainer,
   DeleteBadge,
@@ -21,7 +21,7 @@ import {
   TweetInputControlsContainer,
 } from './styled';
 
-const AddTweetForm = ({ onAfterAdd }: AddTweetFormProps) => {
+const AddTweetForm = () => {
   const user = useAppSelector(selectCurrentUser)!;
   const { avatar } = user;
   const [tweetText, setTweetText] = useState<string>('');
@@ -61,9 +61,7 @@ const AddTweetForm = ({ onAfterAdd }: AddTweetFormProps) => {
         user,
       }),
     );
-    if (onAfterAdd) {
-      onAfterAdd();
-    }
+    publisher.notify('tweetsUpdate');
     setTweetText('');
     setImage(null);
   };

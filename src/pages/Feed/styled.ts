@@ -4,10 +4,12 @@ import { flexColumn, topBottomBorder } from '@/styles/common';
 
 export const FeedPageContainer = styled.div`
   ${flexColumn};
+  width: 100%;
 `;
 
 export const TweetListContainer = styled.div`
   ${flexColumn};
+  width: 100%;
 `;
 
 export const AddTweetContainer = styled.div`

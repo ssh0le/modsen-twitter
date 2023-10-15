@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { Tweet as ITweet } from '@/interfaces';
 import { selectCurrentUser, selectUserDetails } from '@/store/selectors';
 import { fetchUserTweets, getUserDetails } from '@/store/slices/thunk/user';
+import { publisher } from '@/utils';
 
 const ProfilePage: FC = () => {
   const user = useAppSelector(selectCurrentUser)!;
@@ -19,17 +20,18 @@ const ProfilePage: FC = () => {
     dispatch(getUserDetails(profileId));
   }, [profileId, dispatch]);
 
-  const handleUserTweetsChange = () => {
-    dispatch(fetchUserTweets(profileId));
-  };
+  useEffect(() => {
+    const updateTweets = () => {
+      dispatch(fetchUserTweets(profileId));
+    };
+
+    const unsubscribe = publisher.subscribe(updateTweets, 'tweetsUpdate');
+
+    return unsubscribe;
+  }, [profileId, dispatch]);
 
   const renderTweet = (tweetInfo: ITweet) => (
-    <Tweet
-      key={tweetInfo.id}
-      info={tweetInfo}
-      currentUserId={profileId}
-      onAfterDelete={handleUserTweetsChange}
-    />
+    <Tweet key={tweetInfo.id} info={tweetInfo} currentUserId={profileId} />
   );
 
   return (
@@ -38,7 +40,7 @@ const ProfilePage: FC = () => {
       tweets={tweets}
       followers={followers.length}
       following={following.length}
-      addTweetForm={<AddTweetForm onAfterAdd={handleUserTweetsChange} />}
+      addTweetForm={<AddTweetForm />}
       editButton={<EditProfileModal />}
       renderTweet={renderTweet}
     />

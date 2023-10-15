@@ -5,7 +5,7 @@ import Tweet from '@/components/Tweet';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { Tweet as ITweet } from '@/interfaces';
 import { selectCurrentUser } from '@/store/selectors';
-import { firestore } from '@/utils';
+import { firestore, publisher } from '@/utils';
 
 import {
   AddTweetContainer,
@@ -23,26 +23,24 @@ const FeedPage = () => {
     setFeedTweets(feed);
   }, [profileId, getUserFeed]);
 
-  const handleFeedChange = () => {
-    fetchFeed();
-  };
+  useEffect(() => {
+    const unsubscribe = publisher.subscribe(fetchFeed, 'tweetsUpdate');
+
+    return unsubscribe;
+  }, [fetchFeed]);
 
   useEffect(() => {
     fetchFeed();
-  }, [profileId, fetchFeed]);
+  }, [fetchFeed]);
+
   return (
     <FeedPageContainer>
       <AddTweetContainer>
-        <AddTweetForm onAfterAdd={handleFeedChange} />
+        <AddTweetForm />
       </AddTweetContainer>
       <TweetListContainer>
         {feedTweets.map((tweet) => (
-          <Tweet
-            onAfterDelete={handleFeedChange}
-            key={tweet.id}
-            info={tweet}
-            currentUserId={profileId}
-          />
+          <Tweet key={tweet.id} info={tweet} currentUserId={profileId} />
         ))}
       </TweetListContainer>
     </FeedPageContainer>

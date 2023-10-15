@@ -358,7 +358,7 @@ const getTweetsByQuery = async (queryFromUser: string) => {
 };
 
 const getUsersByQuery = async (queryFromUser: string) => {
-  const users = await getDocsByQuery<User>(userInfoRef, 'tag', queryFromUser);
+  const users = await getDocsByQuery<User>(userInfoRef, 'name', queryFromUser);
   return users;
 };
 
