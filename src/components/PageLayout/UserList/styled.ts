@@ -9,6 +9,7 @@ export const RecommendationContainer = styled.section`
   background-color: ${({ theme }) => theme.recommendation.backgroundColor};
   padding: 20px 10px 25px 15px;
   border-radius: 10px;
+  width: 100%;
 `;
 
 export const RecommendationUserListContainer = styled.div`

@@ -12,22 +12,26 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { CurrentUserState, ThemeState } from '@/interfaces';
+import { CurrentUserState, SearchState, ThemeState } from '@/interfaces';
 
 import currentUserReducer from './slices/currentUser';
+import searchReducer from './slices/search';
 import themeReducer from './slices/theme';
 
 const persistConfig: PersistConfig<{
   currentUser: CurrentUserState;
   theme: ThemeState;
+  search: SearchState;
 }> = {
   key: 'root',
   storage,
+  blacklist: ['search'],
 };
 
 const rootReducer = combineReducers({
   theme: themeReducer,
   currentUser: currentUserReducer,
+  search: searchReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

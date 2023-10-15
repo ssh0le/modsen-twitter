@@ -21,7 +21,9 @@ export const MenuContainer = styled.div`
 export const ContentWrapper = styled.div`
   flex-grow: 1;
   height: fit-content;
+  min-height: calc(100vh + 1px);
   ${flexColumn}
+  width: auto;
 `;
 
 const AsideBar = styled.aside`
@@ -35,7 +37,7 @@ const AsideBar = styled.aside`
 
 export const LeftAside = styled(AsideBar)`
   padding: 30px;
-  width: 290px;
+  width: 300px;
   border-right: 1px solid ${({ theme }) => theme.border};
 `;
 
@@ -52,6 +54,7 @@ export const UserCardContainer = styled.div`
 
 export const RigthAside = styled(AsideBar)`
   padding: 28px 20px;
+  width: 370px;
   border-left: 1px solid ${({ theme }) => theme.border};
 `;
 

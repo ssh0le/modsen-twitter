@@ -13,8 +13,11 @@ const themeSlice = createSlice({
     toggleTheme: (state) => {
       state.currentTheme = state.currentTheme === 'dark' ? 'light' : 'dark';
     },
+    resetTheme: (state) => {
+      state.currentTheme = 'light';
+    },
   },
 });
 
-export const { toggleTheme } = themeSlice.actions;
+export const { toggleTheme, resetTheme } = themeSlice.actions;
 export default themeSlice.reducer;
