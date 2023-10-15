@@ -58,6 +58,10 @@ const Tweet = ({ info, currentUserId }: TweetProps) => {
   };
 
   useEffect(() => {
+    setLikes(initialLikes);
+  }, [initialLikes]);
+
+  useEffect(() => {
     const handleWindowClick = () => {
       setIsActionsOpen(false);
     };
