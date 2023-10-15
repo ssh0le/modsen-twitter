@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
+import Toast from '@/components/Toast';
 import { routePathes } from '@/constants';
 import { monthsOptions, yearOptions } from '@/constants/selectOptions';
 import {
@@ -32,6 +33,7 @@ const { profile, signUp } = routePathes;
 
 const RegistrationPage: FC = () => {
   const { createUserWithEmail } = firebaseAuth;
+  const [authError, setAuthError] = useState<string>('');
   const [days, setDays] = useState<
     { name: string | number; value: string | number }[]
   >(getMonthDays());
@@ -63,11 +65,9 @@ const RegistrationPage: FC = () => {
     month: monthError,
     year: yearError,
   } = errors;
-  console.log(errors);
 
   useEffect(() => {
-    const subscription = watch(({ month, year, day }) => {
-      console.log(day);
+    const subscription = watch(({ month, year }) => {
       setDays(getMonthDays(Number(month), Number(year)));
     });
     return () => subscription.unsubscribe();
@@ -83,17 +83,24 @@ const RegistrationPage: FC = () => {
           navigate(profile);
         }
       })
-      .catch((err: FirebaseAuthError) =>
-        console.log(err.code, translateAuthError(err)),
-      );
+      .catch((err: FirebaseAuthError) => setAuthError(translateAuthError(err)));
   };
 
   const handleEmailClick = () => {
     navigate(signUp);
   };
 
+  const handleAnimationEnd = () => {
+    setAuthError('');
+  };
+
   return (
     <RegistrationPageContainer>
+      <Toast
+        type="error"
+        message={authError}
+        onAnimationEnd={handleAnimationEnd}
+      />
       <RegistrationPageContentWrapper>
         <LogoContainer>
           <Logo size="small" />
