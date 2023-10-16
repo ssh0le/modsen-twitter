@@ -13,10 +13,10 @@ import { BoldText, OpacityText } from '@UI';
 import { TweetProps } from './interfaces';
 import {
   ActionListContainer,
+  ActionsButtonContainer,
   ActionsContainer,
   ActionsIcon,
   ActionWrapper,
-  AtionsButtonContainer,
   LikeContainer,
   LikeCountContainer,
   LikeIcon,
@@ -140,9 +140,9 @@ const Tweet = ({ info, currentUserId }: TweetProps) => {
         </TweetMainContainer>
       </TweetContentWrapper>
       <ActionsContainer>
-        <AtionsButtonContainer onClick={handleActionMenuButtonClick}>
+        <ActionsButtonContainer onClick={handleActionMenuButtonClick}>
           <ActionsIcon src={icons.actions} alt="Post actions" />
-        </AtionsButtonContainer>
+        </ActionsButtonContainer>
         {isActionsOpen && (
           <ActionListContainer>
             {isOwnUserTweet && (

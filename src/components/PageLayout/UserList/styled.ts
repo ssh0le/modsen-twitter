@@ -15,6 +15,10 @@ export const RecommendationContainer = styled.section`
 export const RecommendationUserListContainer = styled.div`
   ${flexColumn};
   gap: 25px;
+
+  @media only screen and (max-width: 1200px) {
+    gap: 10px;
+  }
 `;
 
 export const RecommendationUserContainer = styled.div`
@@ -26,9 +30,17 @@ export const RecommendationUserContainer = styled.div`
 export const RecommendationHeading = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.fs24}px;
   font-weight: ${({ theme }) => theme.fontWeigth.bold};
+
+  @media only screen and (max-width: 1200px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs20}px;
+  }
 `;
 
 export const ShowMoreButton = styled(Link)`
   font-size: ${({ theme }) => theme.fontSizes.fs18}px;
   width: fit-content;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: inherit;
+  }
 `;

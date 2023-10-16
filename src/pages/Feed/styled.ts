@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-import { flexColumn, themedColor, topBottomBorder } from '@/styles/common';
+import { flexColumn, topBottomBorder } from '@/styles/common';
 
 export const FeedPageContainer = styled.div`
   ${flexColumn};
   width: 100%;
+  min-width: 100%;
 `;
 
 export const TweetListContainer = styled.div`

@@ -8,16 +8,29 @@ export const LoginPageContainer = styled(FullPageWrapper)`
   justify-content: start;
   align-items: center;
   padding-top: 50px;
+
+  @media only screen and (max-width: 888px) {
+    justify-content: center;
+    padding: 0;
+  }
 `;
 
 export const LoginContentWrapper = styled.div`
   width: 450px;
+
+  @media only screen and (max-width: 888px) {
+    width: 300px;
+  }
 `;
 
 export const Heading = styled.h1`
   margin: 36px 0;
   font-size: ${({ theme }) => theme.fontSizes.fs42}px;
   font-weight: ${({ theme }) => theme.fontWeigth.superBold};
+
+  @media only screen and (max-width: 888px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs24}px;
+  }
 `;
 
 export const LoginForm = styled.div`

@@ -5,6 +5,10 @@ export const FooterWrapper = styled.footer`
   justify-content: center;
   height: fit-content;
   padding: 18px 10px;
+
+  @media only screen and (max-width: 888px) {
+    display: none;
+  }
 `;
 
 export const FooterLinkList = styled.ul`

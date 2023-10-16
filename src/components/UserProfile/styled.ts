@@ -13,8 +13,18 @@ export const ProfilePageContainer = styled.section`
 
 export const ProfileBackground = styled.div<{ $src: string }>`
   background-image: url(${({ $src }) => $src});
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 280px;
   background-position: center;
+
+  @media only screen and (max-width: 1200px) {
+    height: 220px;
+  }
+
+  @media only screen and (max-width: 888px) {
+    height: 180px;
+  }
 `;
 
 export const ProfilerContentWrapper = styled.div`
@@ -39,10 +49,18 @@ export const UserName = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeigth.bold};
   font-size: ${({ theme }) => theme.fontSizes.fs24}px;
   margin-bottom: 4px;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs20}px;
+  }
 `;
 
 export const UserTag = styled.span`
   ${opacityStyle}
+
+  @media only screen and (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+  }
 `;
 
 export const UserStatus = styled.p`
@@ -67,6 +85,11 @@ export const AddTweetFormContainer = styled.div`
   margin-top: 51px;
   padding: 18px 11px 13px 27px;
   ${topBottomBorder}
+
+  @media only screen and (max-width: 888px) {
+    margin-top: 20px;
+    padding: 10px;
+  }
 `;
 
 export const UserTweetsContainer = styled.div`
@@ -80,6 +103,10 @@ export const TweetListHeading = styled.h2`
   margin-top: 20px;
   width: 215px;
   border-bottom: 1px solid ${({ theme }) => theme.border};
+
+  @media only screen and (max-width: 888px) {
+    margin: 0;
+  }
 `;
 
 export const NoTweetsMessage = styled.p`

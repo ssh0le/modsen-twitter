@@ -24,4 +24,5 @@ export const ModalBackdrop = styled.div`
 export const ModalContentWrapper = styled.div`
   z-index: 10;
   height: fit-content;
+  display: flex;
 `;

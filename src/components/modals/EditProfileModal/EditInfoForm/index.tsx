@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import Toast from '@/components/Toast';
 import { Button, InputField, Select, SerifText } from '@/components/UI';
 import { genderOptions } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
@@ -14,6 +15,8 @@ import { ControlsContainer, EditInfoFormContainer } from './styled';
 export const EditInfoForm = () => {
   const { name, status, id, tag, profileId } =
     useAppSelector(selectCurrentUser)!;
+  const [successMessage, setSuccessMessage] = useState<string>('');
+
   const {
     register,
     handleSubmit,
@@ -49,6 +52,7 @@ export const EditInfoForm = () => {
       })
       .then(() => {
         dispatch(updateUserInfo(profileId));
+        setSuccessMessage('Saved!');
       });
   };
 
@@ -56,10 +60,19 @@ export const EditInfoForm = () => {
     reset();
   };
 
+  const handleSuccessAnimationEnd = () => {
+    setSuccessMessage('');
+  };
+
   const { name: nameError, telegram: telegramError } = errors;
 
   return (
     <EditInfoFormContainer>
+      <Toast
+        type={'not-error'}
+        onAnimationEnd={handleSuccessAnimationEnd}
+        message={successMessage}
+      />
       <InputField
         placeholder="Name"
         label="Name"

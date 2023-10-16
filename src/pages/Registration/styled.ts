@@ -9,6 +9,11 @@ export const RegistrationPageContainer = styled(FullPageWrapper)`
   align-items: center;
   padding-top: 50px;
   height: fit-content;
+
+  @media only screen and (max-width: 888px) {
+    justify-content: center;
+    padding: 0;
+  }
 `;
 
 export const LogoContainer = styled.div`
@@ -20,22 +25,41 @@ export const LogoContainer = styled.div`
 export const RegistrationPageContentWrapper = styled.form`
   width: 750px;
   padding: 30px 40px 40px 40px;
+
+  @media only screen and (max-width: 888px) {
+    width: 320px;
+  }
 `;
 
 export const Heading = styled.h1`
   font-size: ${({ theme }) => theme.fontSizes.fs30}px;
   margin-bottom: 40px;
+
+  @media only screen and (max-width: 888px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs20}px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const Subheading = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.fs18}px;
   margin-top: 17px;
   margin-bottom: 32px;
+
+  @media only screen and (max-width: 888px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs16}px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const DateOfBirthMessage = styled.p`
   opacity: 60%;
   margin-bottom: 32px;
+
+  @media only screen and (max-width: 888px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+    text-align: justify;
+  }
 `;
 
 export const InputFieldsContainer = styled.div`
@@ -43,6 +67,10 @@ export const InputFieldsContainer = styled.div`
   flex-direction: column;
   gap: 26px;
   margin-bottom: 26px;
+
+  @media only screen and (max-width: 888px) {
+    gap: 10px;
+  }
 `;
 
 export const SelectContainer = styled.div`
@@ -53,5 +81,14 @@ export const SelectContainer = styled.div`
 
   & div:nth-child(1) {
     flex-grow: 1;
+  }
+
+  @media only screen and (max-width: 888px) {
+    flex-direction: column;
+    gap: 10px;
+
+    & div:nth-child(1) {
+      flex-grow: 0;
+    }
   }
 `;

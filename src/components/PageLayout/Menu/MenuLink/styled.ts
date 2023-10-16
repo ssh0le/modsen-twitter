@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { serifText, themedSvgFilter } from '@/styles/common';
+import { adaptiveIconStyle, serifText, themedSvgFilter } from '@/styles/common';
 
 import { MenuLinkWrapperProps } from './interfaces';
 
@@ -16,10 +16,19 @@ export const MenuLinkWrapper = styled.li<MenuLinkWrapperProps>`
   align-items: center;
   gap: 20px;
   cursor: pointer;
+
+  @media only screen and (max-width: 888px) {
+    justify-content: center;
+  }
 `;
 
 export const MenuLinkIcon = styled.img`
-  width: 28px;
-  height: 28px;
-  ${themedSvgFilter}
+  ${adaptiveIconStyle};
+  ${themedSvgFilter};
+`;
+
+export const MenuLinkTitle = styled.span`
+  @media only screen and (max-width: 888px) {
+    display: none;
+  }
 `;

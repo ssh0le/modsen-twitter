@@ -6,8 +6,9 @@ import { InputFieldProps } from './interfaces';
 import {
   ErrorMessageContainer,
   Input,
-  InputContainer,
+  InputContent,
   InputLabel,
+  InputWrapper,
 } from './styled';
 
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
@@ -21,12 +22,14 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             <SerifText>{label}</SerifText>
           </InputLabel>
         )}
-        <InputContainer>
-          <Input ref={ref} id={id} {...remainedProps} />
-        </InputContainer>
-        {error && (
-          <ErrorMessageContainer>{error.message}</ErrorMessageContainer>
-        )}
+        <InputContent>
+          <InputWrapper>
+            <Input ref={ref} id={id} {...remainedProps} />
+          </InputWrapper>
+          {error && (
+            <ErrorMessageContainer>{error.message}</ErrorMessageContainer>
+          )}
+        </InputContent>
       </>
     );
   },

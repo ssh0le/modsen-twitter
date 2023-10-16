@@ -25,6 +25,13 @@ export const ToastContainer = styled.div<{
   ${({ $active }) => $active && 'top: 10px;'};
 `;
 
-export const MessageContainer = styled.p`
-  color: ${({ theme }) => theme.colors.white};
+export const MessageContainer = styled.p<{
+  $type: 'error' | 'not-error';
+}>`
+  color: ${({
+    $type,
+    theme: {
+      colors: { white, black },
+    },
+  }) => ($type === 'error' ? white : black)};
 `;

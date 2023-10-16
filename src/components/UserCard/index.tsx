@@ -11,6 +11,7 @@ import UserAvatar from '../UserAvatar';
 
 import { UserCardProps } from './interfaces';
 import {
+  ButtonContainer,
   FollowButton,
   UserCardContainer,
   UserInfoContainer,
@@ -59,11 +60,11 @@ const UserCard = ({ size, name, tag, avatar, userId }: UserCardProps) => {
       </UserInfoContainer>
 
       {size == 'recommendation' && (
-        <>
+        <ButtonContainer>
           <FollowButton onClick={handleFollowClick}>
             <SerifText>{isFollowing ? 'Unfollow' : 'Follow'}</SerifText>
           </FollowButton>
-        </>
+        </ButtonContainer>
       )}
     </UserCardContainer>
   );

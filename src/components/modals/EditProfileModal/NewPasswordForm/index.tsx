@@ -14,7 +14,12 @@ export const NewPasswordForm = () => {
     watch,
     formState: { isDirty, errors },
     reset,
-  } = useForm<PasswordForm>();
+  } = useForm<PasswordForm>({
+    defaultValues: {
+      newPassword: '',
+      confirmPassword: '',
+    },
+  });
 
   const handleFormSubmit = (data: PasswordForm) => {
     firebaseAuth.updateUserPassword(data.newPassword).then(() => {

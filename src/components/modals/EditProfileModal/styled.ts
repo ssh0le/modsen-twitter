@@ -9,6 +9,10 @@ export const EditProfileModalContainer = styled.div`
   padding: 25px;
   border: 2px solid ${({ theme }) => theme.border};
   border-radius: 10px;
+
+  @media screen and (max-width: 888px) {
+    width: 300px;
+  }
 `;
 
 export const EditButton = styled.button`
@@ -20,4 +24,9 @@ export const EditButton = styled.button`
   height: fit-content;
   border-radius: 50px;
   cursor: pointer;
+
+  @media screen and (max-width: 888px) {
+    padding: 10px 15px;
+    font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+  }
 `;

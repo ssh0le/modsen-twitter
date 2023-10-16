@@ -19,13 +19,12 @@ const Toast = ({ message, type, onAnimationEnd }: ToastProps) => {
     return () => {
       clearTimeout(timeoutId);
       setInnerMessage('');
-      onAnimationEnd();
     };
   }, [message, onAnimationEnd]);
 
   return (
     <ToastContainer $active={Boolean(innerMessage)} $type={type}>
-      <MessageContainer>{message}</MessageContainer>
+      <MessageContainer $type={type}>{message}</MessageContainer>
     </ToastContainer>
   );
 };

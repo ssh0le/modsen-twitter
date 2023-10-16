@@ -12,6 +12,14 @@ export const inputStyle = css`
   &:focus {
     outline: none;
   }
+
+  @media screen and (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs16}px;
+  }
+
+  @media screen and (max-width: 888px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+  }
 `;
 
 export const inputContainerStyle = css`
@@ -21,6 +29,14 @@ export const inputContainerStyle = css`
   border-radius: 6px;
   &:focus-within {
     outline: solid ${({ theme }) => theme.inputField.color};
+  }
+
+  @media screen and (max-width: 1000px) {
+    padding: 15px;
+  }
+
+  @media screen and (max-width: 888px) {
+    padding: 10px;
   }
 `;
 
@@ -54,4 +70,14 @@ export const themedColor = css`
 
 export const themedBackgroundColor = css`
   background-color: ${({ theme }) => theme.backgroundColor};
+`;
+
+export const adaptiveIconStyle = css`
+  width: ${({ theme }) => theme.iconSizes.computer}px;
+  height: ${({ theme }) => theme.iconSizes.computer}px;
+
+  @media screen and (max-width: 888px) {
+    width: ${({ theme }) => theme.iconSizes.moblie}px;
+    height: ${({ theme }) => theme.iconSizes.moblie}px;
+  }
 `;

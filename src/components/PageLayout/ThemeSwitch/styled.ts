@@ -27,6 +27,12 @@ export const Toggler = styled.label`
     left: calc(100% + 1px);
     transform: translateX(-100%);
   }
+
+  @media only screen and (max-width: 888px) {
+    cursor: pointer;
+    width: 40px;
+    height: 20px;
+  }
 `;
 
 export const Checkbox = styled.input`

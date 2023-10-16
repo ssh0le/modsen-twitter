@@ -86,6 +86,10 @@ const light: Theme = {
   opacity: {
     medium: 60,
   },
+  iconSizes: {
+    computer: 28,
+    moblie: 20,
+  },
 };
 
 const dark: Theme = {

@@ -37,4 +37,18 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   ${({ $type }) => $type === 'colored' && coloredButtonStyle};
   ${({ $type }) => $type === 'sign-up' && signUpButtonStyle};
   ${({ $type }) => $type === 'log-out' && logOutButtonStyle};
+
+  @media only screen and (max-width: 1200px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs16}px;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+  }
+
+  @media only screen and (max-width: 888px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+
+    padding: 10px 0 10px 0;
+  }
 `;

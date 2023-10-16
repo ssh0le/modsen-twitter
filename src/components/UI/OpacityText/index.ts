@@ -8,4 +8,13 @@ export const OpacityText = styled.span<{ $size?: 'small' | 'medium' }>`
     },
     $size,
   }) => ($size === 'medium' && fs18) || fs16}px;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: ${({
+      theme: {
+        fontSizes: { fs16, fs14 },
+      },
+      $size,
+    }) => ($size === 'medium' && fs16) || fs14}px;
+  }
 `;

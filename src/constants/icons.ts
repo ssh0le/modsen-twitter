@@ -1,4 +1,5 @@
 import actions from '@/assets/icons/actions.svg';
+import addTweet from '@/assets/icons/addTweet.png';
 import backArrow from '@/assets/icons/backArrow.svg';
 import bookmarks from '@/assets/icons/bookmarks.svg';
 import bookmarksFilled from '@/assets/icons/bookmarksFilled.svg';
@@ -11,6 +12,7 @@ import like from '@/assets/icons/like.svg';
 import likeFilled from '@/assets/icons/likefilled.svg';
 import lists from '@/assets/icons/lists.svg';
 import listsFilled from '@/assets/icons/listsFilled.svg';
+import logOut from '@/assets/icons/logOut.svg';
 import media from '@/assets/icons/media.svg';
 import messages from '@/assets/icons/messages.svg';
 import messagesFilled from '@/assets/icons/messagesFilled.svg';
@@ -28,6 +30,7 @@ import signUpBackground from '@/assets/images/signUpBack.jpg';
 
 export const icons = {
   actions,
+  addTweet,
   backArrow,
   bookmarks,
   bookmarksFilled,
@@ -38,6 +41,7 @@ export const icons = {
   homeFilled,
   lists,
   listsFilled,
+  logOut,
   messages,
   messagesFilled,
   notification,

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { flexColumn } from '@/styles/common';
+import { flexCenter, flexColumn } from '@/styles/common';
 
 export const SearchContainer = styled.div`
   ${flexColumn};
@@ -31,9 +31,19 @@ export const SearchInput = styled.input`
   &::placeholder {
     color: ${({ theme }) => theme.search.placeholder};
   }
+
+  @media only screen and (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+  }
 `;
 
 export const SearchIcon = styled.img`
   height: 20px;
   width: 20px;
+`;
+
+export const ResetButton = styled.div`
+  ${flexCenter};
+  color: ${({ theme }) => theme.search.color};
+  cursor: pointer;
 `;

@@ -8,6 +8,10 @@ export const TweetContainer = styled.div`
   padding: 10px 25px 21px;
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.border};
+
+  @media only screen and (max-width: 888px) {
+    padding: 10px;
+  }
 `;
 
 export const TweetContentWrapper = styled.div`
@@ -22,6 +26,10 @@ export const TweetMainContainer = styled.div`
 
 export const TweetText = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.fs18}px;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs16}px;
+  }
 `;
 
 export const LikeContainer = styled.div<{ $isLiked: boolean }>`
@@ -47,7 +55,7 @@ export const LikeCountContainer = styled.span<{ $isLiked: boolean }>`
   }) => ($isLiked ? mediumBold : regular)};
 `;
 
-export const AtionsButtonContainer = styled.div`
+export const ActionsButtonContainer = styled.div`
   padding: 10px;
   cursor: pointer;
 `;

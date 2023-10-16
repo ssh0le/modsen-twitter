@@ -18,13 +18,11 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   useEffect(() => {
     const body = document.body;
     if (isOpen) {
-      body.classList.add('modaled');
       body.addEventListener('keyup', handleKeyUp);
     }
 
     return () => {
       if (isOpen) {
-        body.classList.remove('modaled');
         body.removeEventListener('keyup', handleKeyUp);
       }
     };

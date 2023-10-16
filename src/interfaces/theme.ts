@@ -35,6 +35,10 @@ export interface Theme {
   opacity: {
     medium: number;
   };
+  iconSizes: {
+    computer: number;
+    moblie: number;
+  };
 }
 
 type FontSize = `fs${

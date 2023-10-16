@@ -9,12 +9,23 @@ export const UserCardContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  @media only screen and (max-width: 1200px) {
+    flex-direction: column;
+  }
 `;
 
 export const UserInfoContainer = styled.div<StyledContainerProps>`
   display: flex;
   margin-right: 10px;
   gap: ${({ $size }) => ($size === 'log-out' ? 37 : 13)}px;
+
+  @media only screen and (max-width: 1200px) {
+    gap: 13px;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+  }
 `;
 
 export const UserNamesContainer = styled.div`
@@ -22,6 +33,10 @@ export const UserNamesContainer = styled.div`
   gap: 4px;
   flex-grow: 1;
   cursor: pointer;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+  }
 `;
 
 export const UserNameWrapper = styled.span`
@@ -46,4 +61,18 @@ export const FollowButton = styled.button`
   cursor: pointer;
   border-width: 2px;
   border: none;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs16}px;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  @media only screen and (max-width: 1200px) {
+    align-self: flex-end;
+  }
 `;

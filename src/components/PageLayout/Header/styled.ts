@@ -6,6 +6,10 @@ export const HeaderContainer = styled.header`
   padding: 22px 30px 15px 17px;
   display: flex;
   justify-content: space-between;
+
+  @media only screen and (max-width: 1000px) {
+    padding: 10px;
+  }
 `;
 
 export const CurrentUserContainer = styled.div`
