@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Navigate } from 'react-router-dom';
 
 import NotFoundPage from '@/pages/404';
 import FeedPage from '@/pages/Feed';
@@ -43,6 +44,10 @@ export const protectedRoutes: RouteInfo[] = [
   {
     path: userDetails,
     element: <UserDetailsPage />,
+  },
+  {
+    path: '',
+    element: <Navigate to={home} />,
   },
 ];
 

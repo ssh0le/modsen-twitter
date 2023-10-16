@@ -98,11 +98,12 @@ export const EditInfoForm = () => {
         {...register('telegram')}
       />
       <ControlsContainer>
-        <Button onClick={handleFormReset} isActive={isDirty}>
+        <Button data-cy="reset" onClick={handleFormReset} isActive={isDirty}>
           Reset
         </Button>
 
         <Button
+          data-cy="save-info"
           onClick={handleSubmit(handleFormSubmit)}
           type="colored"
           isActive={isDirty}

@@ -19,7 +19,9 @@ export const EditProfileModal = () => {
 
   return (
     <>
-      <EditButton onClick={handleEditButtonClick}>Edit profile</EditButton>
+      <EditButton data-cy={'edit-modal'} onClick={handleEditButtonClick}>
+        Edit profile
+      </EditButton>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         <EditProfileModalContainer>
           <EditInfoForm />

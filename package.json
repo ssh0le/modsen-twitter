@@ -21,12 +21,15 @@
     "styled-components": "^6.0.8"
   },
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^6.0.0",
     "@types/node": "^20.8.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
+    "cypress": "^13.3.1",
+    "cypress-vite": "^1.4.2",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
