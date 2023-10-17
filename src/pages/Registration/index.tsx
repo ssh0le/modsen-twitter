@@ -75,8 +75,8 @@ const RegistrationPage: FC = () => {
 
   const handleNextClick = async (data: RegistrationForm) => {
     const { email, password, name, phone, day, month, year } = data;
-    const dateOfBirth = new Date(Number(year), Number(month), Number(day));
-    createUserWithEmail(email, password, name, phone, dateOfBirth.getTime())
+    const dateOfBirth = `${month}/${day}/${year}`;
+    createUserWithEmail(email, password, name, phone, dateOfBirth)
       .then((user) => {
         if (user) {
           dispatch(setUser(user));

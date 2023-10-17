@@ -78,7 +78,7 @@ const createUserWithEmail = async (
   password: string,
   displayName: string,
   phone: string,
-  dateOfBirth: number,
+  dateOfBirth: string,
 ): Promise<User | void | null> => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then(async (result) => {
@@ -86,7 +86,7 @@ const createUserWithEmail = async (
       await updateProfile(user, {
         displayName,
       });
-      const transformedUser = convertNewUserFromAuth(user);
+      const transformedUser = convertNewUserFromAuth(user, dateOfBirth, phone);
       const newUserInfoSnapshot = await addNewUserToDb(transformedUser);
       if (newUserInfoSnapshot) {
         return {

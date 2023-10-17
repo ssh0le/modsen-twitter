@@ -3,7 +3,11 @@ import { QueryDocumentSnapshot } from 'firebase/firestore';
 
 import { FormUser } from '@/interfaces';
 
-export const convertNewUserFromAuth = (user: FBUser): FormUser => {
+export const convertNewUserFromAuth = (
+  user: FBUser,
+  dateOfBirth?: string,
+  phone?: string,
+): FormUser => {
   const { uid, photoURL, displayName, email } = user;
   return {
     profileId: uid,
@@ -11,6 +15,8 @@ export const convertNewUserFromAuth = (user: FBUser): FormUser => {
     avatar: photoURL,
     tag: email || 'Unknown',
     status: null,
+    dateOfBirth: dateOfBirth || null,
+    phone: phone || null,
   };
 };
 

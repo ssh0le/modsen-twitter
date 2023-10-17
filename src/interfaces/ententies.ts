@@ -4,6 +4,8 @@ export interface FormUser {
   tag: string;
   avatar: string | null;
   status: string | null;
+  phone: string | null;
+  dateOfBirth: string | null;
 }
 
 export interface User extends FormUser {

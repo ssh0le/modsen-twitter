@@ -13,7 +13,7 @@ const errorMessages = {
   maxLength: 'There are too much letters here!',
 };
 
-const phonePattern = new RegExp(/^375[0-9]{9}$/);
+const phonePattern = new RegExp(/^\+375[0-9]{9}$/);
 const emailPattern = new RegExp(/^.+@.+\..+$/);
 const loginPattern = new RegExp(
   `${phonePattern.source}|${emailPattern.source}`,

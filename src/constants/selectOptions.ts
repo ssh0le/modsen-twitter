@@ -36,7 +36,7 @@ const createMonthOptions = () => {
     const monthName = date.toLocaleString('en', { month: 'long' });
     months.push({
       name: monthName,
-      value: monthIndex,
+      value: monthIndex + 1,
     });
     date.setMonth(monthIndex + 1);
   }
