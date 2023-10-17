@@ -13,7 +13,7 @@ const { minLength, maxLength, required, wrongPhone, wrongEmail } =
 
 const correctInputData = {
   name: 'Boris',
-  phone: '375291234567',
+  phone: '+375291234567',
   email: 'test@test.com',
   password: 'W6a&eh"!47)2',
 };
