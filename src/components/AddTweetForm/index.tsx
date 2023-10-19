@@ -25,7 +25,7 @@ const { addTweetButtonText } = profileStatics;
 
 const AddTweetForm = () => {
   const user = useAppSelector(selectCurrentUser)!;
-  const { avatar } = user;
+  const { avatar, name } = user;
   const [tweetText, setTweetText] = useState<string>('');
   const [image, setImage] = useState<File | null>(null);
   const uploadImageRef = useRef<HTMLInputElement | null>(null);
@@ -70,7 +70,7 @@ const AddTweetForm = () => {
 
   return (
     <AddTweetFormContainer>
-      <UserAvatar src={avatar} size="small" />
+      <UserAvatar src={avatar} size="small" alt={`${name} avatar`} />
       <TweetInputContainer>
         <TweetInput
           placeholder={`What's happening`}
@@ -80,7 +80,7 @@ const AddTweetForm = () => {
         />
         {image && (
           <PreviewImageContainer>
-            <PreviewImage src={URL.createObjectURL(image)} />
+            <PreviewImage src={URL.createObjectURL(image)} alt="Loaded image" />
             <DeleteBadge onClick={handleDeleteBadgeClick}>x</DeleteBadge>
           </PreviewImageContainer>
         )}

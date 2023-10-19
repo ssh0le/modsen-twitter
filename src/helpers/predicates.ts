@@ -1,3 +1,4 @@
+import { patternTypes } from '@/constants';
 import { PatternValidationType, ValidationType } from '@/types';
 
 const userMinAge = 16;
@@ -12,7 +13,7 @@ export const isActiveLink = (
 export const isValidationWithPattern = (
   type: ValidationType,
 ): type is PatternValidationType => {
-  return ['email', 'phone', 'login'].includes(type);
+  return patternTypes.includes(type);
 };
 
 export const isRequiredAge = (dateOfBirth: Date): boolean => {

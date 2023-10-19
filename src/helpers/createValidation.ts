@@ -1,26 +1,14 @@
 import { RegisterOptions } from 'react-hook-form/dist/types';
 
+import { errorMessages, patterns } from '@/constants/validation';
 import { PatternValidationType, ValidationType } from '@/types';
 
 import { isValidationWithPattern } from './predicates';
 
-const errorMessages = {
-  wrongPhone: 'Wrong phone number format',
-  wrongEmail: 'Wrong email format',
-  wrongLogin: 'Wrong login format',
-  required: 'This field is required!',
-  minLength: 'There are too few letters here!',
-  maxLength: 'There are too much letters here!',
-};
-
-const phonePattern = new RegExp(/^\+375[0-9]{9}$/);
-const emailPattern = new RegExp(/^.+@.+\..+$/);
-const loginPattern = new RegExp(
-  `${phonePattern.source}|${emailPattern.source}`,
-);
-
 const { minLength, maxLength, required, wrongEmail, wrongPhone, wrongLogin } =
   errorMessages;
+
+const { phonePattern, emailPattern, loginPattern } = patterns;
 
 export const createValidationOptionsForText = (
   max?: number,

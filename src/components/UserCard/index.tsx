@@ -52,6 +52,7 @@ const UserCard = ({ size, name, tag, avatar, userId }: UserCardProps) => {
         <UserAvatar
           size={size === 'log-out' ? 'small' : 'medium'}
           src={avatar}
+          alt={`${name} avatar`}
         />
         <UserNamesContainer onClick={handleCardClick}>
           <UserNameWrapper>{name}</UserNameWrapper>

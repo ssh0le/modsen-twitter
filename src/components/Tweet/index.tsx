@@ -102,7 +102,7 @@ const Tweet = ({ info, currentUserId }: TweetProps) => {
   return (
     <TweetContainer>
       <TweetContentWrapper>
-        <UserAvatar size="small" src={userAvatar} />
+        <UserAvatar size="small" src={userAvatar} alt={`${userName} avatar`} />
         <TweetMainContainer>
           <div onClick={handleUserInfoClick}>
             <BoldText>{userName}</BoldText>{' '}
@@ -113,7 +113,7 @@ const Tweet = ({ info, currentUserId }: TweetProps) => {
           {text && <TweetText>{text}</TweetText>}
           {image && (
             <TweetImageContainer>
-              <TweetImage src={image} />
+              <TweetImage src={image} alt={`${userName} tweet image`} />
             </TweetImageContainer>
           )}
           <LikeContainer $isLiked={isLiked}>

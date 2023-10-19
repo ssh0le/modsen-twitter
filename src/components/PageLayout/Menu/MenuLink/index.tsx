@@ -17,7 +17,10 @@ const MenuLink = ({ isSelected, title, route }: MenuLinkProps) => {
 
   return (
     <MenuLinkWrapper $isSelected={isSelected} onClick={handleLinkClick}>
-      <MenuLinkIcon src={getMenuIcon(title, isSelected)} />
+      <MenuLinkIcon
+        src={getMenuIcon(title, isSelected)}
+        alt={`${title} link`}
+      />
       <MenuLinkTitle>{title}</MenuLinkTitle>
     </MenuLinkWrapper>
   );

@@ -82,7 +82,7 @@ const PageLayout = () => {
         {windowWidth <= 888 && (
           <>
             <MobileLogOutIconContainer onClick={handleLogOutClick}>
-              <LogOutIcon src={icons.logOut} />
+              <LogOutIcon src={icons.logOut} alt="Log-out icon" />
             </MobileLogOutIconContainer>
           </>
         )}

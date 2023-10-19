@@ -4,3 +4,4 @@ export * from './links';
 export * from './routes';
 export * from './selectOptions';
 export * from './theme';
+export * from './validation';

@@ -25,7 +25,7 @@ const SearchBar = () => {
 
   return (
     <SearchInputContainer>
-      <SearchIcon src={icons.searchIcon} />
+      <SearchIcon src={icons.searchIcon} alt="Search icon" />
       <SearchInput
         value={query}
         onChange={handleSearchChange}

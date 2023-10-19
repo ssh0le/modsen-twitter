@@ -68,7 +68,7 @@ const LoginPage: FC = () => {
           <InputField
             error={login}
             {...register('login', createValidationOptions('login'))}
-            placeholder="Phone number, mail adress"
+            placeholder="Email adress"
           />
           <InputField
             error={password}

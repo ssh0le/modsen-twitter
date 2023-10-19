@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, useId } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentTheme } from '@/store/selectors';
@@ -10,6 +10,7 @@ const ThemeSwitch = () => {
   const theme = useAppSelector(selectCurrentTheme);
   const dispatch = useAppDispatch();
   const isDark = theme === 'dark';
+  const id = useId();
 
   const handleSwitchClick = (event: MouseEvent<HTMLLabelElement>) => {
     event.preventDefault();
@@ -18,8 +19,12 @@ const ThemeSwitch = () => {
 
   return (
     <div>
-      <Toggler onClick={handleSwitchClick} className={isDark ? 'active' : ''}>
-        <Checkbox type="checkbox" defaultChecked={isDark} />
+      <Toggler
+        onClick={handleSwitchClick}
+        className={isDark ? 'active' : ''}
+        htmlFor={id}
+      >
+        <Checkbox id={id} type="checkbox" defaultChecked={isDark} />
       </Toggler>
     </div>
   );
