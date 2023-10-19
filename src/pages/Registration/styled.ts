@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
+import { flexColumn } from '@/styles/common';
 import { FullPageWrapper } from '@UI';
 
 export const RegistrationPageContainer = styled(FullPageWrapper)`
-  display: flex;
-  flex-direction: column;
+  ${flexColumn};
   justify-content: start;
   align-items: center;
   padding-top: 50px;
@@ -63,13 +63,12 @@ export const DateOfBirthMessage = styled.p`
 `;
 
 export const InputFieldsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${flexColumn};
   gap: 26px;
   margin-bottom: 26px;
 
   @media only screen and (max-width: 888px) {
-    gap: 10px;
+    gap: 20px;
   }
 `;
 
@@ -85,7 +84,7 @@ export const SelectContainer = styled.div`
 
   @media only screen and (max-width: 888px) {
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 
     & div:nth-child(1) {
       flex-grow: 0;

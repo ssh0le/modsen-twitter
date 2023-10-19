@@ -9,6 +9,7 @@ import { monthsOptions, yearOptions } from '@/constants/selectOptions';
 import {
   createValidationOptions,
   getMonthDays,
+  isRequiredAge,
   translateAuthError,
 } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
@@ -34,6 +35,7 @@ const { profile, signUp } = routePathes;
 const RegistrationPage: FC = () => {
   const { createUserWithEmail } = firebaseAuth;
   const [authError, setAuthError] = useState<string>('');
+  const [userError, setUserError] = useState<string>('');
   const [days, setDays] = useState<
     { name: string | number; value: string | number }[]
   >(getMonthDays());
@@ -78,6 +80,15 @@ const RegistrationPage: FC = () => {
 
   const handleNextClick = async (data: RegistrationForm) => {
     const { email, password, name, phone, day, month, year } = data;
+    const userDateOfBirth = new Date(
+      Number(year),
+      Number(month) - 1,
+      Number(day),
+    );
+    if (!isRequiredAge(userDateOfBirth)) {
+      setUserError('This platform has minimal age restriction - 16!');
+      return;
+    }
     const dateOfBirth = `${month}/${day}/${year}`;
     createUserWithEmail(email, password, name, phone, dateOfBirth)
       .then((user) => {
@@ -93,8 +104,11 @@ const RegistrationPage: FC = () => {
     navigate(signUp);
   };
 
-  const handleAnimationEnd = () => {
+  const handleAuthAnimationEnd = () => {
     setAuthError('');
+  };
+  const handleUserAnimationEnd = () => {
+    setUserError('');
   };
 
   return (
@@ -102,7 +116,12 @@ const RegistrationPage: FC = () => {
       <Toast
         type="error"
         message={authError}
-        onAnimationEnd={handleAnimationEnd}
+        onAnimationEnd={handleAuthAnimationEnd}
+      />
+      <Toast
+        type="error"
+        message={userError}
+        onAnimationEnd={handleUserAnimationEnd}
       />
       <RegistrationPageContentWrapper>
         <LogoContainer>

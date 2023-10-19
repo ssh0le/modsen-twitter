@@ -16,7 +16,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     const { error, label, ...remainedProps } = props;
     const id = useId();
     return (
-      <>
+      <div>
         {label && (
           <InputLabel htmlFor={id}>
             <SerifText>{label}</SerifText>
@@ -30,7 +30,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             <ErrorMessageContainer>{error.message}</ErrorMessageContainer>
           )}
         </InputContent>
-      </>
+      </div>
     );
   },
 );

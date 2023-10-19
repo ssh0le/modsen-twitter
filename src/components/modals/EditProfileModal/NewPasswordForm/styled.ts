@@ -4,7 +4,7 @@ import { flexColumn } from '@/styles/common';
 
 export const EditPasswordFormContainer = styled.div`
   ${flexColumn};
-  gap: 10px;
+  gap: 20px;
 `;
 
 export const SubmitButtonContainer = styled.div`

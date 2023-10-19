@@ -9,7 +9,5 @@ export const getMonthDays = (monthIndex?: number, year?: number) => {
       value: day,
     });
   }
-  console.log(days.at(-1));
-  console.log(monthIndex);
   return days;
 };

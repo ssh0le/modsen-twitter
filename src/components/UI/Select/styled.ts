@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
-import { inputContainerStyle, inputStyle } from '@/styles/common';
+import { errorStyle, inputContainerStyle, inputStyle } from '@/styles/common';
 
 export const SelecetContainer = styled.div`
   display: inline-block;
+  position: relative;
+
+  & > p {
+    ${errorStyle};
+  }
 `;
 
 export const SelectWraper = styled.div`
@@ -20,6 +25,8 @@ export const CustomSelect = styled.select`
 export const InputLabel = styled.label`
   color: ${({ theme }) => theme.color};
   font-size: ${({ theme }) => theme.fontSizes.fs18};
+  margin-bottom: 10px;
+  display: block;
 `;
 
 export const SelectOption = styled.option`

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { flexColumn, inputContainerStyle, inputStyle } from '@/styles/common';
+import { errorStyle, inputContainerStyle, inputStyle } from '@/styles/common';
 
 export const InputWrapper = styled.div`
   ${inputContainerStyle}
@@ -14,15 +14,15 @@ export const Input = styled.input`
 
 export const InputLabel = styled.label`
   color: ${({ theme }) => theme.color};
+  margin-bottom: 10px;
+  display: block;
 `;
 
 export const ErrorMessageContainer = styled.p`
-  color: ${({ theme }) => theme.colors.red};
-  font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+  ${errorStyle};
 `;
 
 export const InputContent = styled.div`
   width: 100%;
-  ${flexColumn};
-  gap: 5px;
+  position: relative;
 `;

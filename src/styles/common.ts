@@ -40,6 +40,21 @@ export const inputContainerStyle = css`
   }
 `;
 
+export const errorStyle = css`
+  color: ${({ theme }) => theme.colors.red};
+  font-size: ${({ theme }) => theme.fontSizes.fs14}px;
+  margin-top: 5px;
+  transition: 1s ease-in-out;
+  position: absolute;
+  left: 0;
+  top: 100%;
+
+  @media screen and (max-width: 888px) {
+    margin-top: 2px;
+    font-size: ${({ theme }) => theme.fontSizes.fs13}px;
+  }
+`;
+
 export const serifText = css`
   font-family: 'Roboto Serif';
 `;
