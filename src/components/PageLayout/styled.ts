@@ -18,30 +18,32 @@ export const PageLayoutContainer = styled(FullPageWrapper)`
 `;
 
 export const MenuContainer = styled.div`
-  padding-left: 15px;
+  padding-left: ${({ theme }) => theme.padding.s}px;
   margin-top: 49px;
   margin-bottom: 30px;
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     margin-top: 20px;
     padding: 0;
   }
 
-  @media only screen and (max-width: 888px) {
-    margin-bottom: 10px;
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    margin-bottom: ${({ theme }) => theme.margin.s}px;
   }
 `;
 
 export const ContentWrapper = styled.div`
+  ${flexColumn}
+
   flex-grow: 1;
   height: fit-content;
   min-height: calc(100vh + 1px);
-  ${flexColumn}
   width: auto;
 `;
 
 const AsideBar = styled.aside`
   ${flexColumn};
+
   align-self: flex-start;
   position: sticky;
   top: 0;
@@ -54,11 +56,11 @@ export const LeftAside = styled(AsideBar)`
   width: 300px;
   border-right: 1px solid ${({ theme }) => theme.border};
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     padding: 20px;
   }
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     width: 50px;
     padding: 0;
     gap: 10px;
@@ -82,13 +84,13 @@ export const RigthAside = styled(AsideBar)`
   max-width: 340px;
   border-left: 1px solid ${({ theme }) => theme.border};
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     padding: 10px;
     min-width: 250px;
     max-width: 250px;
   }
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     padding: 10px;
     display: none;
   }
@@ -96,20 +98,22 @@ export const RigthAside = styled(AsideBar)`
 
 export const SearchContainer = styled.div`
   ${flexColumn};
+
   width: 100%;
   border-radius: 31px;
-  gap: 32px;
+  gap: ${({ theme }) => theme.gap.l}px;
 `;
 
 export const LogoContainer = styled.div`
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     display: none;
   }
 `;
 
 export const MobileLogOutIconContainer = styled.div`
   ${flexCenter};
-  padding: 10px;
+
+  padding: ${({ theme }) => theme.padding.xs}px;
 `;
 
 export const LogOutIcon = styled.img`

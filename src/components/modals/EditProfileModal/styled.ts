@@ -21,12 +21,16 @@ export const EditButton = styled.button`
   font-size: ${({ theme }) => theme.fontSizes.fs18}px;
   border: 2px solid ${({ theme }) => theme.color};
   padding: 10px 15px;
+  padding: ${({
+    theme: {
+      padding: { xs, s },
+    },
+  }) => `${xs} ${s}px`};
   height: fit-content;
   border-radius: 50px;
   cursor: pointer;
 
-  @media screen and (max-width: 888px) {
-    padding: 10px 15px;
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs14}px;
   }
 `;

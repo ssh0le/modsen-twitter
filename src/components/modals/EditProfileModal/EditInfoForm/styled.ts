@@ -4,11 +4,12 @@ import { flexColumn } from '@/styles/common';
 
 export const EditInfoFormContainer = styled.div`
   ${flexColumn};
-  gap: 10px;
+
+  gap: ${({ theme }) => theme.gap.xs}px;
 `;
 
 export const ControlsContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  gap: 20px;
+  gap: ${({ theme }) => theme.gap.m}px;
 `;

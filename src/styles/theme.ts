@@ -1,4 +1,4 @@
-import { colors } from '@/constants';
+import { breakpoints, colors } from '@/constants';
 import { Theme } from '@/interfaces';
 
 const {
@@ -89,6 +89,24 @@ const light: Theme = {
   iconSizes: {
     computer: 28,
     moblie: 20,
+  },
+  breakpoints,
+  padding: {
+    xs: 10,
+    s: 15,
+    m: 25,
+    l: 30,
+    xl: 50,
+  },
+  margin: {
+    s: 10,
+    l: 32,
+  },
+  gap: {
+    xs: 10,
+    s: 15,
+    m: 20,
+    l: 32,
   },
 };
 

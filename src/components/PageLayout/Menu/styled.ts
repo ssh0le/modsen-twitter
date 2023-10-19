@@ -4,14 +4,15 @@ import { flexColumn } from '@/styles/common';
 
 export const MenuContainer = styled.ul`
   ${flexColumn}
-  gap: 20px;
+
+  gap: ${({ theme }) => theme.gap.m}px;
 
   @media only screen and (max-width: 1000px) {
-    gap: 10px;
+    gap: ${({ theme }) => theme.gap.xs}px;
   }
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     width: 50px;
-    padding: 10px;
+    padding: ${({ theme }) => theme.padding.s}px;
   }
 `;

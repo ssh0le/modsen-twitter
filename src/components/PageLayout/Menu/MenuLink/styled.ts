@@ -14,10 +14,10 @@ export const MenuLinkWrapper = styled.li<MenuLinkWrapperProps>`
   }) => ($isSelected ? bold : mediumBold)};
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: ${({ theme }) => theme.gap.m}px;
   cursor: pointer;
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     justify-content: center;
   }
 `;
@@ -28,7 +28,7 @@ export const MenuLinkIcon = styled.img`
 `;
 
 export const MenuLinkTitle = styled.span`
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     display: none;
   }
 `;

@@ -9,16 +9,18 @@ export const AddTweetFormContainer = styled.div`
 `;
 
 export const TweetInputContainer = styled.div`
+  ${flexColumn};
+
   flex-grow: 1;
-  gap: 15px;
-  ${flexColumn}
+  gap: ${({ theme }) => theme.gap.s}px;
 `;
 
 export const TweetInput = styled.textarea`
+  ${themedColor};
+
   border: none;
   font-size: ${({ theme }) => theme.fontSizes.fs20}px;
   background-color: ${({ theme }) => theme.backgroundColor};
-  ${themedColor};
   height: fit-content;
   width: 100%;
   resize: none;

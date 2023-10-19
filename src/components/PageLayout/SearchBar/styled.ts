@@ -4,9 +4,10 @@ import { flexCenter, flexColumn } from '@/styles/common';
 
 export const SearchContainer = styled.div`
   ${flexColumn};
+
   width: 100%;
   border-radius: 31px;
-  gap: 32px;
+  gap: ${({ theme }) => theme.gap.l}px;
 `;
 
 export const SearchInputContainer = styled.div`
@@ -14,7 +15,7 @@ export const SearchInputContainer = styled.div`
   padding: 15px 20px;
   background-color: ${({ theme }) => theme.search.backgroundColor};
   border-radius: 30px;
-  gap: 20px;
+  gap: ${({ theme }) => theme.gap.m}px;
 `;
 
 export const SearchInput = styled.input`

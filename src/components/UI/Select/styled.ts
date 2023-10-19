@@ -13,19 +13,21 @@ export const SelecetContainer = styled.div`
 
 export const SelectWraper = styled.div`
   ${inputContainerStyle}
+
   padding: 20px;
   min-width: 160px;
 `;
 
 export const CustomSelect = styled.select`
-  font-size: ${({ theme }) => theme.fontSizes.fs18};
   ${inputStyle}
+
+  font-size: ${({ theme }) => theme.fontSizes.fs18};
 `;
 
 export const InputLabel = styled.label`
   color: ${({ theme }) => theme.color};
   font-size: ${({ theme }) => theme.fontSizes.fs18};
-  margin-bottom: 10px;
+  margin-bottom: ${({ theme }) => theme.margin.l};
   display: block;
 `;
 

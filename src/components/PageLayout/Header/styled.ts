@@ -2,19 +2,22 @@ import styled from 'styled-components';
 
 import { flexColumn, themedSvgFilter } from '@/styles/common';
 
+const gap = 7;
+
 export const HeaderContainer = styled.header`
   padding: 22px 30px 15px 17px;
   display: flex;
   justify-content: space-between;
 
-  @media only screen and (max-width: 1000px) {
-    padding: 10px;
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    padding: ${({ theme }) => theme.padding.xs}px;
   }
 `;
 
 export const CurrentUserContainer = styled.div`
   ${flexColumn};
-  gap: 10px;
+
+  gap: ${({ theme }) => theme.gap.xs}px;
 `;
 
 export const UserNameContainer = styled.span`
@@ -36,7 +39,7 @@ export const CurrentLocationText = styled.div`
   display: flex;
   width: fit-content;
   align-items: center;
-  gap: 7px;
+  gap: ${gap}px;
 
   & * {
     height: fit-content;
@@ -44,9 +47,10 @@ export const CurrentLocationText = styled.div`
 `;
 
 export const BackButtonContainer = styled.div`
+  ${themedSvgFilter}
+
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: ${gap}px;
   cursor: pointer;
-  ${themedSvgFilter}
 `;

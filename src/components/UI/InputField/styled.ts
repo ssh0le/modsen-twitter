@@ -7,14 +7,15 @@ export const InputWrapper = styled.div`
 `;
 
 export const Input = styled.input`
+  ${inputStyle};
+
   width: 100%;
   border: none;
-  ${inputStyle};
 `;
 
 export const InputLabel = styled.label`
   color: ${({ theme }) => theme.color};
-  margin-bottom: 10px;
+  margin-bottom: ${({ theme }) => theme.margin.s}px;
   display: block;
 `;
 

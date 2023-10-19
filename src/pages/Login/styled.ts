@@ -7,9 +7,9 @@ export const LoginPageContainer = styled(FullPageWrapper)`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  padding-top: 50px;
+  padding-top: ${({ theme }) => theme.padding.l}px;
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     justify-content: center;
     padding: 0;
   }
@@ -18,7 +18,7 @@ export const LoginPageContainer = styled(FullPageWrapper)`
 export const LoginContentWrapper = styled.div`
   width: 450px;
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     width: 300px;
   }
 `;
@@ -28,7 +28,7 @@ export const Heading = styled.h1`
   font-size: ${({ theme }) => theme.fontSizes.fs42}px;
   font-weight: ${({ theme }) => theme.fontWeigth.superBold};
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs24}px;
   }
 `;
@@ -36,12 +36,12 @@ export const Heading = styled.h1`
 export const LoginForm = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: ${({ theme }) => theme.gap.m}px;
   margin-bottom: 40px;
 `;
 
 export const SignUpLinkContainer = styled.div`
   display: flex;
-  gap: 20px;
+  gap: ${({ theme }) => theme.gap.m}px;
   justify-content: flex-end;
 `;

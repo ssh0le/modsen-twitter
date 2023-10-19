@@ -39,7 +39,26 @@ export interface Theme {
     computer: number;
     moblie: number;
   };
+  breakpoints: {
+    [key in BreakPoint]: number;
+  };
+  padding: {
+    [key in Padding]: number;
+  };
+  margin: {
+    [key in Margin]: number;
+  };
+  gap: {
+    [key in Gap]: number;
+  };
 }
+
+type Padding = 'xs' | 's' | 'm' | 'l' | 'xl';
+
+type Margin = 's' | 'l';
+type Gap = 'xs' | 's' | 'm' | 'l';
+
+export type BreakPoint = 'mobile' | 'tablet' | 'laptop';
 
 type FontSize = `fs${
   | '13'

@@ -1,3 +1,5 @@
+import { BreakPoint } from '@/interfaces';
+
 export const colors = {
   lightBlue: '#1DA1F2',
   blue: '#1D9BF0',
@@ -12,4 +14,10 @@ export const colors = {
   darkGray: '#5C6C79',
   red: '#EF1C5C',
   green: '#0f0',
+};
+
+export const breakpoints: { [key in BreakPoint]: number } = {
+  mobile: 888,
+  tablet: 1000,
+  laptop: 1200,
 };

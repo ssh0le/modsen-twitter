@@ -28,7 +28,7 @@ export const Toggler = styled.label`
     transform: translateX(-100%);
   }
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     cursor: pointer;
     width: 40px;
     height: 20px;

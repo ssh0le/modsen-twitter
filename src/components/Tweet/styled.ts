@@ -9,7 +9,7 @@ export const TweetContainer = styled.div`
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.border};
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     padding: 10px;
   }
 `;
@@ -21,13 +21,14 @@ export const TweetContentWrapper = styled.div`
 
 export const TweetMainContainer = styled.div`
   ${flexColumn}
+
   flex-grow: 1;
 `;
 
 export const TweetText = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.fs18}px;
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs16}px;
   }
 `;
@@ -35,7 +36,7 @@ export const TweetText = styled.p`
 export const LikeContainer = styled.div<{ $isLiked: boolean }>`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: ${({ theme }) => theme.gap.xs}px;
   margin-top: 22px;
   color: ${({
     theme: {
@@ -86,9 +87,10 @@ export const LikeIcon = styled.img`
 `;
 
 export const TweetImageContainer = styled.div`
+  ${flexCenter}
+
   width: 100%;
   margin-top: 15px;
-  ${flexCenter}
 `;
 
 export const TweetImage = styled.img`

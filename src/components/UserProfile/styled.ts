@@ -8,6 +8,7 @@ const opacityStyle = css`
 
 export const ProfilePageContainer = styled.section`
   ${flexColumn};
+
   height: fit-content;
 `;
 
@@ -18,17 +19,18 @@ export const ProfileBackground = styled.div<{ $src: string }>`
   height: 280px;
   background-position: center;
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     height: 220px;
   }
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     height: 180px;
   }
 `;
 
 export const ProfilerContentWrapper = styled.div`
   ${flexColumn}
+
   padding: 0 25px;
 `;
 
@@ -50,7 +52,7 @@ export const UserName = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.fs24}px;
   margin-bottom: 4px;
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs20}px;
   }
 `;
@@ -58,7 +60,7 @@ export const UserName = styled.h2`
 export const UserTag = styled.span`
   ${opacityStyle}
 
-  @media only screen and (max-width: 1000px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs14}px;
   }
 `;
@@ -82,11 +84,12 @@ export const SubscriptionType = styled.span`
 `;
 
 export const AddTweetFormContainer = styled.div`
-  margin-top: 51px;
-  padding: 18px 11px 13px 27px;
   ${topBottomBorder}
 
-  @media only screen and (max-width: 888px) {
+  margin-top: 51px;
+  padding: 18px 11px 13px 27px;
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     margin-top: 20px;
     padding: 10px;
   }
@@ -104,7 +107,7 @@ export const TweetListHeading = styled.h2`
   width: 215px;
   border-bottom: 1px solid ${({ theme }) => theme.border};
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     margin: 0;
   }
 `;

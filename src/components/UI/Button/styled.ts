@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@/styles/common';
+
 import { ButtonWrapperProps } from './interfaces';
 
 const coloredButtonStyle = css`
@@ -25,28 +27,26 @@ const logOutButtonStyle = css`
 `;
 
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`
+  ${flexCenter}
   font-size: ${({ theme: { fontSizes } }) => fontSizes.fs18}px;
   width: 100%;
   border-radius: 28px;
   padding: 18px 0 21px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   ${({ $isActive }) => ($isActive ? 'cursor: pointer' : 'opacity: 40%')};
   ${({ $type }) => $type === 'colored' && coloredButtonStyle};
   ${({ $type }) => $type === 'sign-up' && signUpButtonStyle};
   ${({ $type }) => $type === 'log-out' && logOutButtonStyle};
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs16}px;
   }
 
-  @media only screen and (max-width: 1000px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs14}px;
   }
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs14}px;
 
     padding: 10px 0 10px 0;

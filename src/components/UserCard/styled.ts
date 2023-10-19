@@ -10,7 +10,7 @@ export const UserCardContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: 1200px) {
     flex-direction: column;
   }
 `;
@@ -20,7 +20,7 @@ export const UserInfoContainer = styled.div<StyledContainerProps>`
   margin-right: 10px;
   gap: ${({ $size }) => ($size === 'log-out' ? 37 : 13)}px;
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: 1200px) {
     gap: 13px;
     justify-content: space-between;
     width: 100%;
@@ -30,11 +30,12 @@ export const UserInfoContainer = styled.div<StyledContainerProps>`
 
 export const UserNamesContainer = styled.div`
   ${flexColumn}
+
   gap: 4px;
   flex-grow: 1;
   cursor: pointer;
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: 1200px) {
     font-size: ${({ theme }) => theme.fontSizes.fs14}px;
   }
 `;
@@ -62,17 +63,17 @@ export const FollowButton = styled.button`
   border-width: 2px;
   border: none;
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs16}px;
   }
 
-  @media only screen and (max-width: 1000px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs14}px;
   }
 `;
 
 export const ButtonContainer = styled.div`
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     align-self: flex-end;
   }
 `;

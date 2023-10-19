@@ -9,22 +9,23 @@ import {
 export const AddTweetModalContainer = styled.div`
   background-color: ${({ theme }) => theme.backgroundColor};
   border: 1px solid ${({ theme }) => theme.border};
-  padding: 30px;
+  padding: ${({ theme }) => theme.padding.l}px;
   border-radius: 20px;
   width: 600px;
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     margin: 0 40px;
     width: auto;
-    padding: 15px;
+    padding: ${({ theme }) => theme.padding.s}px;
   }
 `;
 
 export const MobileButtonContainer = styled.div`
   display: none;
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     ${flexCenter};
+
     padding: 10px;
   }
 `;
@@ -32,7 +33,7 @@ export const MobileButtonContainer = styled.div`
 export const ComputerButtonContainer = styled.div`
   display: block;
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     display: none;
   }
 `;

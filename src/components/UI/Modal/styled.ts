@@ -4,6 +4,7 @@ import { flexCenter } from '@/styles/common';
 
 export const ModalContainer = styled.div`
   ${flexCenter};
+
   position: absolute;
   top: 0;
   width: 100vw;

@@ -9,9 +9,10 @@ export const NotFoundPageWrapper = styled(FullPageWrapper)`
 
 export const ContentWrapper = styled.div`
   ${flexCenter}
+
   flex-direction: column;
   width: 300px;
-  gap: 20px;
+  gap: ${({ theme }) => theme.gap.m}px;
 `;
 
 export const NotFoundMessage = styled.p`

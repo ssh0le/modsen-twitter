@@ -6,7 +6,7 @@ export const FooterWrapper = styled.footer`
   height: fit-content;
   padding: 18px 10px;
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     display: none;
   }
 `;
