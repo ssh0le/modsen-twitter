@@ -2,7 +2,7 @@ import UserAvatar from '@/components/UserAvatar';
 import { images } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
-import { BoldText, Loader, SerifText } from '@UI';
+import { BoldText, Link, Loader, SerifText } from '@UI';
 
 import { PageLayoutContainer } from '../PageLayout/styled';
 
@@ -65,7 +65,15 @@ const UserProfile = (props: UserProfileProps) => {
           <SerifText>{name}</SerifText>
         </UserName>
         <UserTag>{tag}</UserTag>
-        <UserStatus>{status || 'No status'}</UserStatus>
+        <UserStatus>
+          {status ? (
+            <span>
+              Telegram: <Link>@{status}</Link>
+            </span>
+          ) : (
+            'No Telegram'
+          )}
+        </UserStatus>
         <UserSubsctriptionsContainer>
           <div>
             <SubscriptionCount>
