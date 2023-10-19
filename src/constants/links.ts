@@ -41,29 +41,32 @@ export const menuTitles = [
   'More',
 ] as const;
 
-const defaultPath = '/';
-const home = '/home';
-const userDetails = '/profile/:userId';
-const profile = '/profile';
-const signUp = '/sign-up';
-const login = '/login';
-const registration = '/registartion';
-const notifications = '/notifications';
-const messages = '/messages';
-const bookmarks = '/bookmarks';
-const explore = '/explore';
-const lists = '/lists';
-const more = '/more';
-
 export const routePathes = {
+  defaultPath: '/',
+  home: '/home',
+  userDetails: '/profile/:userId',
+  profile: '/profile',
+  signUp: '/sign-up',
+  login: '/login',
+  registration: '/registartion',
+  notifications: '/notifications',
+  messages: '/messages',
+  bookmarks: '/bookmarks',
+  explore: '/explore',
+  lists: '/lists',
+  more: '/more',
+};
+
+const {
   home,
   profile,
-  signUp,
-  login,
-  registration,
-  userDetails,
-  defaultPath,
-};
+  notifications,
+  messages,
+  explore,
+  bookmarks,
+  lists,
+  more,
+} = routePathes;
 
 export const menuLinks: { title: string; route: string }[] = [
   {

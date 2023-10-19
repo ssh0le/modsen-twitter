@@ -24,8 +24,8 @@ import profileFilled from '@/assets/icons/profileFilled.svg';
 import searchIcon from '@/assets/icons/searchIcon.svg';
 import twitterLogo from '@/assets/icons/twitterLogo.svg';
 import verticalDelimeter from '@/assets/icons/verticalDelimeter.svg';
-import defaultAvatar from '@/assets/images/defaultAvatar.svg';
-import defaultUserBackground from '@/assets/images/defaultUserBackground.png';
+import defaultAvatar from '@/assets/images/defaultAvatar.jpg';
+import defaultUserBackground from '@/assets/images/defaultUserBackground.jpg';
 import signUpBackground from '@/assets/images/signUpBack.jpg';
 
 export const icons = {
