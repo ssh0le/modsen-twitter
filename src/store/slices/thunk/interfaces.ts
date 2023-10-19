@@ -1,4 +1,4 @@
-import { User } from '@/interfaces';
+import { User } from '@/types';
 
 export interface AddTweetProps {
   tweetData: { text: string; image: File | null };

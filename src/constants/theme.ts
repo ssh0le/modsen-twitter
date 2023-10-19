@@ -1,4 +1,4 @@
-import { BreakPoint } from '@/interfaces';
+import { BreakPoint } from '@/types';
 
 export const colors = {
   lightBlue: '#1DA1F2',

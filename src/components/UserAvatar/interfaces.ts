@@ -1,4 +1,4 @@
-import { AvatarSize } from '@/interfaces';
+import { AvatarSize } from '@/types';
 
 export interface UserCardProps {
   size?: keyof AvatarSize;

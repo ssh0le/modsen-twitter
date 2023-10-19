@@ -5,8 +5,8 @@ import Tweet from '@/components/Tweet';
 import UserProfile from '@/components/UserProfile';
 import { routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
-import { Tweet as ITweet, User } from '@/interfaces';
 import { selectCurrentUser } from '@/store/selectors';
+import { Tweet as ITweet, User } from '@/types';
 import { firestore } from '@/utils';
 
 const UserDetailsPage: FC = () => {

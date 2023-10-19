@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CurrentUserState, Tweet, User } from '@/interfaces';
+import { CurrentUserState, Tweet, User } from '@/types';
 
 import { fetchUserTweets, getUserDetails, updateUserInfo } from '../thunk/user';
 

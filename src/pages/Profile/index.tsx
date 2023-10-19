@@ -5,13 +5,13 @@ import { EditProfileModal } from '@/components/modals/EditProfileModal';
 import Tweet from '@/components/Tweet';
 import UserProfile from '@/components/UserProfile';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
-import { Tweet as ITweet } from '@/interfaces';
 import {
   isFetchingTweets,
   selectCurrentUser,
   selectUserDetails,
 } from '@/store/selectors';
 import { fetchUserTweets, getUserDetails } from '@/store/slices/thunk/user';
+import { Tweet as ITweet } from '@/types';
 import { publisher } from '@/utils';
 
 const ProfilePage: FC = () => {

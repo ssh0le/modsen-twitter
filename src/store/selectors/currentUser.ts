@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { Tweet, User } from '@/interfaces';
+import { Tweet, User } from '@/types';
 
 import { RootState } from '..';
 

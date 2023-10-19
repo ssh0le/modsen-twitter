@@ -1,5 +1,5 @@
 import { breakpoints, colors } from '@/constants';
-import { Theme } from '@/interfaces';
+import { Theme } from '@/types';
 
 const {
   lightBlue,

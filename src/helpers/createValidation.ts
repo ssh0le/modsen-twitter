@@ -1,6 +1,6 @@
 import { RegisterOptions } from 'react-hook-form/dist/types';
 
-import { PatternValidationType, ValidationType } from '@/interfaces';
+import { PatternValidationType, ValidationType } from '@/types';
 
 import { isValidationWithPattern } from './predicates';
 

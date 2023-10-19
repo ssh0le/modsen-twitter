@@ -1,4 +1,4 @@
-import { Tweet } from '@/interfaces/ententies';
+import { Tweet } from '@/types/ententies';
 
 export interface TweetProps {
   info: Tweet;

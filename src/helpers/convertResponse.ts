@@ -1,7 +1,7 @@
 import { User as FBUser } from 'firebase/auth';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
 
-import { FormUser } from '@/interfaces';
+import { FormUser } from '@/types';
 
 export const convertNewUserFromAuth = (
   user: FBUser,

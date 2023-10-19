@@ -1,4 +1,4 @@
-import { Theme } from '@/interfaces';
+import { Theme } from '@/types';
 
 import 'styled-components';
 

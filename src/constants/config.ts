@@ -1,4 +1,4 @@
-import { StaticText } from '@/interfaces';
+import { StaticText } from '@/types';
 
 import { routePathes } from './links';
 

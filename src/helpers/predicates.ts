@@ -1,4 +1,4 @@
-import { PatternValidationType, ValidationType } from '@/interfaces';
+import { PatternValidationType, ValidationType } from '@/types';
 
 const userMinAge = 16;
 

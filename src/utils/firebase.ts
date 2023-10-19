@@ -32,7 +32,7 @@ import {
   userInfoRef,
 } from '@/firebase';
 import { convertEntetyFromSnapshot, convertNewUserFromAuth } from '@/helpers';
-import { FollowerList, FormUser, Tweet, User } from '@/interfaces/ententies';
+import { FollowerList, FormUser, Tweet, User } from '@/types/ententies';
 
 const provider = new GoogleAuthProvider();
 

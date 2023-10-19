@@ -5,8 +5,8 @@ import { Loader } from '@/components/UI';
 import { profileStatics, routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { useSearch } from '@/hooks/useSearch';
-import { User } from '@/interfaces';
 import { selectCurrentUser } from '@/store/selectors';
+import { User } from '@/types';
 import { firestore } from '@/utils';
 
 import UserList from '../UserList';

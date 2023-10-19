@@ -12,7 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { CurrentUserState, SearchState, ThemeState } from '@/interfaces';
+import { CurrentUserState, SearchState, ThemeState } from '@/types';
 
 import currentUserReducer from './slices/currentUser';
 import searchReducer from './slices/search';

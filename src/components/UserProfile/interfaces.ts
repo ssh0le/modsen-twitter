@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { Tweet, User } from '@/interfaces';
+import { Tweet, User } from '@/types';
 
 export interface UserProfileProps {
   user: User;

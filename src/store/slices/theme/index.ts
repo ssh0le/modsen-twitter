@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ThemeState } from '@/interfaces';
+import { ThemeState } from '@/types';
 
 const initialState: ThemeState = {
   currentTheme: 'light',

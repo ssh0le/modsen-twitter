@@ -13,8 +13,8 @@ import {
   translateAuthError,
 } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
-import { FirebaseAuthError } from '@/interfaces';
 import { setUser } from '@/store/slices/currentUser';
+import { FirebaseAuthError } from '@/types';
 import { firebaseAuth } from '@/utils';
 import { Button, InputField, Link, Select, SerifText } from '@UI';
 

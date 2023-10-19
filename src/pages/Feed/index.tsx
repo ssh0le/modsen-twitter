@@ -7,8 +7,8 @@ import { Loader, NoResultMessage } from '@/components/UI';
 import { routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { useSearch } from '@/hooks/useSearch';
-import { Tweet as ITweet } from '@/interfaces';
 import { selectCurrentUser } from '@/store/selectors';
+import { Tweet as ITweet } from '@/types';
 import { firestore, publisher } from '@/utils';
 
 import {
