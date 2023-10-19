@@ -13,5 +13,5 @@ type AuthErrorKeys = keyof typeof AuthErrorCodes;
 export type AuthErrorValues = (typeof AuthErrorCodes)[AuthErrorKeys];
 
 export interface FirebaseAuthError {
-  code: AuthErrorValues;
+  code: AuthErrorValues | 'auth/invalid-login-credentials';
 }

@@ -9,6 +9,7 @@ export const ToastContainer = styled.div<{
   position: fixed;
   top: -100;
   left: 50%;
+  padding: 10px;
   z-index: 10;
   ${flexCenter};
   height: 100px;
@@ -28,6 +29,7 @@ export const ToastContainer = styled.div<{
 export const MessageContainer = styled.p<{
   $type: 'error' | 'not-error';
 }>`
+  text-align: center;
   color: ${({
     $type,
     theme: {

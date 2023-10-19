@@ -1,10 +1,11 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
+import Toast from '@/components/Toast';
 import { routePathes } from '@/constants';
-import { createValidationOptions } from '@/helpers';
+import { createValidationOptions, translateAuthError } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { setUser } from '@/store/slices/currentUser';
 import { firebaseAuth } from '@/utils';
@@ -20,7 +21,8 @@ import {
 } from './styled';
 
 const LoginPage: FC = () => {
-  const { emailSignUp, googleSignIn } = firebaseAuth;
+  const [error, setError] = useState<string>('');
+  const { emailSignIn, googleSignIn } = firebaseAuth;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
@@ -33,12 +35,12 @@ const LoginPage: FC = () => {
 
   const handleLoginClick = (data: ILoginForm) => {
     const { login, password } = data;
-    emailSignUp(login, password)
+    emailSignIn(login, password)
       .then((user) => {
         dispatch(setUser(user));
         navigate(routePathes.profile);
       })
-      .catch((err) => console.log(err));
+      .catch((authError) => setError(translateAuthError(authError)));
   };
 
   const handleGoogleSignInClick = () => {
@@ -49,11 +51,16 @@ const LoginPage: FC = () => {
           navigate(routePathes.profile);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((authError) => setError(translateAuthError(authError)));
+  };
+
+  const handleAnimationEnd = () => {
+    setError('');
   };
 
   return (
     <LoginPageContainer>
+      <Toast type="error" message={error} onAnimationEnd={handleAnimationEnd} />
       <LoginContentWrapper>
         <Logo />
         <Heading>Log in to Twitter</Heading>
@@ -61,7 +68,7 @@ const LoginPage: FC = () => {
           <InputField
             error={login}
             {...register('login', createValidationOptions('login'))}
-            placeholder="Phone number, email adress"
+            placeholder="Phone number, mail adress"
           />
           <InputField
             error={password}

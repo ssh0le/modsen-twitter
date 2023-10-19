@@ -101,7 +101,7 @@ const createUserWithEmail = async (
     .catch((error) => Promise.reject(error));
 };
 
-const emailSignUp = async (email: string, password: string) => {
+const emailSignIn = async (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password)
     .then(async (result) => {
       const authUser = result.user;
@@ -360,7 +360,7 @@ const getUsersByQuery = async (queryFromUser: string) => {
 export const firebaseAuth = {
   googleSignIn,
   createUserWithEmail,
-  emailSignUp,
+  emailSignIn,
   updateUserPassword,
 };
 
