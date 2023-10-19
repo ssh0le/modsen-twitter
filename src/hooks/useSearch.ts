@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { useAppSelector } from './storeHooks';
 
+const debounce = 400;
+
 export const useSearch = <T>(
   onSearch: (query: string) => Promise<T[]>,
   condition: boolean,
@@ -30,7 +32,7 @@ export const useSearch = <T>(
           } else {
             setResults([]);
           }
-        }, 400)
+        }, debounce)
       : null;
 
     return () => {

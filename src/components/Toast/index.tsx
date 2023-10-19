@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { ToastProps } from './interfaces';
 import { MessageContainer, ToastContainer } from './styled';
 
+const animationDuration = 3000;
+
 const Toast = ({ message, type, onAnimationEnd }: ToastProps) => {
   const [innerMessage, setInnerMessage] = useState<string>('');
 
@@ -14,7 +16,7 @@ const Toast = ({ message, type, onAnimationEnd }: ToastProps) => {
     const timeoutId = setTimeout(() => {
       setInnerMessage('');
       onAnimationEnd();
-    }, 3000);
+    }, animationDuration);
 
     return () => {
       clearTimeout(timeoutId);
