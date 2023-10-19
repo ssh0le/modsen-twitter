@@ -1,16 +1,19 @@
 import { useEffect, useMemo, useState } from 'react';
 
 import UserCard from '@/components/UserCard';
+import { profileStatics } from '@/constants';
 import { NoResultMessage, SerifText } from '@UI';
 
 import { UserListProps } from './interfaces';
 import {
-  RecommendationContainer,
-  RecommendationHeading,
-  RecommendationUserContainer,
-  RecommendationUserListContainer,
+  ListHeading,
   ShowMoreButton,
+  UserContainer,
+  UserListContainer,
+  UserListContent,
 } from './styled';
+
+const { showMoreButtonText } = profileStatics;
 
 const UserList = ({ title, users }: UserListProps) => {
   const [displayFullList, setDisplayFullList] = useState<boolean>(false);
@@ -37,13 +40,13 @@ const UserList = ({ title, users }: UserListProps) => {
   };
 
   return (
-    <RecommendationContainer>
-      <RecommendationHeading>
+    <UserListContainer>
+      <ListHeading>
         <SerifText>{title}</SerifText>
-      </RecommendationHeading>
-      <RecommendationUserListContainer>
+      </ListHeading>
+      <UserListContent>
         {usersToDisplay.map(({ name, id, avatar, tag, profileId }) => (
-          <RecommendationUserContainer key={id}>
+          <UserContainer key={id}>
             <UserCard
               size={'recommendation'}
               name={name}
@@ -51,14 +54,16 @@ const UserList = ({ title, users }: UserListProps) => {
               userId={profileId}
               avatar={avatar}
             />
-          </RecommendationUserContainer>
+          </UserContainer>
         ))}
-      </RecommendationUserListContainer>
+      </UserListContent>
       {isShowMoreButtonDisplayed && (
-        <ShowMoreButton onClick={handleShowMoreClick}>Show more</ShowMoreButton>
+        <ShowMoreButton onClick={handleShowMoreClick}>
+          {showMoreButtonText}
+        </ShowMoreButton>
       )}
       {usersToDisplay.length === 0 && <NoResultMessage />}
-    </RecommendationContainer>
+    </UserListContainer>
   );
 };
 

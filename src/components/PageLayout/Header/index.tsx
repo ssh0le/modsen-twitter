@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { icons, routePathes } from '@/constants';
+import { icons, profileStatics, routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import {
   isFetchingTweets,
@@ -22,6 +22,7 @@ import {
 } from './styled';
 
 const { backArrow, verticalDelimeter } = icons;
+const { backButtonText, userTweetsText } = profileStatics;
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -48,18 +49,21 @@ const Header = () => {
               <BoldText>{name}</BoldText>
             </SerifText>
           </UserNameContainer>
-          <TweetsCountContainer>{tweets.length} Tweets</TweetsCountContainer>
+          <TweetsCountContainer>
+            {tweets.length}
+            {userTweetsText}
+          </TweetsCountContainer>
         </CurrentUserContainer>
       )}
       {hasBackButton && (
         <CurrentLocationContainer>
           <CurrentLocationText>
             <BackButtonContainer onClick={handleBackButtonClick}>
-              {true && <img src={backArrow} alt="" />}
-              {true && <img src={verticalDelimeter} alt="" />}
+              {<img src={backArrow} alt="Back arrow" />}
+              {<img src={verticalDelimeter} alt="Dilimiter" />}
             </BackButtonContainer>
             <SerifText>
-              <BoldText $size="large">Home</BoldText>
+              <BoldText $size="large">{backButtonText}</BoldText>
             </SerifText>
           </CurrentLocationText>
         </CurrentLocationContainer>

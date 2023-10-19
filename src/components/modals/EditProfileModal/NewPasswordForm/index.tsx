@@ -1,11 +1,14 @@
 import { useForm } from 'react-hook-form';
 
 import { Button, InputField, SerifText } from '@/components/UI';
+import { profileStatics } from '@/constants';
 import { createValidationOptions } from '@/helpers';
 import { firebaseAuth } from '@/utils';
 
 import { PasswordForm } from './interfaces';
 import { EditPasswordFormContainer, SubmitButtonContainer } from './styled';
+
+const { updatePasswordButtonText } = profileStatics;
 
 export const NewPasswordForm = () => {
   const {
@@ -55,7 +58,7 @@ export const NewPasswordForm = () => {
           type="colored"
           isActive={isDirty}
         >
-          <SerifText>Update password</SerifText>
+          <SerifText>{updatePasswordButtonText}</SerifText>
         </Button>
       </SubmitButtonContainer>
     </EditPasswordFormContainer>

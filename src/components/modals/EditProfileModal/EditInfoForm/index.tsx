@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import Toast from '@/components/Toast';
 import { Button, InputField, Select, SerifText } from '@/components/UI';
-import { genderOptions } from '@/constants';
+import { genderOptions, profileStatics } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
 import { updateUserInfo } from '@/store/slices/thunk/user';
@@ -11,6 +11,8 @@ import { firestore } from '@/utils';
 
 import { Gender, IEditInfoForm } from './interfaces';
 import { ControlsContainer, EditInfoFormContainer } from './styled';
+
+const { resetButtonText, saveButtonText } = profileStatics;
 
 export const EditInfoForm = () => {
   const { name, status, id, tag, profileId } =
@@ -99,7 +101,7 @@ export const EditInfoForm = () => {
       />
       <ControlsContainer>
         <Button data-cy="reset" onClick={handleFormReset} isActive={isDirty}>
-          Reset
+          {resetButtonText}
         </Button>
 
         <Button
@@ -108,7 +110,7 @@ export const EditInfoForm = () => {
           type="colored"
           isActive={isDirty}
         >
-          <SerifText>Save info</SerifText>
+          <SerifText>{saveButtonText}</SerifText>
         </Button>
       </ControlsContainer>
     </EditInfoFormContainer>

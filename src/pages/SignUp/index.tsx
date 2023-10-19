@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/Logo';
 import SignUpFooter from '@/components/SignUpFooter';
 import { icons, routePathes } from '@/constants';
+import { signUpStatics } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
 import { setUser } from '@/store/slices/currentUser';
@@ -24,7 +25,15 @@ import {
   Subheading,
 } from './styled';
 
-const { profile, registration, login } = routePathes;
+const { profile, registration } = routePathes;
+const {
+  heading,
+  subheading,
+  googleSignUpMessage,
+  emailSignUpMessage,
+  signUpText,
+  loginText,
+} = signUpStatics;
 
 const SignUpPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -38,16 +47,11 @@ const SignUpPage: FC = () => {
   }, [user, navigate]);
 
   const handleGoogleAuthClick = async () => {
-    firebaseAuth
-      .googleSignIn()
-      .then((user) => {
-        if (user) {
-          dispatch(setUser(user));
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    firebaseAuth.googleSignIn().then((user) => {
+      if (user) {
+        dispatch(setUser(user));
+      }
+    });
   };
 
   const handleEmailAuthClick = () => {
@@ -63,8 +67,8 @@ const SignUpPage: FC = () => {
             <Logo />
             <Box $gap={31}>
               <Box $gap={46}>
-                <Heading>Happening now</Heading>
-                <Subheading>Join Twitter today</Subheading>
+                <Heading>{heading}</Heading>
+                <Subheading>{subheading}</Subheading>
               </Box>
               <ButtonsWrapper>
                 <Box $gap={21}>
@@ -73,22 +77,37 @@ const SignUpPage: FC = () => {
                       <GoogleLogoContainer>
                         <img src={icons.googleLogo} alt="Google Logo" />
                       </GoogleLogoContainer>
-                      Sign up with Google
+                      {googleSignUpMessage}
                     </GoogleButtonContent>
                   </Button>
                   <Button type="sign-up" onClick={handleEmailAuthClick}>
-                    Sign up with email
+                    {emailSignUpMessage}
                   </Button>
                 </Box>
               </ButtonsWrapper>
               <Box $gap={21}>
                 <SignUpMessageWrapper>
-                  By singing up you agree to the <Link>Terms of Service</Link>{' '}
-                  and <Link>Privacy Policy</Link>, including{' '}
-                  <Link>Cookie Use</Link>.
+                  {signUpText.map(({ isLink, text }, index) => {
+                    if (isLink) {
+                      return (
+                        <Link $type="small" key={index}>
+                          {text}
+                        </Link>
+                      );
+                    }
+                    return text;
+                  })}
                 </SignUpMessageWrapper>
                 <LoginMessageWrapper>
-                  Already have an account? <Link href={login}>Log in</Link>
+                  {loginText.map(({ isLink, text, path }, index) =>
+                    isLink ? (
+                      <Link key={index} href={path}>
+                        {text}
+                      </Link>
+                    ) : (
+                      text
+                    ),
+                  )}
                 </LoginMessageWrapper>
               </Box>
             </Box>

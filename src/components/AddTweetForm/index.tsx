@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from 'react';
 
-import { icons } from '@/constants';
+import { icons, profileStatics } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
 import { addTweet } from '@/store/slices/thunk/user';
@@ -20,6 +20,8 @@ import {
   TweetInputContainer,
   TweetInputControlsContainer,
 } from './styled';
+
+const { addTweetButtonText } = profileStatics;
 
 const AddTweetForm = () => {
   const user = useAppSelector(selectCurrentUser)!;
@@ -100,7 +102,7 @@ const AddTweetForm = () => {
               type="colored"
               isActive={tweetText.length > 0 || image !== null}
             >
-              <SerifText>Tweet</SerifText>
+              <SerifText>{addTweetButtonText}</SerifText>
             </Button>
           </TweetButtonContainer>
         </TweetInputControlsContainer>

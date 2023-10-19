@@ -6,6 +6,7 @@ import { FullPageWrapper } from '@UI';
 
 export const SignUpPageWrapper = styled(FullPageWrapper)`
   ${flexCenter};
+  flex-direction: column;
 `;
 
 export const SignUpContentWrapper = styled.section`

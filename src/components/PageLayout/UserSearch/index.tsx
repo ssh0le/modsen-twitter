@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Loader } from '@/components/UI';
-import { routePathes } from '@/constants';
+import { profileStatics, routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { useSearch } from '@/hooks/useSearch';
 import { User } from '@/interfaces';
@@ -10,6 +10,8 @@ import { selectCurrentUser } from '@/store/selectors';
 import { firestore } from '@/utils';
 
 import UserList from '../UserList';
+
+const { recommendationHeading, searchResultsHeading } = profileStatics;
 
 const UserSearch = memo(() => {
   const { getRecommendedUsers, getUsersByQuery } = firestore;
@@ -44,10 +46,10 @@ const UserSearch = memo(() => {
   return (
     <>
       {recommendedUsers.length > 0 && !isSearchActive && (
-        <UserList title={'You might like'} users={recommendedUsers} />
+        <UserList title={recommendationHeading} users={recommendedUsers} />
       )}
       {isSearchActive && (
-        <UserList title="Search results" users={searchUsers} />
+        <UserList title={searchResultsHeading} users={searchUsers} />
       )}
     </>
   );

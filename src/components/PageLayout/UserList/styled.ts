@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { flexColumn } from '@/styles/common';
 import { Link } from '@UI';
 
-export const RecommendationContainer = styled.section`
+export const UserListContainer = styled.section`
   ${flexColumn};
 
   gap: 30px;
@@ -13,7 +13,7 @@ export const RecommendationContainer = styled.section`
   width: 100%;
 `;
 
-export const RecommendationUserListContainer = styled.div`
+export const UserListContent = styled.div`
   ${flexColumn};
 
   gap: ${({ theme }) => theme.gap.m}px;
@@ -23,13 +23,13 @@ export const RecommendationUserListContainer = styled.div`
   }
 `;
 
-export const RecommendationUserContainer = styled.div`
+export const UserContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
 `;
 
-export const RecommendationHeading = styled.h2`
+export const ListHeading = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.fs24}px;
   font-weight: ${({ theme }) => theme.fontWeigth.bold};
 

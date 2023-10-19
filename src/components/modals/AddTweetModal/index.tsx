@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import AddTweetForm from '@/components/AddTweetForm';
 import { Button, Modal, SerifText } from '@/components/UI';
-import { icons } from '@/constants';
+import { icons, profileStatics } from '@/constants';
 
 import {
   AddTweetIcon,
@@ -10,6 +10,8 @@ import {
   ComputerButtonContainer,
   MobileButtonContainer,
 } from './styled';
+
+const { addTweetButtonText } = profileStatics;
 
 export const AddTweetModal = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -26,7 +28,7 @@ export const AddTweetModal = () => {
     <>
       <ComputerButtonContainer>
         <Button type="colored" onClick={handleModalOpen}>
-          <SerifText>Tweet</SerifText>
+          <SerifText>{addTweetButtonText}</SerifText>
         </Button>
       </ComputerButtonContainer>
       <MobileButtonContainer onClick={handleModalOpen}>
