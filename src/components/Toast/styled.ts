@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 import { flexCenter } from '@/styles/common';
 
-export const ToastContainer = styled.div<{
-  $active: boolean;
-  $type: 'error' | 'not-error';
-}>`
+import { ToastContainerProps, ToastMessageProps } from './interfaces';
+
+export const ToastContainer = styled.div<ToastContainerProps>`
   position: fixed;
   top: -100;
   left: 50%;
@@ -23,12 +22,10 @@ export const ToastContainer = styled.div<{
       colors: { red, green },
     },
   }) => ($type === 'error' ? red : green)};
-  ${({ $active }) => $active && 'top: 10px;'};
+  ${({ $isActive }) => $isActive && 'top: 10px;'};
 `;
 
-export const MessageContainer = styled.p<{
-  $type: 'error' | 'not-error';
-}>`
+export const MessageContainer = styled.p<ToastMessageProps>`
   text-align: center;
   color: ${({
     $type,

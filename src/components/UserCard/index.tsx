@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser, selectUserDetails } from '@/store/selectors';
-import { firestore } from '@/utils';
+import { updateFollowers } from '@/utils';
 
 import { SerifText } from '../UI';
 import UserAvatar from '../UserAvatar';
@@ -19,8 +19,6 @@ import {
   UserNameWrapper,
   UserTagWrapper,
 } from './styled';
-
-const { updateFollowers } = firestore;
 
 const UserCard = ({ size, name, tag, avatar, userId }: UserCardProps) => {
   const { following } = useAppSelector(selectUserDetails);

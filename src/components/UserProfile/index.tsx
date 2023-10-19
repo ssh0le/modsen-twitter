@@ -75,18 +75,18 @@ const UserProfile = (props: UserProfileProps) => {
           )}
         </UserStatus>
         <UserSubsctriptionsContainer>
-          <div>
+          <span>
             <SubscriptionCount>
               <SerifText>{following}</SerifText>
             </SubscriptionCount>
             <SubscriptionType> Following</SubscriptionType>
-          </div>
-          <div>
+          </span>
+          <span>
             <SubscriptionCount>
               <SerifText>{followers}</SerifText>
             </SubscriptionCount>
             <SubscriptionType> Followers</SubscriptionType>
-          </div>
+          </span>
         </UserSubsctriptionsContainer>
       </ProfileContentWrapper>
       {addTweetForm !== null && (

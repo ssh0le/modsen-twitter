@@ -7,10 +7,9 @@ import { routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
 import { Tweet as ITweet, User } from '@/types';
-import { firestore } from '@/utils';
+import { fetchUserFullInfo } from '@/utils';
 
 const UserDetailsPage: FC = () => {
-  const { fetchUserFullInfo } = firestore;
   const { profileId } = useAppSelector(selectCurrentUser)!;
   const { userId } = useParams();
   const navigate = useNavigate();
@@ -46,7 +45,7 @@ const UserDetailsPage: FC = () => {
     };
 
     fetchUserProfile();
-  }, [userId, fetchUserFullInfo, navigate]);
+  }, [userId, navigate]);
 
   if (userId === profileId) {
     return <Navigate to={routePathes.profile} replace />;

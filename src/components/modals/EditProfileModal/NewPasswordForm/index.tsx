@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Button, InputField, SerifText } from '@/components/UI';
 import { profileStatics } from '@/constants';
 import { createValidationOptions } from '@/helpers';
-import { firebaseAuth } from '@/utils';
+import { updateUserPassword } from '@/utils';
 
 import { PasswordForm } from './interfaces';
 import { EditPasswordFormContainer, SubmitButtonContainer } from './styled';
@@ -25,7 +25,7 @@ export const NewPasswordForm = () => {
   });
 
   const handleFormSubmit = (data: PasswordForm) => {
-    firebaseAuth.updateUserPassword(data.newPassword).then(() => {
+    updateUserPassword(data.newPassword).then(() => {
       reset();
     });
   };

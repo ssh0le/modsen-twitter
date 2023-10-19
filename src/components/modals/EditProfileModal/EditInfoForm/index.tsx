@@ -7,7 +7,7 @@ import { genderOptions, profileStatics } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
 import { updateUserInfo } from '@/store/slices/thunk/user';
-import { firestore } from '@/utils';
+import { updateUser } from '@/utils';
 
 import { Gender, IEditInfoForm } from './interfaces';
 import { ControlsContainer, EditInfoFormContainer } from './styled';
@@ -45,17 +45,15 @@ export const EditInfoForm = () => {
 
   const handleFormSubmit = (data: IEditInfoForm) => {
     const { tag, telegram, gender, name } = data;
-    firestore
-      .updateUser(id, profileId, {
-        name,
-        tag,
-        status: telegram,
-        gender,
-      })
-      .then(() => {
-        dispatch(updateUserInfo(profileId));
-        setSuccessMessage('Saved!');
-      });
+    updateUser(id, profileId, {
+      name,
+      tag,
+      status: telegram,
+      gender,
+    }).then(() => {
+      dispatch(updateUserInfo(profileId));
+      setSuccessMessage('Saved!');
+    });
   };
 
   const handleFormReset = () => {
@@ -71,7 +69,7 @@ export const EditInfoForm = () => {
   return (
     <EditInfoFormContainer>
       <Toast
-        type={'not-error'}
+        type={'succes'}
         onAnimationEnd={handleSuccessAnimationEnd}
         message={successMessage}
       />

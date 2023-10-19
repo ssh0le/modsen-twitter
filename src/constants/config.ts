@@ -8,6 +8,9 @@ const {
   VITE_OWNER_ID,
   VITE_APP_ID,
   VITE_MEASERMENT_ID,
+  VITE_AUTH_DOMAIN,
+  VITE_PROJECT_ID,
+  VITE_STORAGE_BUCKET,
 } = import.meta.env;
 
 export const config = {
@@ -16,6 +19,9 @@ export const config = {
   ownerId: VITE_OWNER_ID as string,
   appId: VITE_APP_ID as string,
   measurementId: VITE_MEASERMENT_ID as string,
+  authDomain: VITE_AUTH_DOMAIN as string,
+  projectId: VITE_PROJECT_ID as string,
+  storageBucket: VITE_STORAGE_BUCKET as string,
 };
 
 const signUpText: StaticText[] = [

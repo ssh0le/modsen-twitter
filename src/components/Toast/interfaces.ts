@@ -1,5 +1,16 @@
 export interface ToastProps {
   message?: string;
-  type: 'error' | 'not-error';
+  type: ToastType;
   onAnimationEnd: () => void;
 }
+
+export interface ToastContainerProps {
+  $type: ToastType;
+  $isActive: boolean;
+}
+
+export interface ToastMessageProps {
+  $type: ToastType;
+}
+
+type ToastType = 'error' | 'succes';

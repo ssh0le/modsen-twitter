@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import {
   adaptiveIconStyle,
@@ -7,6 +7,13 @@ import {
   themedSvgFilter,
 } from '@/styles/common';
 import { FullPageWrapper } from '@UI';
+
+const getStrictWidth = (width: number) => css`
+  min-width: ${width}px;
+  max-width: ${width}px;
+`;
+
+const marginMedium = '30px';
 
 export const PageLayoutContainer = styled(FullPageWrapper)`
   display: flex;
@@ -20,7 +27,7 @@ export const PageLayoutContainer = styled(FullPageWrapper)`
 export const MenuContainer = styled.div`
   padding-left: ${({ theme }) => theme.padding.s}px;
   margin-top: 49px;
-  margin-bottom: 30px;
+  margin-bottom: ${marginMedium};
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     margin-top: 20px;
@@ -52,46 +59,49 @@ const AsideBar = styled.aside`
 `;
 
 export const LeftAside = styled(AsideBar)`
-  padding: 30px;
-  width: 300px;
+  ${getStrictWidth(300)}
+
+  padding: ${({ theme }) => theme.padding.l}px;
   border-right: 1px solid ${({ theme }) => theme.border};
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
+    ${getStrictWidth(250)}
+
     padding: 20px;
   }
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-    width: 50px;
+    ${getStrictWidth(50)}
+
     padding: 0;
     gap: 10px;
   }
 `;
 
 export const CurrentUserContainer = styled.div`
-  margin-top: 30px;
+  margin-top: ${marginMedium};
   display: flex;
   flex-direction: column;
   gap: 16px;
 `;
 
 export const UserCardContainer = styled.div`
-  padding-left: 30px;
+  padding-left: ${({ theme }) => theme.padding.l}px;
 `;
 
 export const RigthAside = styled(AsideBar)`
+  ${getStrictWidth(340)}
+
   padding: 28px 20px;
-  min-width: 340px;
-  max-width: 340px;
   border-left: 1px solid ${({ theme }) => theme.border};
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
+    ${getStrictWidth(250)}
     padding: 10px;
-    min-width: 250px;
-    max-width: 250px;
   }
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-    padding: 10px;
+    padding: ${({ theme }) => theme.padding.xs}px;
     display: none;
   }
 `;

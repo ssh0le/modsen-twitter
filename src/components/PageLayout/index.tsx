@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import { icons } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
+import { LoadPage } from '@/pages/LoadPage';
 import { selectCurrentUser } from '@/store/selectors';
 import { logOutUser } from '@/store/slices/currentUser';
 import { resetTheme } from '@/store/slices/theme';
@@ -63,7 +64,7 @@ const PageLayout = () => {
           <MenuSidebar />
         </MenuContainer>
         <AddTweetModal />
-        {windowWidth > 888 && (
+        {windowWidth > 888 ? (
           <CurrentUserContainer>
             <UserCardContainer>
               <UserCard
@@ -78,8 +79,7 @@ const PageLayout = () => {
               <SerifText>Log out</SerifText>
             </Button>
           </CurrentUserContainer>
-        )}
-        {windowWidth <= 888 && (
+        ) : (
           <>
             <MobileLogOutIconContainer onClick={handleLogOutClick}>
               <LogOutIcon src={icons.logOut} alt="Log-out icon" />
@@ -90,26 +90,25 @@ const PageLayout = () => {
       <ContentWrapper>
         <Header />
         <main>
-          <Outlet />
+          <Suspense fallback={<LoadPage />}>
+            <Outlet />
+          </Suspense>
         </main>
       </ContentWrapper>
-      {windowWidth <= 888 && (
+      {windowWidth <= 888 ? (
         <>
           <SearchModal>
             <SearchBar />
             <UserSearch />
           </SearchModal>
         </>
-      )}
-      {windowWidth > 888 && (
-        <>
-          <RigthAside>
-            <SearchContainer>
-              <SearchBar />
-              <UserSearch />
-            </SearchContainer>
-          </RigthAside>
-        </>
+      ) : (
+        <RigthAside>
+          <SearchContainer>
+            <SearchBar />
+            <UserSearch />
+          </SearchContainer>
+        </RigthAside>
       )}
     </PageLayoutContainer>
   );

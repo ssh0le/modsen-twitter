@@ -25,7 +25,7 @@ const Toast = ({ message, type, onAnimationEnd }: ToastProps) => {
   }, [message, onAnimationEnd]);
 
   return (
-    <ToastContainer $active={Boolean(innerMessage)} $type={type}>
+    <ToastContainer $isActive={Boolean(innerMessage)} $type={type}>
       <MessageContainer $type={type}>{message}</MessageContainer>
     </ToastContainer>
   );

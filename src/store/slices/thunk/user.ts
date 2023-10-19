@@ -1,16 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { firestore } from '@/utils/firebase';
-
-import { AddTweetProps, DeleteTweetProps } from './interfaces';
-
-const {
-  getUserTweets,
-  fetchUserActivity,
+import {
   createTweet,
   deleteTweet,
+  fetchUserActivity,
   fetchUserFullInfo,
-} = firestore;
+  getUserTweets,
+} from '@/utils';
+
+import { AddTweetProps, DeleteTweetProps } from './interfaces';
 
 export const fetchUserTweets = createAsyncThunk(
   'user/fetchUserTweets',
@@ -23,8 +21,8 @@ export const fetchUserTweets = createAsyncThunk(
 export const getUserDetails = createAsyncThunk(
   'user/getUserProfile',
   async (userId: string) => {
-    const deatils = await fetchUserActivity(userId);
-    return deatils;
+    const details = await fetchUserActivity(userId);
+    return details;
   },
 );
 

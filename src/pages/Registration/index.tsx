@@ -15,7 +15,7 @@ import {
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { setUser } from '@/store/slices/currentUser';
 import { FirebaseAuthError } from '@/types';
-import { firebaseAuth } from '@/utils';
+import { createUserWithEmail } from '@/utils';
 import { Button, InputField, Link, Select, SerifText } from '@UI';
 
 import { RegistrationForm } from './interfaces';
@@ -33,7 +33,6 @@ import {
 const { profile, signUp } = routePathes;
 
 const RegistrationPage: FC = () => {
-  const { createUserWithEmail } = firebaseAuth;
   const [authError, setAuthError] = useState<string>('');
   const [userError, setUserError] = useState<string>('');
   const [days, setDays] = useState<

@@ -1,15 +1,17 @@
 import { ReactNode } from 'react';
+import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import NotFoundPage from '@/pages/404';
-import FeedPage from '@/pages/Feed';
-import LoginPage from '@/pages/Login';
-import ProfilePage from '@/pages/Profile';
-import RegistrationPage from '@/pages/Registration';
-import SignUpPage from '@/pages/SignUp';
-import UserDetailsPage from '@/pages/UserDetails';
+import NotFoundPage from '../pages/404';
 
 import { routePathes } from './links';
+
+const FeedPage = lazy(() => import('@/pages/Feed'));
+const LoginPage = lazy(() => import('@/pages/Login/index'));
+const ProfilePage = lazy(() => import('@/pages/Profile'));
+const RegistrationPage = lazy(() => import('@/pages/Registration'));
+const SignUpPage = lazy(() => import('@/pages/SignUp/index'));
+const UserDetailsPage = lazy(() => import('@/pages/UserDetails'));
 
 const { signUp, login, registration, profile, home, userDetails } = routePathes;
 

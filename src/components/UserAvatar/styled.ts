@@ -7,12 +7,12 @@ export const UserAvatarImage = styled.img<UserAvatarIconProps>`
   width: ${({ $size, theme: { avatarSize } }) => avatarSize[$size]}px;
   height: ${({ $size, theme: { avatarSize } }) => avatarSize[$size]}px;
 
-  @media only screen and (max-width: 1000px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     width: ${({ $size, theme: { avatarSize } }) => avatarSize[$size] - 10}px;
     height: ${({ $size, theme: { avatarSize } }) => avatarSize[$size] - 10}px;
   }
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     width: ${({ $size, theme: { avatarSize } }) =>
       $size === 'large' ? avatarSize.small * 2 : avatarSize[$size]}px;
     height: ${({ $size, theme: { avatarSize } }) =>

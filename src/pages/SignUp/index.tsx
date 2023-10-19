@@ -8,7 +8,7 @@ import { signUpStatics } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
 import { setUser } from '@/store/slices/currentUser';
-import { firebaseAuth } from '@/utils';
+import { googleSignIn } from '@/utils';
 import { Box, Button, Link } from '@UI';
 
 import {
@@ -47,7 +47,7 @@ const SignUpPage: FC = () => {
   }, [user, navigate]);
 
   const handleGoogleAuthClick = async () => {
-    firebaseAuth.googleSignIn().then((user) => {
+    googleSignIn().then((user) => {
       if (user) {
         dispatch(setUser(user));
       }

@@ -6,8 +6,7 @@ import { icons, routePathes } from '@/constants';
 import { getTweetPublishTime } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { deleteUserTweet } from '@/store/slices/thunk/user';
-import { publisher } from '@/utils';
-import { firestore } from '@/utils/firebase';
+import { publisher, updateLike } from '@/utils';
 import { BoldText, OpacityText } from '@UI';
 
 import { TweetProps } from './interfaces';
@@ -31,7 +30,6 @@ import {
 const { like, likeFilled } = icons;
 
 const Tweet = ({ info, currentUserId }: TweetProps) => {
-  const { updateLike } = firestore;
   const {
     id,
     userAvatar,

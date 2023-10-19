@@ -8,7 +8,7 @@ import { routePathes } from '@/constants';
 import { createValidationOptions, translateAuthError } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { setUser } from '@/store/slices/currentUser';
-import { firebaseAuth } from '@/utils';
+import { emailSignIn, googleSignIn } from '@/utils';
 import { Button, InputField, Link } from '@UI';
 
 import { ILoginForm } from './interfaces';
@@ -22,7 +22,6 @@ import {
 
 const LoginPage: FC = () => {
   const [error, setError] = useState<string>('');
-  const { emailSignIn, googleSignIn } = firebaseAuth;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {

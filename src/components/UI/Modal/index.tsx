@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect } from 'react';
+import { MouseEvent, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import { usePortal } from '@/hooks/usePortal';
@@ -9,11 +9,14 @@ import { ModalBackdrop, ModalContainer, ModalContentWrapper } from './styled';
 export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   const portalContainer = usePortal();
 
-  const handleKeyUp = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      onClose();
-    }
-  };
+  const handleKeyUp = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    },
+    [onClose],
+  );
 
   useEffect(() => {
     const body = document.body;

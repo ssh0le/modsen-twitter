@@ -7,14 +7,13 @@ import { useAppSelector } from '@/hooks/storeHooks';
 import { useSearch } from '@/hooks/useSearch';
 import { selectCurrentUser } from '@/store/selectors';
 import { User } from '@/types';
-import { firestore } from '@/utils';
+import { getRecommendedUsers, getUsersByQuery } from '@/utils';
 
 import UserList from '../UserList';
 
 const { recommendationHeading, searchResultsHeading } = profileStatics;
 
 const UserSearch = memo(() => {
-  const { getRecommendedUsers, getUsersByQuery } = firestore;
   const { pathname } = useLocation();
   const { profileId } = useAppSelector(selectCurrentUser)!;
   const [recommendedUsers, setRecommendedUsers] = useState<User[]>([]);
@@ -37,7 +36,7 @@ const UserSearch = memo(() => {
     };
 
     fetchRecommendedUsers();
-  }, [profileId, getRecommendedUsers]);
+  }, [profileId]);
 
   if (isLoading || isRecommendsLoading) {
     return <Loader />;

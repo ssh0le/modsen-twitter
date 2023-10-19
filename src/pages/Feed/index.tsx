@@ -9,7 +9,7 @@ import { useAppSelector } from '@/hooks/storeHooks';
 import { useSearch } from '@/hooks/useSearch';
 import { selectCurrentUser } from '@/store/selectors';
 import { Tweet as ITweet } from '@/types';
-import { firestore, publisher } from '@/utils';
+import { getTweetsByQuery, getUserFeed, publisher } from '@/utils';
 
 import {
   AddTweetContainer,
@@ -21,7 +21,6 @@ import {
 const FeedPage = () => {
   const { profileId } = useAppSelector(selectCurrentUser)!;
   const [feedTweets, setFeedTweets] = useState<ITweet[]>([]);
-  const { getUserFeed, getTweetsByQuery } = firestore;
   const { pathname } = useLocation();
   const [isFeedLoading, setIsFeedLoading] = useState<boolean>(false);
 
@@ -38,7 +37,7 @@ const FeedPage = () => {
     const feed = await getUserFeed(profileId);
     setFeedTweets(feed);
     setIsFeedLoading(false);
-  }, [profileId, getUserFeed]);
+  }, [profileId]);
 
   useEffect(() => {
     const unsubscribe = publisher.subscribe(fetchFeed, 'tweetsUpdate');

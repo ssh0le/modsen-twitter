@@ -5,14 +5,23 @@ import { getStorage } from 'firebase/storage';
 
 import { config } from '@/constants';
 
-const { googleApiKey, databaseUrl, ownerId, appId, measurementId } = config;
+const {
+  googleApiKey,
+  databaseUrl,
+  ownerId,
+  appId,
+  measurementId,
+  projectId,
+  storageBucket,
+  authDomain,
+} = config;
 
 const firebaseConfig = {
   apiKey: googleApiKey,
-  authDomain: 'ssh0le-modsen-twitter.firebaseapp.com',
+  authDomain,
   databaseUrl,
-  projectId: 'ssh0le-modsen-twitter',
-  storageBucket: 'ssh0le-modsen-twitter.appspot.com',
+  projectId,
+  storageBucket,
   messagingSenderId: ownerId,
   appId,
   measurementId,
