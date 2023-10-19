@@ -1,5 +1,5 @@
 export const getMonthDays = (monthIndex?: number, year?: number) => {
-  const date = new Date(year || 0, monthIndex ? monthIndex + 1 : 1, 0);
+  const date = new Date(year || 0, monthIndex ? monthIndex : 0, 0);
   const days = [];
   const end = date.getDate();
   while (days.length < end) {
@@ -9,5 +9,7 @@ export const getMonthDays = (monthIndex?: number, year?: number) => {
       value: day,
     });
   }
+  console.log(days.at(-1));
+  console.log(monthIndex);
   return days;
 };

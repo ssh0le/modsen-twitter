@@ -42,6 +42,8 @@ const RegistrationPage: FC = () => {
   const {
     register,
     handleSubmit,
+    getValues,
+    setError,
     watch,
     formState: { errors },
   } = useForm<RegistrationForm>({
@@ -68,10 +70,11 @@ const RegistrationPage: FC = () => {
 
   useEffect(() => {
     const subscription = watch(({ month, year }) => {
-      setDays(getMonthDays(Number(month), Number(year)));
+      const monthDays = getMonthDays(Number(month), Number(year));
+      setDays(monthDays);
     });
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, [watch, getValues, setError]);
 
   const handleNextClick = async (data: RegistrationForm) => {
     const { email, password, name, phone, day, month, year } = data;
