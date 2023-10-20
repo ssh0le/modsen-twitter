@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
 import Toast from '@/components/Toast';
-import { routePathes } from '@/constants';
+import { loginStatics, routePathes } from '@/constants';
 import { createValidationOptions, translateAuthError } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { setUser } from '@/store/slices/currentUser';
@@ -19,6 +19,9 @@ import {
   LoginPageContainer,
   SignUpLinkContainer,
 } from './styled';
+
+const { heading, loginButtonText, googleSignInMessage, emailSignUpMessage } =
+  loginStatics;
 
 const LoginPage: FC = () => {
   const [error, setError] = useState<string>('');
@@ -62,7 +65,7 @@ const LoginPage: FC = () => {
       <Toast type="error" message={error} onAnimationEnd={handleAnimationEnd} />
       <LoginContentWrapper>
         <Logo />
-        <Heading>Log in to Twitter</Heading>
+        <Heading>{heading}</Heading>
         <LoginForm>
           <InputField
             error={login}
@@ -76,12 +79,12 @@ const LoginPage: FC = () => {
             placeholder="Password"
           />
           <Button type="colored" onClick={handleSubmit(handleLoginClick)}>
-            Log in
+            {loginButtonText}
           </Button>
         </LoginForm>
         <SignUpLinkContainer>
-          <Link onClick={handleGoogleSignInClick}>Sign in with Google</Link>
-          <Link href={routePathes.signUp}>Sign up to Twitter</Link>
+          <Link onClick={handleGoogleSignInClick}>{googleSignInMessage}</Link>
+          <Link href={routePathes.signUp}>{emailSignUpMessage}</Link>
         </SignUpLinkContainer>
       </LoginContentWrapper>
     </LoginPageContainer>

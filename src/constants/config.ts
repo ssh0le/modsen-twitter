@@ -71,6 +71,13 @@ export const signUpStatics = {
   loginText,
 };
 
+export const loginStatics = {
+  heading: 'Log in to Twitter',
+  loginButtonText: 'Log in',
+  googleSignInMessage: 'Sign in with Google',
+  emailSignUpMessage: 'Sign up to Twitter',
+};
+
 export const profileStatics = {
   backButtonText: 'Home',
   userTweetsText: ' Tweets',
