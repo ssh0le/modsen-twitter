@@ -11,6 +11,8 @@ const {
   VITE_AUTH_DOMAIN,
   VITE_PROJECT_ID,
   VITE_STORAGE_BUCKET,
+  VITE_ALGOLIA_API_KEY,
+  VITE_ALGOLIA_APP_ID,
 } = import.meta.env;
 
 export const config = {
@@ -22,6 +24,8 @@ export const config = {
   authDomain: VITE_AUTH_DOMAIN as string,
   projectId: VITE_PROJECT_ID as string,
   storageBucket: VITE_STORAGE_BUCKET as string,
+  algoliaApiKey: VITE_ALGOLIA_API_KEY as string,
+  algoliaAppId: VITE_ALGOLIA_APP_ID as string,
 };
 
 const signUpText: StaticText[] = [

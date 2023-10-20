@@ -19,7 +19,7 @@ import {
 import { convertEntetyFromSnapshot } from '@/helpers';
 import { FollowerList, FormUser, Tweet, User } from '@/types';
 
-import { getDocsByQuery, getUserInfo } from './firebase';
+import { getUserInfo } from './firebase';
 import { getUserTweets } from './tweets';
 
 const { usersInfo, followers } = databaseName;
@@ -93,11 +93,6 @@ export const fetchUserFullInfo = async (userId: string) => {
     user,
     activity,
   };
-};
-
-export const getUsersByQuery = async (queryFromUser: string) => {
-  const users = await getDocsByQuery<User>(userInfoRef, 'name', queryFromUser);
-  return users;
 };
 
 export const getRecommendedUsers = async (userId: string) => {

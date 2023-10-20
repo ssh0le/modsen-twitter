@@ -9,7 +9,7 @@ import { useAppSelector } from '@/hooks/storeHooks';
 import { useSearch } from '@/hooks/useSearch';
 import { selectCurrentUser } from '@/store/selectors';
 import { Tweet as ITweet } from '@/types';
-import { getTweetsByQuery, getUserFeed, publisher } from '@/utils';
+import { getUserFeed, publisher, serchTweetsByQuery } from '@/utils';
 
 import {
   AddTweetContainer,
@@ -30,7 +30,7 @@ const FeedPage = () => {
     isSearchActive,
     results: searchTweets,
     isLoading,
-  } = useSearch<ITweet>(getTweetsByQuery, isTweetSearch);
+  } = useSearch<ITweet>(serchTweetsByQuery, isTweetSearch);
 
   const fetchFeed = useCallback(async () => {
     setIsFeedLoading(true);

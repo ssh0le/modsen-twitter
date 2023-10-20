@@ -7,7 +7,7 @@ import { useAppSelector } from '@/hooks/storeHooks';
 import { useSearch } from '@/hooks/useSearch';
 import { selectCurrentUser } from '@/store/selectors';
 import { User } from '@/types';
-import { getRecommendedUsers, getUsersByQuery } from '@/utils';
+import { getRecommendedUsers, serchUsersByQuery } from '@/utils';
 
 import UserList from '../UserList';
 
@@ -25,7 +25,7 @@ const UserSearch = () => {
     isSearchActive,
     results: searchUsers,
     isLoading,
-  } = useSearch<User>(getUsersByQuery, isUserSearch);
+  } = useSearch<User>(serchUsersByQuery, isUserSearch);
 
   useEffect(() => {
     const fetchRecommendedUsers = async () => {

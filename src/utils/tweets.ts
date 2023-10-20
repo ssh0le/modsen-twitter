@@ -16,8 +16,6 @@ import { databaseName, db, storage, tweetsRef } from '@/firebase';
 import { convertEntetyFromSnapshot } from '@/helpers';
 import { Tweet, User } from '@/types/ententies';
 
-import { getDocsByQuery } from './firebase';
-
 const { tweets } = databaseName;
 
 export const createTweet = async (
@@ -82,9 +80,4 @@ export const updateLike = async (
   return updateDoc(tweetRef, {
     likes: operationType === 'set' ? arrayUnion(userId) : arrayRemove(userId),
   });
-};
-
-export const getTweetsByQuery = async (queryFromUser: string) => {
-  const tweets = await getDocsByQuery<Tweet>(tweetsRef, 'text', queryFromUser);
-  return tweets;
 };

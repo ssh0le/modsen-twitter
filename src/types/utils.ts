@@ -15,3 +15,7 @@ export type AuthErrorValues = (typeof AuthErrorCodes)[AuthErrorKeys];
 export interface FirebaseAuthError {
   code: AuthErrorValues | 'auth/invalid-login-credentials';
 }
+
+export type AlgoliaSearchResult<T> = {
+  objectID: string;
+} & T;

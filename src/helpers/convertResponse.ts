@@ -1,7 +1,7 @@
 import { User as FBUser } from 'firebase/auth';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
 
-import { FormUser } from '@/types';
+import { AlgoliaSearchResult, FormUser } from '@/types';
 
 export const convertNewUserFromAuth = (
   user: FBUser,
@@ -26,5 +26,13 @@ export const convertEntetyFromSnapshot = <T>(
   return {
     id: snapshot.id,
     ...snapshot.data(),
+  } as T;
+};
+
+export const convertQueryResult = <T>(result: AlgoliaSearchResult<T>): T => {
+  const { objectID, ...restParams } = result;
+  return {
+    id: objectID,
+    ...restParams,
   } as T;
 };
