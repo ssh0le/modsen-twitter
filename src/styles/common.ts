@@ -49,7 +49,7 @@ export const errorStyle = css`
   left: 0;
   top: 100%;
 
-  @media screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     margin-top: 2px;
     font-size: ${({ theme }) => theme.fontSizes.fs13}px;
   }
@@ -77,6 +77,7 @@ export const topBottomBorder = css`
 
 export const themedSvgFilter = css`
   filter: ${({ theme }) => theme.svgFilter};
+  fill: ${({ theme }) => theme.color};
 `;
 
 export const themedColor = css`
@@ -91,7 +92,7 @@ export const adaptiveIconStyle = css`
   width: ${({ theme }) => theme.iconSizes.computer}px;
   height: ${({ theme }) => theme.iconSizes.computer}px;
 
-  @media screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     width: ${({ theme }) => theme.iconSizes.moblie}px;
     height: ${({ theme }) => theme.iconSizes.moblie}px;
   }

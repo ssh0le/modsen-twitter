@@ -3,11 +3,17 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { getMenuIcon } from '@/helpers/getIcon';
 
 import { MenuLinkProps } from './interfaces';
-import { MenuLinkIcon, MenuLinkTitle, MenuLinkWrapper } from './styled';
+import {
+  MenuLinkIconContainer,
+  MenuLinkTitle,
+  MenuLinkWrapper,
+} from './styled';
 
 const MenuLink = ({ isSelected, title, route }: MenuLinkProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  const Icon = getMenuIcon(title, isSelected);
 
   const handleLinkClick = () => {
     if (pathname !== route) {
@@ -17,10 +23,9 @@ const MenuLink = ({ isSelected, title, route }: MenuLinkProps) => {
 
   return (
     <MenuLinkWrapper $isSelected={isSelected} onClick={handleLinkClick}>
-      <MenuLinkIcon
-        src={getMenuIcon(title, isSelected)}
-        alt={`${title} link`}
-      />
+      <MenuLinkIconContainer>
+        <Icon />
+      </MenuLinkIconContainer>
       <MenuLinkTitle>{title}</MenuLinkTitle>
     </MenuLinkWrapper>
   );

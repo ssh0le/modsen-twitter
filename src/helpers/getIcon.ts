@@ -1,42 +1,42 @@
 import { icons } from '@/constants';
 
 const {
-  profile,
-  profileFilled,
-  home,
-  homeFilled,
-  explore,
-  exploreFilled,
-  notification,
-  notificationFilled,
-  messages,
-  messagesFilled,
-  bookmarks,
-  bookmarksFilled,
-  lists,
-  listsFilled,
-  more,
+  BookmarksIcon,
+  BookmarksFilledIcon,
+  ExploreIcon,
+  ExploreFilledIcon,
+  HomeIcon,
+  HomeFilledIcon,
+  ListsIcon,
+  ListsFilledIcon,
+  MessagesIcon,
+  MessagesFilledIcon,
+  NotificationIcon,
+  NotificationFilledIcon,
+  ProfileIcon,
+  ProfileFilledIcon,
+  MoreIcon,
 } = icons;
 
 export const getMenuIcon = (linkName: string, isSelected: boolean) => {
   switch (linkName) {
     case 'Home':
-      return isSelected ? homeFilled : home;
+      return isSelected ? HomeFilledIcon : HomeIcon;
     case 'Explore':
-      return isSelected ? exploreFilled : explore;
+      return isSelected ? ExploreFilledIcon : ExploreIcon;
     case 'Notifications':
-      return isSelected ? notificationFilled : notification;
+      return isSelected ? NotificationFilledIcon : NotificationIcon;
     case 'Messages':
-      return isSelected ? messagesFilled : messages;
+      return isSelected ? MessagesFilledIcon : MessagesIcon;
     case 'Bookmarks':
-      return isSelected ? bookmarksFilled : bookmarks;
+      return isSelected ? BookmarksFilledIcon : BookmarksIcon;
     case 'Lists':
-      return isSelected ? listsFilled : lists;
+      return isSelected ? ListsFilledIcon : ListsIcon;
     case 'Profile':
-      return isSelected ? profileFilled : profile;
+      return isSelected ? ProfileFilledIcon : ProfileIcon;
     case 'More':
-      return more;
+      return MoreIcon;
     default:
-      return home;
+      return HomeIcon;
   }
 };

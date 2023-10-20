@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Loader } from '@/components/UI';
@@ -13,7 +13,7 @@ import UserList from '../UserList';
 
 const { recommendationHeading, searchResultsHeading } = profileStatics;
 
-const UserSearch = memo(() => {
+const UserSearch = () => {
   const { pathname } = useLocation();
   const { profileId } = useAppSelector(selectCurrentUser)!;
   const [recommendedUsers, setRecommendedUsers] = useState<User[]>([]);
@@ -52,6 +52,6 @@ const UserSearch = memo(() => {
       )}
     </>
   );
-});
+};
 
 export default UserSearch;

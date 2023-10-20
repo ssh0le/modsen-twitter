@@ -88,7 +88,7 @@ const light: Theme = {
   },
   iconSizes: {
     computer: 28,
-    moblie: 20,
+    moblie: 28,
   },
   breakpoints,
   padding: {

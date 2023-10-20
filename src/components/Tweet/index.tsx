@@ -14,11 +14,9 @@ import {
   ActionListContainer,
   ActionsButtonContainer,
   ActionsContainer,
-  ActionsIcon,
   ActionWrapper,
   LikeContainer,
   LikeCountContainer,
-  LikeIcon,
   TweetContainer,
   TweetContentWrapper,
   TweetImage,
@@ -27,7 +25,7 @@ import {
   TweetText,
 } from './styled';
 
-const { like, likeFilled } = icons;
+const { LikeIcon: Like, LikeFilledIcon: FilledLike, ActionsIcon } = icons;
 
 const Tweet = ({ info, currentUserId }: TweetProps) => {
   const {
@@ -115,20 +113,8 @@ const Tweet = ({ info, currentUserId }: TweetProps) => {
             </TweetImageContainer>
           )}
           <LikeContainer $isLiked={isLiked}>
-            {isLiked && (
-              <LikeIcon
-                src={likeFilled}
-                alt="Setted like"
-                onClick={handleUnsetLikeClick}
-              />
-            )}
-            {!isLiked && (
-              <LikeIcon
-                src={like}
-                alt="Unsetted like"
-                onClick={handleSetLikeClick}
-              />
-            )}
+            {isLiked && <FilledLike onClick={handleUnsetLikeClick} />}
+            {!isLiked && <Like onClick={handleSetLikeClick} />}
             {likes.length > 0 && (
               <LikeCountContainer $isLiked={isLiked}>
                 {likes.length}
@@ -139,7 +125,7 @@ const Tweet = ({ info, currentUserId }: TweetProps) => {
       </TweetContentWrapper>
       <ActionsContainer>
         <ActionsButtonContainer onClick={handleActionMenuButtonClick}>
-          <ActionsIcon src={icons.actions} alt="Post actions" />
+          <ActionsIcon />
         </ActionsButtonContainer>
         {isActionsOpen && (
           <ActionListContainer>

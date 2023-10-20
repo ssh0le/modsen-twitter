@@ -23,6 +23,10 @@ export const TweetMainContainer = styled.div`
   ${flexColumn}
 
   flex-grow: 1;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const TweetText = styled.p`
@@ -62,12 +66,10 @@ export const ActionsButtonContainer = styled.div`
 `;
 
 export const ActionsContainer = styled.div`
+  ${themedSvgFilter}
+
   position: relative;
   height: fit-content;
-`;
-
-export const ActionsIcon = styled.img`
-  ${themedSvgFilter}
 `;
 
 export const ActionListContainer = styled.div`
@@ -80,10 +82,6 @@ export const ActionWrapper = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.fs14}px;
   cursor: pointer;
   padding: 5px 10px;
-`;
-
-export const LikeIcon = styled.img`
-  cursor: pointer;
 `;
 
 export const TweetImageContainer = styled.div`

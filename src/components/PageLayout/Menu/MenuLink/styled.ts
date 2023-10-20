@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-import { adaptiveIconStyle, serifText, themedSvgFilter } from '@/styles/common';
+import {
+  adaptiveIconStyle,
+  flexCenter,
+  serifText,
+  themedSvgFilter,
+} from '@/styles/common';
 
 import { MenuLinkWrapperProps } from './interfaces';
 
@@ -17,14 +22,21 @@ export const MenuLinkWrapper = styled.li<MenuLinkWrapperProps>`
   gap: ${({ theme }) => theme.gap.m}px;
   cursor: pointer;
 
+  svg * {
+    ${adaptiveIconStyle};
+    ${themedSvgFilter};
+  }
+
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     justify-content: center;
   }
 `;
 
-export const MenuLinkIcon = styled.img`
+export const MenuLinkIconContainer = styled.div`
   ${adaptiveIconStyle};
-  ${themedSvgFilter};
+  ${flexCenter};
+
+  max-width: 50px;
 `;
 
 export const MenuLinkTitle = styled.span`
