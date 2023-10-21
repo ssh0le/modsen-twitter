@@ -17,6 +17,7 @@ export const SearchButtonContainer = styled.div`
   bottom: 10px;
   right: 20px;
   border-radius: 50%;
+  z-index: 10;
   border: 2px solid ${({ theme }) => theme.border};
 `;
 

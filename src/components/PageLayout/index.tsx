@@ -1,7 +1,7 @@
 import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
-import { icons } from '@/constants';
+import { breakpoints, icons } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { LoadPage } from '@/pages/LoadPage';
@@ -24,7 +24,6 @@ import {
   CurrentUserContainer,
   LeftAside,
   LogoContainer,
-  LogOutIcon,
   MenuContainer,
   MobileLogOutIconContainer,
   PageLayoutContainer,
@@ -33,6 +32,9 @@ import {
   UserCardContainer,
 } from './styled';
 import UserSearch from './UserSearch';
+
+const { LogOutIcon } = icons;
+const { mobile } = breakpoints;
 
 const PageLayout = () => {
   const { name, avatar, tag, profileId } = useAppSelector(selectCurrentUser)!;
@@ -64,7 +66,7 @@ const PageLayout = () => {
           <MenuSidebar />
         </MenuContainer>
         <AddTweetModal />
-        {windowWidth > 888 ? (
+        {windowWidth > mobile ? (
           <CurrentUserContainer>
             <UserCardContainer>
               <UserCard
@@ -82,7 +84,7 @@ const PageLayout = () => {
         ) : (
           <>
             <MobileLogOutIconContainer onClick={handleLogOutClick}>
-              <LogOutIcon src={icons.logOut} alt="Log-out icon" />
+              <LogOutIcon />
             </MobileLogOutIconContainer>
           </>
         )}
@@ -95,7 +97,7 @@ const PageLayout = () => {
           </Suspense>
         </main>
       </ContentWrapper>
-      {windowWidth <= 888 ? (
+      {windowWidth <= mobile ? (
         <>
           <SearchModal>
             <SearchBar />

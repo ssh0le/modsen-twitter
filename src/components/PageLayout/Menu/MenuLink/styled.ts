@@ -22,21 +22,25 @@ export const MenuLinkWrapper = styled.li<MenuLinkWrapperProps>`
   gap: ${({ theme }) => theme.gap.m}px;
   cursor: pointer;
 
-  svg * {
-    ${adaptiveIconStyle};
-    ${themedSvgFilter};
-  }
-
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     justify-content: center;
   }
 `;
 
 export const MenuLinkIconContainer = styled.div`
-  ${adaptiveIconStyle};
   ${flexCenter};
+  ${adaptiveIconStyle};
 
-  max-width: 50px;
+  svg {
+    ${adaptiveIconStyle};
+
+    & * {
+      ${themedSvgFilter};
+
+      fill: ${({ theme }) => theme.color};
+      stroke: inherit;
+    }
+  }
 `;
 
 export const MenuLinkTitle = styled.span`

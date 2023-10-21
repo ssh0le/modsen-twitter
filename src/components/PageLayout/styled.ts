@@ -74,7 +74,6 @@ export const LeftAside = styled(AsideBar)`
     ${getStrictWidth(50)}
 
     padding: 0;
-    gap: 10px;
   }
 `;
 
@@ -122,11 +121,11 @@ export const LogoContainer = styled.div`
 
 export const MobileLogOutIconContainer = styled.div`
   ${flexCenter};
+  ${themedSvgFilter};
+
+  svg {
+    ${adaptiveIconStyle};
+  }
 
   padding: ${({ theme }) => theme.padding.xs}px;
-`;
-
-export const LogOutIcon = styled.img`
-  ${adaptiveIconStyle}
-  ${themedSvgFilter};
 `;
