@@ -1,9 +1,11 @@
 import { InputHTMLAttributes } from 'react';
-import { FieldError } from 'react-hook-form';
+import { UseControllerProps } from 'react-hook-form';
 
-export interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
+export interface SelectProps
+  extends Pick<InputHTMLAttributes<HTMLSelectElement>, 'type'>,
+    UseControllerProps {
   placeholder?: string;
   label?: string;
-  error?: FieldError;
+  required?: boolean;
   options: { value: string | number; name: string | number }[];
 }

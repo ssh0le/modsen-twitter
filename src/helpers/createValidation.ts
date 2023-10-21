@@ -5,8 +5,14 @@ import { PatternValidationType, ValidationType } from '@/types';
 
 import { isValidationWithPattern } from './predicates';
 
-const { minLength, maxLength, required, wrongEmail, wrongPhone, wrongLogin } =
-  errorMessages;
+const {
+  minLength,
+  maxLength,
+  required: requiredError,
+  wrongEmail,
+  wrongPhone,
+  wrongLogin,
+} = errorMessages;
 
 const { phonePattern, emailPattern, loginPattern } = patterns;
 
@@ -15,7 +21,7 @@ export const createValidationOptionsForText = (
   min?: number,
 ): RegisterOptions => {
   return {
-    required,
+    required: requiredError,
     maxLength: {
       value: max || 99,
       message: maxLength,
@@ -31,7 +37,7 @@ export const createValidationOptionsWithPattern = (
   type: PatternValidationType,
 ): RegisterOptions => {
   const option = {
-    required,
+    required: requiredError,
     pattern: {
       value: phonePattern,
       message: wrongPhone,
@@ -52,15 +58,34 @@ export const createValidationOptionsWithPattern = (
   return option;
 };
 
-export const createValidationOptions = (
-  type: ValidationType,
-): RegisterOptions => {
+export const createSelectValidationOptions = (): RegisterOptions => {
+  return {
+    required: requiredError,
+  };
+};
+
+const createValidation = (type: ValidationType) => {
   if (isValidationWithPattern(type)) {
     return createValidationOptionsWithPattern(type);
   }
-  if (type === 'name') {
+  if (type === 'text') {
     return createValidationOptionsForText(30, 3);
-  } else {
+  } else if (type === 'password') {
     return createValidationOptionsForText(20, 8);
+  } else if (type === 'select') {
+    return createSelectValidationOptions();
+  } else {
+    return {};
   }
+};
+
+export const createValidationOptions = (
+  type: ValidationType,
+  required: boolean,
+): RegisterOptions => {
+  const options = createValidation(type);
+  if (required) {
+    options.required = requiredError;
+  }
+  return options;
 };

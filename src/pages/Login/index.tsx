@@ -1,15 +1,15 @@
 import { FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Control, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
 import Toast from '@/components/Toast';
 import { loginStatics, routePathes } from '@/constants';
-import { createValidationOptions, translateAuthError } from '@/helpers';
+import { translateAuthError } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { setUser } from '@/store/slices/currentUser';
 import { emailSignIn, googleSignIn } from '@/utils';
-import { Button, InputField, Link } from '@UI';
+import { Button, InputField, Link, PasswordInput } from '@UI';
 
 import { ILoginForm } from './interfaces';
 import {
@@ -27,13 +27,7 @@ const LoginPage: FC = () => {
   const [error, setError] = useState<string>('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ILoginForm>();
-
-  const { login, password } = errors;
+  const { handleSubmit, control } = useForm<ILoginForm>();
 
   const handleLoginClick = (data: ILoginForm) => {
     const { login, password } = data;
@@ -60,6 +54,8 @@ const LoginPage: FC = () => {
     setError('');
   };
 
+  const typedControl = control as unknown as Control;
+
   return (
     <LoginPageContainer>
       <Toast type="error" message={error} onAnimationEnd={handleAnimationEnd} />
@@ -68,15 +64,16 @@ const LoginPage: FC = () => {
         <Heading>{heading}</Heading>
         <LoginForm>
           <InputField
-            error={login}
-            {...register('login', createValidationOptions('login'))}
+            name="login"
+            validationType="login"
             placeholder="Email adress"
+            control={typedControl}
           />
-          <InputField
-            error={password}
-            type="password"
-            {...register('password', createValidationOptions('password'))}
+          <PasswordInput
+            control={typedControl}
+            validationType="password"
             placeholder="Password"
+            name={'password'}
           />
           <Button type="colored" onClick={handleSubmit(handleLoginClick)}>
             {loginButtonText}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Control, useForm } from 'react-hook-form';
 
 import Toast from '@/components/Toast';
 import { Button, InputField, Select, SerifText } from '@/components/UI';
@@ -20,11 +20,11 @@ export const EditInfoForm = () => {
   const [successMessage, setSuccessMessage] = useState<string>('');
 
   const {
-    register,
     handleSubmit,
+    control,
     reset,
-    formState: { errors, isDirty },
-  } = useForm<IEditInfoForm>({
+    formState: { isDirty },
+  } = useForm({
     defaultValues: {
       name: name,
       telegram: status || '',
@@ -64,7 +64,7 @@ export const EditInfoForm = () => {
     setSuccessMessage('');
   };
 
-  const { name: nameError, telegram: telegramError } = errors;
+  const typedControl = control as unknown as Control;
 
   return (
     <EditInfoFormContainer>
@@ -76,26 +76,34 @@ export const EditInfoForm = () => {
       <InputField
         placeholder="Name"
         label="Name"
-        error={nameError}
-        {...register('name')}
+        name="name"
+        validationType={'text'}
+        required={false}
+        control={typedControl}
       />
       <InputField
         placeholder="Tag"
         label="Tag"
-        error={nameError}
-        {...register('tag')}
+        name="tag"
+        required={false}
+        validationType={'text'}
+        control={typedControl}
       />
       <Select
         options={genderOptions}
         placeholder="Gender"
         label="Gender"
-        {...register('gender')}
+        required={false}
+        name="gender"
+        control={typedControl}
       />
       <InputField
-        label="Status"
+        label="Telegram"
         placeholder="Telegram"
-        error={telegramError}
-        {...register('telegram')}
+        name="telegram"
+        required={false}
+        validationType={'text'}
+        control={typedControl}
       />
       <ControlsContainer>
         <Button data-cy="reset" onClick={handleFormReset} isActive={isDirty}>

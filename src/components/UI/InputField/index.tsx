@@ -1,4 +1,7 @@
-import { forwardRef, useId } from 'react';
+import { useId } from 'react';
+import { useController } from 'react-hook-form';
+
+import { createValidationOptions } from '@/helpers';
 
 import { SerifText } from '../SerifText';
 
@@ -11,26 +14,40 @@ import {
   InputWrapper,
 } from './styled';
 
-export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
-  (props, ref) => {
-    const { error, label, ...remainedProps } = props;
-    const id = useId();
-    return (
-      <div>
-        {label && (
-          <InputLabel htmlFor={id}>
-            <SerifText>{label}</SerifText>
-          </InputLabel>
+export function InputField(props: InputFieldProps) {
+  const {
+    label,
+    control,
+    name,
+    rules = {},
+    required = true,
+    validationType = 'text',
+    ...remainedProps
+  } = props;
+
+  const { field, fieldState } = useController({
+    name,
+    control,
+    rules: { ...createValidationOptions(validationType, required), ...rules },
+  });
+  const id = useId();
+
+  const { error } = fieldState;
+  return (
+    <div>
+      {label && (
+        <InputLabel htmlFor={id}>
+          <SerifText>{label}</SerifText>
+        </InputLabel>
+      )}
+      <InputContent>
+        <InputWrapper>
+          <Input id={id} {...remainedProps} {...field} />
+        </InputWrapper>
+        {error && (
+          <ErrorMessageContainer>{error.message}</ErrorMessageContainer>
         )}
-        <InputContent>
-          <InputWrapper>
-            <Input ref={ref} id={id} {...remainedProps} />
-          </InputWrapper>
-          {error && (
-            <ErrorMessageContainer>{error.message}</ErrorMessageContainer>
-          )}
-        </InputContent>
-      </div>
-    );
-  },
-);
+      </InputContent>
+    </div>
+  );
+}

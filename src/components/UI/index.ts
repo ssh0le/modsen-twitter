@@ -8,5 +8,6 @@ export * from './Loader';
 export * from './Modal';
 export * from './NoResultsMessage';
 export * from './OpacityText';
+export * from './PasswordInput';
 export * from './Select';
 export * from './SerifText';

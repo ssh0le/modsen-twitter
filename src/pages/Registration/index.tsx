@@ -1,17 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Control, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
 import Toast from '@/components/Toast';
-import { routePathes } from '@/constants';
+import { registrationStatics, routePathes } from '@/constants';
 import { monthsOptions, yearOptions } from '@/constants/selectOptions';
-import {
-  createValidationOptions,
-  getMonthDays,
-  isRequiredAge,
-  translateAuthError,
-} from '@/helpers';
+import { getMonthDays, isRequiredAge, translateAuthError } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { setUser } from '@/store/slices/currentUser';
 import { FirebaseAuthError } from '@/types';
@@ -32,6 +27,9 @@ import {
 
 const { profile, signUp } = routePathes;
 
+const { heading, subheading, emailLink, dateOfBirthMessage, submitButtonText } =
+  registrationStatics;
+
 const RegistrationPage: FC = () => {
   const [authError, setAuthError] = useState<string>('');
   const [userError, setUserError] = useState<string>('');
@@ -40,34 +38,18 @@ const RegistrationPage: FC = () => {
   >(getMonthDays());
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    setError,
-    watch,
-    formState: { errors },
-  } = useForm<RegistrationForm>({
-    defaultValues: {
-      phone: '',
-      name: '',
-      email: '',
-      password: '',
-      day: '',
-      month: '',
-      year: '',
-    },
-  });
-
-  const {
-    name,
-    phone,
-    email,
-    password,
-    day: dayError,
-    month: monthError,
-    year: yearError,
-  } = errors;
+  const { handleSubmit, getValues, setError, watch, control } =
+    useForm<RegistrationForm>({
+      defaultValues: {
+        phone: '',
+        name: '',
+        email: '',
+        password: '',
+        day: '',
+        month: '',
+        year: '',
+      },
+    });
 
   useEffect(() => {
     const subscription = watch(({ month, year }) => {
@@ -110,6 +92,8 @@ const RegistrationPage: FC = () => {
     setUserError('');
   };
 
+  const typedControl = control as unknown as Control;
+
   return (
     <RegistrationPageContainer>
       <Toast
@@ -127,71 +111,67 @@ const RegistrationPage: FC = () => {
           <Logo size="small" />
         </LogoContainer>
         <Heading>
-          <SerifText>Create an account</SerifText>
+          <SerifText>{heading}</SerifText>
         </Heading>
         <InputFieldsContainer>
           <InputField
             type="text"
-            error={name}
-            {...register('name', createValidationOptions('name'))}
+            name="name"
             placeholder="Name"
+            control={typedControl}
           />
           <InputField
-            error={phone}
-            {...register('phone', createValidationOptions('phone'))}
+            validationType="phone"
+            name="phone"
             placeholder="Phone number"
+            control={typedControl}
           />
           <InputField
-            error={email}
-            {...register('email', {
-              ...createValidationOptions('email'),
-            })}
+            name="email"
+            validationType="email"
             placeholder="Email"
+            control={typedControl}
           />
           <InputField
-            error={password}
-            {...register('password', createValidationOptions('password'))}
+            validationType="password"
             placeholder="Password"
             type="password"
+            name={'password'}
+            control={typedControl}
           />
         </InputFieldsContainer>
-        <Link onClick={handleEmailClick}>Use email</Link>
+        <Link onClick={handleEmailClick}>{emailLink}</Link>
         <Subheading>
-          <SerifText>Date of birth</SerifText>
+          <SerifText>{subheading}</SerifText>
         </Subheading>
-        <DateOfBirthMessage>
-          Facilisi sem pulvinar velit nunc, gravida scelerisque amet nibh sit.
-          Quis bibendum ante phasellus metus, magna lacinia sed augue. Odio enim
-          nascetur leo mauris vel eget. Pretium id ullamcorper blandit viverra
-          dignissim eget tellus. Nibh mi massa in molestie a sit. Elit congue.
-        </DateOfBirthMessage>
+        <DateOfBirthMessage>{dateOfBirthMessage}</DateOfBirthMessage>
         <SelectContainer>
           <Select
             placeholder="Month"
             options={monthsOptions}
-            error={monthError}
-            {...register('month', { required: 'This field is required!' })}
+            name="month"
+            control={typedControl}
           />
           <Select
             placeholder="Day"
+            name="day"
             options={days}
-            error={dayError}
-            {...register('day', {
-              required: 'This field is required!',
+            rules={{
               validate: (day) =>
                 (Number(day) <= days.length && Number(day) > 0) ||
                 'The day is invalid',
-            })}
+            }}
+            control={typedControl}
           />
           <Select
             placeholder="Year"
+            name="year"
             options={yearOptions}
-            error={yearError}
-            {...register('year', { required: 'This field is required!' })}
+            control={typedControl}
           />
         </SelectContainer>
         <Button onClick={handleSubmit(handleNextClick)} type="colored">
-          <SerifText>Next</SerifText>
+          <SerifText>{submitButtonText}</SerifText>
         </Button>
       </RegistrationPageContentWrapper>
     </RegistrationPageContainer>
