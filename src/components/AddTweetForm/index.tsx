@@ -24,7 +24,7 @@ import {
 const { addTweetButtonText } = profileStatics;
 
 const AddTweetForm = () => {
-  const user = useAppSelector(selectCurrentUser)!;
+  const user = useAppSelector(selectCurrentUser);
   const { avatar, name } = user;
   const [tweetText, setTweetText] = useState<string>('');
   const [image, setImage] = useState<File | null>(null);

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import {
+  adaptiveIconStyle,
   flexCenter,
   flexColumn,
   themedBackgroundColor,
@@ -22,8 +23,7 @@ export const SearchButtonContainer = styled.div`
 `;
 
 export const SerchIcon = styled.img`
-  width: 60%;
-  height: 60%;
+  ${adaptiveIconStyle};
 `;
 
 export const SearchModalContentWrapper = styled.div`

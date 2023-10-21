@@ -19,7 +19,7 @@ import {
 } from './styled';
 
 const FeedPage = () => {
-  const { profileId } = useAppSelector(selectCurrentUser)!;
+  const { profileId } = useAppSelector(selectCurrentUser);
   const [feedTweets, setFeedTweets] = useState<ITweet[]>([]);
   const { pathname } = useLocation();
   const [isFeedLoading, setIsFeedLoading] = useState<boolean>(false);

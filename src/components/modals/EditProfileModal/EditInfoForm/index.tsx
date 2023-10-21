@@ -16,7 +16,7 @@ const { resetButtonText, saveButtonText } = profileStatics;
 
 export const EditInfoForm = () => {
   const { name, status, id, tag, profileId } =
-    useAppSelector(selectCurrentUser)!;
+    useAppSelector(selectCurrentUser);
   const [successMessage, setSuccessMessage] = useState<string>('');
 
   const {

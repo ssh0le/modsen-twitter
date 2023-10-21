@@ -10,7 +10,7 @@ import { Tweet as ITweet, User } from '@/types';
 import { fetchUserFullInfo } from '@/utils';
 
 const UserDetailsPage: FC = () => {
-  const { profileId } = useAppSelector(selectCurrentUser)!;
+  const { profileId } = useAppSelector(selectCurrentUser);
   const { userId } = useParams();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);

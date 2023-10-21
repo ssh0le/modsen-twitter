@@ -26,7 +26,7 @@ const UserCard = ({ size, name, tag, avatar, userId }: UserCardProps) => {
     following.includes(userId),
   );
   const navigate = useNavigate();
-  const { profileId } = useAppSelector(selectCurrentUser)!;
+  const { profileId } = useAppSelector(selectCurrentUser);
 
   const handleFollowClick = () => {
     if (isFollowing) {

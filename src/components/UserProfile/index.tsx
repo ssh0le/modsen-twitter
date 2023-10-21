@@ -37,7 +37,7 @@ const UserProfile = (props: UserProfileProps) => {
     renderTweet,
   } = props;
   const { name, avatar, status, tag, profileId } = user;
-  const { profileId: currentUserId } = useAppSelector(selectCurrentUser)!;
+  const { profileId: currentUserId } = useAppSelector(selectCurrentUser);
 
   const isCurrentUserProfile = currentUserId === profileId;
 

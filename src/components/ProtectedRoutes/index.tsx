@@ -3,13 +3,13 @@ import { Navigate } from 'react-router-dom';
 
 import { routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
-import { selectCurrentUser } from '@/store/selectors';
+import { selectHasUser } from '@/store/selectors';
 
 const ProtectedRoutes = ({ children }: { children: ReactNode }) => {
-  const currentUser = useAppSelector(selectCurrentUser);
+  const hasUser = useAppSelector(selectHasUser);
 
   return (
-    <>{currentUser ? children : <Navigate to={routePathes.login} replace />}</>
+    <>{hasUser ? children : <Navigate to={routePathes.login} replace />}</>
   );
 };
 

@@ -37,7 +37,7 @@ const { LogOutIcon } = icons;
 const { mobile } = breakpoints;
 
 const PageLayout = () => {
-  const { name, avatar, tag, profileId } = useAppSelector(selectCurrentUser)!;
+  const { name, avatar, tag, profileId } = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
   const windowWidth = useWindowWidth();
 

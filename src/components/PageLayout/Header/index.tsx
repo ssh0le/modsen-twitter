@@ -26,7 +26,7 @@ const { backButtonText, userTweetsText } = profileStatics;
 
 const Header = () => {
   const { pathname } = useLocation();
-  const { name } = useAppSelector(selectCurrentUser)!;
+  const { name } = useAppSelector(selectCurrentUser);
   const { tweets } = useAppSelector(selectUserDetails);
   const navigate = useNavigate();
   const hasBackButton = pathname !== routePathes.profile;

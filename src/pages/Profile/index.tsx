@@ -15,7 +15,7 @@ import { Tweet as ITweet } from '@/types';
 import { publisher } from '@/utils';
 
 const ProfilePage: FC = () => {
-  const user = useAppSelector(selectCurrentUser)!;
+  const user = useAppSelector(selectCurrentUser);
   const { profileId } = user;
   const { tweets, followers, following } = useAppSelector(selectUserDetails);
   const isLoading = useAppSelector(isFetchingTweets);

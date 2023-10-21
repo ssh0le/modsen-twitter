@@ -15,7 +15,7 @@ const { recommendationHeading, searchResultsHeading } = profileStatics;
 
 const UserSearch = () => {
   const { pathname } = useLocation();
-  const { profileId } = useAppSelector(selectCurrentUser)!;
+  const { profileId } = useAppSelector(selectCurrentUser);
   const [recommendedUsers, setRecommendedUsers] = useState<User[]>([]);
   const [isRecommendsLoading, setIsRecommendsLoading] =
     useState<boolean>(false);
