@@ -26,6 +26,7 @@ export const Select = (props: SelectProps) => {
     required = true,
     ...remainedProps
   } = props;
+
   const {
     field,
     fieldState: { error },

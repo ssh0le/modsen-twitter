@@ -16,7 +16,7 @@ export const selectOption = (name: string, option: string) => {
 };
 
 export const isContainErrors = (text: string, number: number) => {
-  cy.get('form').find(`p:contains("${text}")`).should('have.length', number);
+  cy.get(`p:contains("${text}")`).should('have.length', number);
 };
 
 export const loginTestUser = () => {
@@ -24,7 +24,7 @@ export const loginTestUser = () => {
   typeInInput('login', 'cypress@test.com');
   typeInInput('password', '12345678');
   clickSubmit();
-  cy.wait(5000);
+  cy.wait(6000);
 };
 
 export const convertHexToRgb = (hex: string): string => {

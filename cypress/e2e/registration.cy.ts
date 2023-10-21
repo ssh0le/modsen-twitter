@@ -43,7 +43,7 @@ describe('Sign up test', () => {
         getSelectField(field).select(String(value));
       });
     });
-    it.skip('validates name', () => {
+    it('validates name', () => {
       const name = 'name';
       typeInInput(name, 's'.repeat(2));
       clickSubmit();
@@ -53,7 +53,7 @@ describe('Sign up test', () => {
       typeInInput(name, correctInputData[name]);
       isContainErrors(maxLength, 0);
     });
-    it.skip('validates phone', () => {
+    it('validates phone', () => {
       const name = 'phone';
       typeInInput(name, 'asda');
       clickSubmit();
@@ -61,7 +61,7 @@ describe('Sign up test', () => {
       typeInInput(name, correctInputData[name]);
       isContainErrors(wrongPhone, 0);
     });
-    it.skip('validates email', () => {
+    it('validates email', () => {
       const name = 'email';
       typeInInput(name, 'asda');
       clickSubmit();
@@ -69,7 +69,7 @@ describe('Sign up test', () => {
       typeInInput(name, correctInputData[name]);
       isContainErrors(wrongEmail, 0);
     });
-    it.skip('validates password', () => {
+    it('validates password', () => {
       const name = 'password';
       typeInInput(name, 's'.repeat(2));
       clickSubmit();
@@ -81,14 +81,14 @@ describe('Sign up test', () => {
     });
     it('reset day if not in month days', () => {
       selectOption('year', '2020');
-      selectOption('month', '1');
+      selectOption('month', '2');
       selectOption('day', '29');
       selectOption('year', '2021');
       getSelectField('day').should('not.have.value', '29');
     });
     it('save correct date', () => {
       selectOption('year', '2020');
-      selectOption('month', '1');
+      selectOption('month', '2');
       selectOption('day', '29');
       getSelectField('day').should('have.value', '29');
     });

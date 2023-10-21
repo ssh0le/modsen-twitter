@@ -58,12 +58,6 @@ export const createValidationOptionsWithPattern = (
   return option;
 };
 
-export const createSelectValidationOptions = (): RegisterOptions => {
-  return {
-    required: requiredError,
-  };
-};
-
 const createValidation = (type: ValidationType) => {
   if (isValidationWithPattern(type)) {
     return createValidationOptionsWithPattern(type);
@@ -72,8 +66,6 @@ const createValidation = (type: ValidationType) => {
     return createValidationOptionsForText(30, 3);
   } else if (type === 'password') {
     return createValidationOptionsForText(20, 8);
-  } else if (type === 'select') {
-    return createSelectValidationOptions();
   } else {
     return {};
   }

@@ -7,11 +7,10 @@ const resetName = 'reset';
 const resetAlias = '@reset';
 
 describe('Profile test', () => {
-  it('Update info', () => {
+  it('Updates info', () => {
     loginTestUser();
-    cy.get('button').contains('Edit profile').should('exist');
-    cy.get('button').contains('Edit profile').should('exist');
-    cy.get('button').contains('Edit profile').click();
+    cy.get('button').contains('Edit Profile').as('edit-button').should('exist');
+    cy.get('@edit-button').click();
     cy.get('button')
       .contains('button', 'Save info')
       .as(saveButtonName)
