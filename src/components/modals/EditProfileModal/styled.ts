@@ -20,12 +20,11 @@ export const EditButton = styled.button`
   color: ${({ theme }) => theme.color};
   font-size: ${({ theme }) => theme.fontSizes.fs18}px;
   border: 2px solid ${({ theme }) => theme.color};
-  padding: 10px 15px;
   padding: ${({
     theme: {
       padding: { xs, s },
     },
-  }) => `${xs} ${s}px`};
+  }) => `${xs}px ${s}px`};
   height: fit-content;
   border-radius: 50px;
   cursor: pointer;

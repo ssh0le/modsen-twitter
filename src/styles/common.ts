@@ -6,6 +6,7 @@ export const inputStyle = css`
   border: none;
   width: 100%;
   background-color: ${({ theme }) => theme.inputField.backgroundColor};
+
   &::placeholder {
     color: ${({ theme }) => theme.inputField.placeholderColor};
   }

@@ -9,7 +9,6 @@ export const InputWrapper = styled.div`
 export const Input = styled.input`
   ${inputStyle};
 
-  width: 100%;
   border: none;
 `;
 
