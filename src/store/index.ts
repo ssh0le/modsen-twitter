@@ -28,7 +28,7 @@ const persistConfig: PersistConfig<{
   blacklist: ['search'],
 };
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   theme: themeReducer,
   currentUser: currentUserReducer,
   search: searchReducer,
