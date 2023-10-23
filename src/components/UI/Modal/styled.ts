@@ -3,27 +3,26 @@ import styled from 'styled-components';
 import { flexCenter } from '@/styles/common';
 
 export const ModalContainer = styled.div`
-  ${flexCenter};
-
-  position: absolute;
+  display: flex;
+  justify-content: center;
+  position: fixed;
   top: 0;
-  width: 100vw;
-  min-height: 100vh;
-  overflow-y: scroll;
+  width: 100%;
+  bottom: 0;
+  overflow-y: auto;
+  background-color: ${({ theme }) => theme.colors.black}5;
 `;
 
-export const ModalBackdrop = styled.div`
-  background-color: ${({ theme }) => theme.colors.black};
-  opacity: 0.5;
-  width: 100vw;
-  top: 0;
-  position: fixed;
-  bottom: 0;
-  z-index: 0;
+export const ModalMainContentContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: ${({ theme }) => theme.padding.l}px;
 `;
 
 export const ModalContentWrapper = styled.div`
-  z-index: 10;
+  ${flexCenter};
+
   height: fit-content;
-  display: flex;
+  min-height: 100%;
 `;

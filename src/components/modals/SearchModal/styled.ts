@@ -30,7 +30,7 @@ export const SearchModalContentWrapper = styled.div`
   ${themedColor};
 
   height: fit-content;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;

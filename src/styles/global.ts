@@ -10,11 +10,15 @@ export const GlobalStyles = createGlobalStyle`
 
     html,
     body {
-        height: 100vh;
-        width: 100vw;
-        overflow-x: hidden;
+        height: 100%;
+        width: 100%;
         font-weight: 400;
         background-color: ${({ theme }) => theme.backgroundColor};
+    }
+
+    #root {
+        height: 100%;
+        width: 100%;
     }
 
     a {

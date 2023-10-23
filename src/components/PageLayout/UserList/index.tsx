@@ -13,7 +13,7 @@ import {
   UserListContent,
 } from './styled';
 
-const { showMoreButtonText } = profileStatics;
+const { showMoreButtonText, hideMoreButtonText } = profileStatics;
 
 const UserList = ({ title, users }: UserListProps) => {
   const [displayFullList, setDisplayFullList] = useState<boolean>(false);
@@ -34,9 +34,11 @@ const UserList = ({ title, users }: UserListProps) => {
     }
   }, [users]);
 
-  const handleShowMoreClick = () => {
-    setDisplayFullList(true);
-    setIsShowMoreButtonDisplayed(false);
+  const createListControlsHandler = (displayList: boolean) => {
+    return () => {
+      setDisplayFullList(displayList);
+      setIsShowMoreButtonDisplayed(!displayList);
+    };
   };
 
   return (
@@ -58,8 +60,13 @@ const UserList = ({ title, users }: UserListProps) => {
         ))}
       </UserListContent>
       {isShowMoreButtonDisplayed && (
-        <ShowMoreButton onClick={handleShowMoreClick}>
+        <ShowMoreButton onClick={createListControlsHandler(true)}>
           {showMoreButtonText}
+        </ShowMoreButton>
+      )}
+      {!isShowMoreButtonDisplayed && displayFullList && (
+        <ShowMoreButton onClick={createListControlsHandler(false)}>
+          {hideMoreButtonText}
         </ShowMoreButton>
       )}
       {usersToDisplay.length === 0 && <NoResultMessage />}

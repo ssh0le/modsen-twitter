@@ -44,7 +44,6 @@ export const ContentWrapper = styled.div`
 
   flex-grow: 1;
   height: fit-content;
-  min-height: calc(100vh + 1px);
   width: auto;
 `;
 

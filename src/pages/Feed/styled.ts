@@ -5,14 +5,11 @@ import { flexColumn, topBottomBorder } from '@/styles/common';
 export const FeedPageContainer = styled.div`
   ${flexColumn};
 
-  width: 100%;
   min-width: 100%;
 `;
 
 export const TweetListContainer = styled.div`
   ${flexColumn};
-
-  width: 100%;
 `;
 
 export const AddTweetContainer = styled.div`
@@ -22,5 +19,5 @@ export const AddTweetContainer = styled.div`
 `;
 
 export const LoaderContainer = styled.div`
-  padding-top: ${({ theme }) => theme.padding.l}px;
+  padding: ${({ theme }) => theme.padding.l}px;
 `;

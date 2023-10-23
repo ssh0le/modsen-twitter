@@ -36,7 +36,7 @@ export const Heading = styled.h1`
 export const LoginForm = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.gap.m}px;
+  gap: ${({ theme }) => theme.gap.l}px;
   margin-bottom: 40px;
 `;
 

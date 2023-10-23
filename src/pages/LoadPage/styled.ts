@@ -6,6 +6,8 @@ export const LoadPageContainer = styled.section`
   ${flexCenter}
   ${flexColumn}
 
-  height: 100vh;
+  height: 100%;
+  flex-grow: 1;
   gap: ${({ theme }) => theme.gap.l}px;
+  padding: ${({ theme }) => theme.padding.l}px;
 `;

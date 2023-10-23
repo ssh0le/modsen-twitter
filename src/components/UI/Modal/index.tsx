@@ -4,7 +4,11 @@ import { createPortal } from 'react-dom';
 import { usePortal } from '@/hooks/usePortal';
 
 import { ModalProps } from './interfaces';
-import { ModalBackdrop, ModalContainer, ModalContentWrapper } from './styled';
+import {
+  ModalContainer,
+  ModalContentWrapper,
+  ModalMainContentContainer,
+} from './styled';
 
 export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   const portalContainer = usePortal();
@@ -20,13 +24,18 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
 
   useEffect(() => {
     const body = document.body;
+    const scrollbarWidth = window.innerWidth - body.offsetWidth;
     if (isOpen) {
       body.addEventListener('keyup', handleKeyUp);
+      body.style.paddingRight = `${scrollbarWidth}px`;
+      document.documentElement.style.overflowY = 'hidden';
     }
 
     return () => {
       if (isOpen) {
         body.removeEventListener('keyup', handleKeyUp);
+        body.style.paddingRight = `0`;
+        document.documentElement.style.overflowY = 'auto';
       }
     };
   }, [isOpen, handleKeyUp]);
@@ -40,12 +49,15 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   };
 
   return createPortal(
-    <ModalContainer>
-      <ModalBackdrop onClick={onClose} />
-      <ModalContentWrapper onClick={handleModalClick}>
-        {children}
-      </ModalContentWrapper>
-    </ModalContainer>,
+    <>
+      <ModalContainer onClick={onClose}>
+        <ModalContentWrapper onClick={onClose}>
+          <ModalMainContentContainer onClick={onClose}>
+            <div onClick={handleModalClick}>{children}</div>
+          </ModalMainContentContainer>
+        </ModalContentWrapper>
+      </ModalContainer>
+    </>,
     portalContainer,
   );
 };

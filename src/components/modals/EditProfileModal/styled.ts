@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const EditProfileModalContainer = styled.div`
   width: 500px;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 15px;

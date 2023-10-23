@@ -2,19 +2,23 @@ import styled from 'styled-components';
 
 import { flexCenter } from '@/styles/common';
 
+const borderWidth = '8px';
+const loaderSize = '70px';
+const loaderAnimation = 'spin 2s linear infinite';
+
 export const LoaderContainer = styled.div`
   ${flexCenter}
 `;
 
 export const MainLoader = styled.div`
-  border: 8px solid ${({ theme }) => theme.border};
+  border: ${borderWidth} solid ${({ theme }) => theme.border};
   border-radius: 50%;
-  border-top: 8px solid ${({ theme }) => theme.color};
-  border-bottom: 8px solid ${({ theme }) => theme.color};
-  width: 70px;
-  height: 70px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+  border-top: ${borderWidth} solid ${({ theme }) => theme.color};
+  border-bottom: ${borderWidth} solid ${({ theme }) => theme.color};
+  width: ${loaderSize};
+  height: ${loaderSize};
+  -webkit-animation: ${loaderAnimation};
+  animation: ${loaderAnimation};
 
   @-webkit-keyframes spin {
     0% {

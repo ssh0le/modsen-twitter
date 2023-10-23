@@ -6,6 +6,8 @@ const opacityStyle = css`
   opacity: ${({ theme }) => theme.opacity.medium}%;
 `;
 
+const indentMedium = '20px';
+
 export const ProfilePageContainer = styled.section`
   ${flexColumn};
 
@@ -38,7 +40,7 @@ export const ProfileHeaderContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   position: relative;
-  padding: 20px 10px;
+  padding: ${indentMedium} 10px;
 `;
 
 export const AvatarContainer = styled.div`
@@ -90,7 +92,7 @@ export const AddTweetFormContainer = styled.div`
   padding: 18px 11px 13px 27px;
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-    margin-top: 20px;
+    margin-top: ${indentMedium};
     padding: 10px;
   }
 `;
@@ -101,9 +103,9 @@ export const UserTweetsContainer = styled.div`
 
 export const TweetListHeading = styled.h2`
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: ${indentMedium};
   margin-bottom: 48px;
-  margin-top: 20px;
+  margin-top: ${indentMedium};
   width: 215px;
   border-bottom: 1px solid ${({ theme }) => theme.border};
 
@@ -114,10 +116,11 @@ export const TweetListHeading = styled.h2`
 
 export const NoTweetsMessage = styled.p`
   text-align: center;
-  padding: 60px 0;
+  padding: 55px 0;
 `;
 
 export const LoaderContainer = styled.div`
   width: 100%;
+  padding: ${({ theme }) => theme.padding.l}px;
   align-self: center;
 `;

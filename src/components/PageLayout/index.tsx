@@ -44,6 +44,15 @@ const PageLayout = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    const bodyStyle = document.body.style;
+    bodyStyle.overflowY = 'scroll';
+
+    return () => {
+      bodyStyle.overflowY = 'auto';
+    };
+  }, []);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 

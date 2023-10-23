@@ -69,6 +69,7 @@ export const profileStatics = {
   updatePasswordButtonText: 'Update password',
   searchResultsHeading: 'Search results',
   showMoreButtonText: 'Show more',
+  hideMoreButtonText: 'Hide',
 };
 
 export const registrationStatics = {
