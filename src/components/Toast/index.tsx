@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { ToastProps } from './interfaces';
 import { MessageContainer, ToastContainer } from './styled';
+import { ToastProps } from './types';
 
 const animationDuration = 3000;
 

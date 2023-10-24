@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { flexCenter } from '@/styles/common';
 
-import { ToastContainerProps, ToastMessageProps } from './interfaces';
+import { ToastContainerProps, ToastMessageProps } from './types';
 
 export const ToastContainer = styled.div<ToastContainerProps>`
   position: fixed;
