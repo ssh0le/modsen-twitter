@@ -1,9 +1,6 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { memo, useState } from 'react';
 
-import { routePathes } from '@/constants';
-import { useAppSelector } from '@/hooks/storeHooks';
-import { selectCurrentUser, selectUserDetails } from '@/store/selectors';
+import { routePathes, userCardStatics } from '@/constants';
 import { updateFollowers } from '@/utils';
 
 import { SerifText } from '../UI';
@@ -20,27 +17,36 @@ import {
   UserTagWrapper,
 } from './styled';
 
-const UserCard = ({ size, name, tag, avatar, userId }: UserCardProps) => {
-  const { following } = useAppSelector(selectUserDetails);
-  const [isFollowing, setIsFollowing] = useState<boolean>(() =>
-    following.includes(userId),
+const { userDeafultTag, followText, unfollowText } = userCardStatics;
+
+const UserCard = (props: UserCardProps) => {
+  const {
+    size,
+    name = 'Anonymus',
+    tag,
+    avatar,
+    userId,
+    onClick,
+    isCurrentUserFollowng,
+    currentUserId,
+  } = props;
+  const [isFollowing, setIsFollowing] = useState<boolean>(
+    isCurrentUserFollowng ?? false,
   );
-  const navigate = useNavigate();
-  const { profileId } = useAppSelector(selectCurrentUser);
 
   const handleFollowClick = () => {
     if (isFollowing) {
       setIsFollowing(false);
-      updateFollowers(userId, profileId, 'unfollow');
+      updateFollowers(userId, currentUserId, 'unfollow');
     } else {
       setIsFollowing(true);
-      updateFollowers(userId, profileId, 'follow');
+      updateFollowers(userId, currentUserId, 'follow');
     }
   };
 
   const handleCardClick = () => {
-    if (size === 'recommendation') {
-      navigate(`${routePathes.profile}/${userId}`);
+    if (size === 'recommendation' && onClick) {
+      onClick(`${routePathes.profile}/${userId}`);
     }
   };
 
@@ -54,14 +60,14 @@ const UserCard = ({ size, name, tag, avatar, userId }: UserCardProps) => {
         />
         <UserNamesContainer onClick={handleCardClick}>
           <UserNameWrapper>{name}</UserNameWrapper>
-          <UserTagWrapper>{tag || 'Anonymous'}</UserTagWrapper>
+          <UserTagWrapper>{tag || userDeafultTag}</UserTagWrapper>
         </UserNamesContainer>
       </UserInfoContainer>
 
       {size == 'recommendation' && (
         <ButtonContainer>
           <FollowButton onClick={handleFollowClick}>
-            <SerifText>{isFollowing ? 'Unfollow' : 'Follow'}</SerifText>
+            <SerifText>{isFollowing ? unfollowText : followText}</SerifText>
           </FollowButton>
         </ButtonContainer>
       )}
@@ -69,4 +75,4 @@ const UserCard = ({ size, name, tag, avatar, userId }: UserCardProps) => {
   );
 };
 
-export default UserCard;
+export default memo(UserCard);

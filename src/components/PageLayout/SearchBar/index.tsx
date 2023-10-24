@@ -1,9 +1,10 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 
 import { icons } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { setQuery } from '@/store/slices/search';
 
+import { SearchBarProps } from './interfaces';
 import {
   ResetButton,
   SearchIcon,
@@ -11,7 +12,7 @@ import {
   SearchInputContainer,
 } from './styled';
 
-const SearchBar = () => {
+const SearchBar = ({ placeholder }: SearchBarProps) => {
   const dispatch = useAppDispatch();
   const query = useAppSelector((state) => state.search.query);
 
@@ -29,7 +30,7 @@ const SearchBar = () => {
       <SearchInput
         value={query}
         onChange={handleSearchChange}
-        placeholder="Search Twitter"
+        placeholder={placeholder}
       />
       {query.length > 0 && (
         <ResetButton onClick={handleResetClick}>X</ResetButton>
@@ -38,4 +39,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default memo(SearchBar);

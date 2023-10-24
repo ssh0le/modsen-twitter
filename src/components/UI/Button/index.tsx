@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { ButtonProps } from './interfaces';
 import { ButtonWrapper } from './styled';
 
-export const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<ButtonProps> = memo((props) => {
   const { isActive = true, type = 'default', onClick, children } = props;
   return (
     <ButtonWrapper
@@ -15,4 +15,4 @@ export const Button: FC<ButtonProps> = (props) => {
       {children}
     </ButtonWrapper>
   );
-};
+});

@@ -1,7 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import UserCard from '@/components/UserCard';
-import { profileStatics } from '@/constants';
+import { layoutStatics } from '@/constants';
+import { useAppSelector } from '@/hooks/storeHooks';
+import { selectCurrentUser, selectUserDetails } from '@/store/selectors';
 import { NoResultMessage, SerifText } from '@UI';
 
 import { UserListProps } from './interfaces';
@@ -13,12 +16,19 @@ import {
   UserListContent,
 } from './styled';
 
-const { showMoreButtonText, hideMoreButtonText } = profileStatics;
+const { showMoreButtonText, hideMoreButtonText } = layoutStatics;
 
 const UserList = ({ title, users }: UserListProps) => {
   const [displayFullList, setDisplayFullList] = useState<boolean>(false);
   const [isShowMoreButtonDisplayed, setIsShowMoreButtonDisplayed] =
     useState<boolean>(false);
+  const { profileId } = useAppSelector(selectCurrentUser);
+  const { following } = useAppSelector(selectUserDetails);
+  const navigate = useNavigate();
+
+  const onUserClick = useCallback((path: string) => {
+    navigate(path);
+  }, []);
 
   const usersToDisplay = useMemo(() => {
     if (displayFullList) {
@@ -47,17 +57,22 @@ const UserList = ({ title, users }: UserListProps) => {
         <SerifText>{title}</SerifText>
       </ListHeading>
       <UserListContent>
-        {usersToDisplay.map(({ name, id, avatar, tag, profileId }) => (
-          <UserContainer key={id}>
-            <UserCard
-              size={'recommendation'}
-              name={name}
-              tag={tag}
-              userId={profileId}
-              avatar={avatar}
-            />
-          </UserContainer>
-        ))}
+        {usersToDisplay.map(
+          ({ name, id, avatar, tag, profileId: displayUserId }) => (
+            <UserContainer key={id}>
+              <UserCard
+                currentUserId={profileId}
+                isCurrentUserFollowng={following.includes(id)}
+                size={'recommendation'}
+                name={name}
+                tag={tag}
+                userId={displayUserId}
+                avatar={avatar}
+                onClick={onUserClick}
+              />
+            </UserContainer>
+          ),
+        )}
       </UserListContent>
       {isShowMoreButtonDisplayed && (
         <ShowMoreButton onClick={createListControlsHandler(true)}>

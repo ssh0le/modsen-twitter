@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 import AddTweetForm from '@/components/AddTweetForm';
 import { Button, Modal, SerifText } from '@/components/UI';
-import { icons, profileStatics } from '@/constants';
+import { icons, layoutStatics } from '@/constants';
 
 import {
   AddTweetIcon,
@@ -11,9 +11,9 @@ import {
   MobileButtonContainer,
 } from './styled';
 
-const { addTweetButtonText } = profileStatics;
+const { addTweetButtonText } = layoutStatics;
 
-export const AddTweetModal = () => {
+export const AddTweetModal = memo(() => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleModalClose = () => {
@@ -41,4 +41,4 @@ export const AddTweetModal = () => {
       </Modal>
     </>
   );
-};
+});

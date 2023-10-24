@@ -1,7 +1,7 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense, useCallback, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
-import { breakpoints, icons } from '@/constants';
+import { breakpoints, icons, placeholders, routePathes } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { LoadPage } from '@/pages/LoadPage';
@@ -35,6 +35,7 @@ import UserSearch from './UserSearch';
 
 const { LogOutIcon } = icons;
 const { mobile } = breakpoints;
+const { searchTweets, searchUsers } = placeholders;
 
 const PageLayout = () => {
   const { name, avatar, tag, profileId } = useAppSelector(selectCurrentUser);
@@ -42,6 +43,10 @@ const PageLayout = () => {
   const windowWidth = useWindowWidth();
 
   const { pathname } = useLocation();
+
+  const searchBarPlaceholder = pathname.includes(routePathes.profile)
+    ? searchUsers
+    : searchTweets;
 
   useEffect(() => {
     const bodyStyle = document.body.style;
@@ -58,12 +63,12 @@ const PageLayout = () => {
 
   useEffect(() => {
     dispatch(updateUserInfo(profileId));
-  }, [dispatch, profileId]);
+  }, [profileId]);
 
-  const handleLogOutClick = () => {
+  const handleLogOutClick = useCallback(() => {
     dispatch(logOutUser());
     dispatch(resetTheme());
-  };
+  }, []);
 
   return (
     <PageLayoutContainer>
@@ -80,7 +85,8 @@ const PageLayout = () => {
             <UserCardContainer>
               <UserCard
                 size={'log-out'}
-                name={name || 'Anonymous'}
+                currentUserId={profileId}
+                name={name}
                 tag={tag}
                 avatar={avatar}
                 userId={profileId}
@@ -109,14 +115,14 @@ const PageLayout = () => {
       {windowWidth <= mobile ? (
         <>
           <SearchModal>
-            <SearchBar />
+            <SearchBar placeholder={searchBarPlaceholder} />
             <UserSearch />
           </SearchModal>
         </>
       ) : (
         <RigthAside>
           <SearchContainer>
-            <SearchBar />
+            <SearchBar placeholder={searchBarPlaceholder} />
             <UserSearch />
           </SearchContainer>
         </RigthAside>

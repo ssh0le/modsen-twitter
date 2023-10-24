@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { useLocation } from 'react-router-dom';
+import { FC, useCallback } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { menuLinks } from '@/constants';
 import { isActiveLink } from '@/helpers';
@@ -9,6 +9,12 @@ import { MenuContainer } from './styled';
 
 const MenuSidebar: FC = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const handleLinkClick = useCallback((path: string) => {
+    navigate(path);
+  }, []);
+
   return (
     <nav>
       <MenuContainer>
@@ -18,6 +24,7 @@ const MenuSidebar: FC = () => {
             route={route}
             title={title}
             isSelected={isActiveLink(route, pathname)}
+            onClick={handleLinkClick}
           />
         ))}
       </MenuContainer>
