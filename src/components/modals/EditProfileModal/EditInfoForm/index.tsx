@@ -13,6 +13,7 @@ import { Gender, IEditInfoForm } from './interfaces';
 import { ControlsContainer, EditInfoFormContainer } from './styled';
 
 const { resetButtonText, saveButtonText } = layoutStatics;
+const successUpdateMessage = 'Saved!';
 
 export const EditInfoForm = () => {
   const { name, status, id, tag, profileId } =
@@ -52,7 +53,7 @@ export const EditInfoForm = () => {
       gender,
     }).then(() => {
       dispatch(updateUserInfo(profileId));
-      setSuccessMessage('Saved!');
+      setSuccessMessage(successUpdateMessage);
     });
   };
 
