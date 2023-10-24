@@ -3,7 +3,7 @@ import { Control, useForm } from 'react-hook-form';
 
 import Toast from '@/components/Toast';
 import { Button, InputField, Select, SerifText } from '@/components/UI';
-import { genderOptions, profileStatics } from '@/constants';
+import { genderOptions, layoutStatics } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
 import { updateUserInfo } from '@/store/slices/thunk/user';
@@ -12,7 +12,7 @@ import { updateUser } from '@/utils';
 import { Gender, IEditInfoForm } from './interfaces';
 import { ControlsContainer, EditInfoFormContainer } from './styled';
 
-const { resetButtonText, saveButtonText } = profileStatics;
+const { resetButtonText, saveButtonText } = layoutStatics;
 
 export const EditInfoForm = () => {
   const { name, status, id, tag, profileId } =

@@ -23,7 +23,7 @@ const ProfilePage: FC = () => {
 
   useEffect(() => {
     dispatch(getUserDetails(profileId));
-  }, [profileId, dispatch]);
+  }, [profileId]);
 
   useEffect(() => {
     const updateTweets = () => {
@@ -33,7 +33,7 @@ const ProfilePage: FC = () => {
     const unsubscribe = publisher.subscribe(updateTweets, 'tweetsUpdate');
 
     return unsubscribe;
-  }, [profileId, dispatch]);
+  }, [profileId]);
 
   const renderTweet = (tweetInfo: ITweet) => (
     <Tweet key={tweetInfo.id} info={tweetInfo} currentUserId={profileId} />

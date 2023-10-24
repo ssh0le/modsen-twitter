@@ -12,7 +12,7 @@ export const Link = styled.a<LinkProps>`
   }) => ($type === 'small' ? fs14 : fs16)}px;
   cursor: pointer;
 
-  @media only screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     font-size: ${({
       $type,
       theme: {

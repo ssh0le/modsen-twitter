@@ -56,7 +56,7 @@ export const loginStatics = {
   emailSignUpMessage: 'Sign up to Twitter',
 };
 
-export const profileStatics = {
+export const layoutStatics = {
   backButtonText: 'Home',
   userTweetsText: ' Tweets',
   addTweetButtonText: 'Tweet',
@@ -81,4 +81,35 @@ export const registrationStatics = {
     nascetur leo mauris vel eget. Pretium id ullamcorper blandit viverra
     dignissim eget tellus. Nibh mi massa in molestie a sit. Elit congue.`,
   submitButtonText: 'Next',
+};
+
+export const loadPageStatics = {
+  message: 'Please, wait...',
+};
+
+export const notFoundPageStatics = {
+  message: `This page wasn't found`,
+  backButtonText: 'Go to home',
+};
+
+export const profileStatics = {
+  telegramHeading: 'Telegram: ',
+  telegramLinkPrefix: '@',
+  followingText: ' Following',
+  followersText: ' Followers',
+  tweetsListHeading: 'Tweets',
+  noOwnTweetsMessage: `You don't have tweets.`,
+  noUserTweetsMessage: `You don't have tweets.`,
+};
+
+export const userCardStatics = {
+  userDeafultTag: 'Anonymous',
+  followText: 'Follow',
+  unfollowText: 'Unfollow',
+};
+
+export const placeholders = {
+  addTweetText: `What's happening`,
+  searchUsers: 'Search users',
+  searchTweets: 'Search tweets',
 };

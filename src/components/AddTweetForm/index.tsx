@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from 'react';
 
-import { icons, profileStatics } from '@/constants';
+import { icons, layoutStatics, placeholders } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
 import { addTweet } from '@/store/slices/thunk/user';
@@ -21,7 +21,8 @@ import {
   TweetInputControlsContainer,
 } from './styled';
 
-const { addTweetButtonText } = profileStatics;
+const { addTweetText } = placeholders;
+const { addTweetButtonText } = layoutStatics;
 
 const AddTweetForm = () => {
   const user = useAppSelector(selectCurrentUser);
@@ -73,7 +74,7 @@ const AddTweetForm = () => {
       <UserAvatar src={avatar} size="small" alt={`${name} avatar`} />
       <TweetInputContainer>
         <TweetInput
-          placeholder={`What's happening`}
+          placeholder={addTweetText}
           rows={3}
           value={tweetText}
           onChange={handleInputChange}

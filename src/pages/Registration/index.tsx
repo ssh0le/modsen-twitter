@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/Logo';
 import Toast from '@/components/Toast';
-import { registrationStatics, routePathes } from '@/constants';
+import { errorMessages, registrationStatics, routePathes } from '@/constants';
 import { monthsOptions, yearOptions } from '@/constants/selectOptions';
 import { getMonthDays, isRequiredAge, translateAuthError } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
@@ -29,6 +29,8 @@ const { profile, signUp } = routePathes;
 
 const { heading, subheading, emailLink, dateOfBirthMessage, submitButtonText } =
   registrationStatics;
+
+const { invalidDay, ageRestriction } = errorMessages;
 
 const RegistrationPage: FC = () => {
   const [authError, setAuthError] = useState<string>('');
@@ -67,7 +69,7 @@ const RegistrationPage: FC = () => {
       Number(day),
     );
     if (!isRequiredAge(userDateOfBirth)) {
-      setUserError('This platform has minimal age restriction - 16!');
+      setUserError(ageRestriction);
       return;
     }
     const dateOfBirth = `${month}/${day}/${year}`;
@@ -158,8 +160,7 @@ const RegistrationPage: FC = () => {
             options={days}
             rules={{
               validate: (day) =>
-                (Number(day) <= days.length && Number(day) > 0) ||
-                'The day is invalid',
+                (Number(day) <= days.length && Number(day) > 0) || invalidDay,
             }}
             control={typedControl}
           />

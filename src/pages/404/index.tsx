@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Button, SerifText } from '@/components/UI';
-import { routePathes } from '@/constants';
+import { notFoundPageStatics, routePathes } from '@/constants';
 
 import { ContentWrapper, NotFoundMessage, NotFoundPageWrapper } from './styled';
+
+const { message, backButtonText } = notFoundPageStatics;
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -16,10 +18,10 @@ const NotFoundPage = () => {
     <NotFoundPageWrapper>
       <ContentWrapper>
         <NotFoundMessage>
-          <SerifText>This page wasn't found</SerifText>
+          <SerifText>{message}</SerifText>
         </NotFoundMessage>
         <Button type={'colored'} onClick={handleButtonClick}>
-          Go to home
+          {backButtonText}
         </Button>
       </ContentWrapper>
     </NotFoundPageWrapper>

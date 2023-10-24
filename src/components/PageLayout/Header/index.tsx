@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { icons, profileStatics, routePathes } from '@/constants';
+import { icons, layoutStatics, routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import {
   isFetchingTweets,
@@ -22,7 +22,7 @@ import {
 } from './styled';
 
 const { backArrow, verticalDelimeter } = icons;
-const { backButtonText, userTweetsText } = profileStatics;
+const { backButtonText, userTweetsText } = layoutStatics;
 
 const Header = () => {
   const { pathname } = useLocation();

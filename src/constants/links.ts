@@ -55,6 +55,7 @@ export const routePathes = {
   explore: '/explore',
   lists: '/lists',
   more: '/more',
+  userNotFound: 'user-not-found',
 };
 
 const {

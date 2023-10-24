@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
 import { Modal } from '@/components/UI';
-import { profileStatics } from '@/constants';
+import { layoutStatics } from '@/constants';
 
 import { EditInfoForm } from './EditInfoForm';
 import { NewPasswordForm } from './NewPasswordForm';
 import { EditButton, EditProfileModalContainer } from './styled';
 
-const { editButtonText } = profileStatics;
+const { editButtonText } = layoutStatics;
 
 export const EditProfileModal = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Loader } from '@/components/UI';
-import { profileStatics, routePathes } from '@/constants';
+import { layoutStatics, routePathes } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { useSearch } from '@/hooks/useSearch';
 import { selectCurrentUser } from '@/store/selectors';
@@ -11,7 +11,7 @@ import { getRecommendedUsers, serchUsersByQuery } from '@/utils';
 
 import UserList from '../UserList';
 
-const { recommendationHeading, searchResultsHeading } = profileStatics;
+const { recommendationHeading, searchResultsHeading } = layoutStatics;
 
 const UserSearch = () => {
   const { pathname } = useLocation();
@@ -36,7 +36,7 @@ const UserSearch = () => {
     };
 
     fetchRecommendedUsers();
-  }, [profileId]);
+  }, []);
 
   if (isLoading || isRecommendsLoading) {
     return <Loader />;

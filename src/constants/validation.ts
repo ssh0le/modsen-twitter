@@ -5,6 +5,8 @@ export const errorMessages = {
   required: 'This field is required!',
   minLength: 'There are too few letters here!',
   maxLength: 'There are too much letters here!',
+  invalidDay: 'The day is invalid!',
+  ageRestriction: 'This platform has minimal age restriction - 16!',
 };
 
 const phonePattern = new RegExp(/^\+375[0-9]{9}$/);

@@ -1,13 +1,13 @@
 import { Control, useForm } from 'react-hook-form';
 
 import { Button, PasswordInput, SerifText } from '@/components/UI';
-import { profileStatics } from '@/constants';
+import { layoutStatics } from '@/constants';
 import { updateUserPassword } from '@/utils';
 
 import { PasswordForm } from './interfaces';
 import { EditPasswordFormContainer, SubmitButtonContainer } from './styled';
 
-const { updatePasswordButtonText } = profileStatics;
+const { updatePasswordButtonText } = layoutStatics;
 
 export const NewPasswordForm = () => {
   const {

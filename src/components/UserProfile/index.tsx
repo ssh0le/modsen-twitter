@@ -1,5 +1,5 @@
 import UserAvatar from '@/components/UserAvatar';
-import { images } from '@/constants';
+import { images, profileStatics } from '@/constants';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { selectCurrentUser } from '@/store/selectors';
 import { BoldText, Link, Loader, SerifText } from '@UI';
@@ -24,6 +24,16 @@ import {
   UserSubsctriptionsContainer,
   UserTag,
 } from './styled';
+
+const {
+  telegramHeading,
+  telegramLinkPrefix,
+  followingText,
+  followersText,
+  tweetsListHeading,
+  noOwnTweetsMessage,
+  noUserTweetsMessage,
+} = profileStatics;
 
 const UserProfile = (props: UserProfileProps) => {
   const {
@@ -68,7 +78,11 @@ const UserProfile = (props: UserProfileProps) => {
         <UserStatus>
           {status ? (
             <span>
-              Telegram: <Link>@{status}</Link>
+              {telegramHeading}
+              <Link>
+                {telegramLinkPrefix}
+                {status}
+              </Link>
             </span>
           ) : (
             'No Telegram'
@@ -79,13 +93,13 @@ const UserProfile = (props: UserProfileProps) => {
             <SubscriptionCount>
               <SerifText>{following}</SerifText>
             </SubscriptionCount>
-            <SubscriptionType> Following</SubscriptionType>
+            <SubscriptionType>{followingText}</SubscriptionType>
           </span>
           <span>
             <SubscriptionCount>
               <SerifText>{followers}</SerifText>
             </SubscriptionCount>
-            <SubscriptionType> Followers</SubscriptionType>
+            <SubscriptionType>{followersText}</SubscriptionType>
           </span>
         </UserSubsctriptionsContainer>
       </ProfileContentWrapper>
@@ -96,7 +110,7 @@ const UserProfile = (props: UserProfileProps) => {
         <>
           <TweetListHeading>
             <BoldText $size="small">
-              <SerifText>Tweets</SerifText>
+              <SerifText>{tweetsListHeading}</SerifText>
             </BoldText>
           </TweetListHeading>
           {tweets.map(renderTweet)}
@@ -106,12 +120,12 @@ const UserProfile = (props: UserProfileProps) => {
         <>
           {isCurrentUserProfile && (
             <NoTweetsMessage>
-              <SerifText>You don't have tweets.</SerifText>
+              <SerifText>{noOwnTweetsMessage}</SerifText>
             </NoTweetsMessage>
           )}
           {!isCurrentUserProfile && (
             <NoTweetsMessage>
-              <SerifText>This user doesn't have tweets.</SerifText>
+              <SerifText>{noUserTweetsMessage}</SerifText>
             </NoTweetsMessage>
           )}
         </>
