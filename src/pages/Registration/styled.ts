@@ -59,7 +59,7 @@ export const DateOfBirthMessage = styled.p`
   opacity: 60%;
   margin-bottom: ${({ theme }) => theme.margin.l}px;
 
-  @media only screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs14}px;
     text-align: justify;
   }

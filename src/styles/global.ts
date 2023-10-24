@@ -12,7 +12,6 @@ export const GlobalStyles = createGlobalStyle`
     body {
         height: 100%;
         width: 100%;
-        font-weight: 400;
         background-color: ${({ theme }) => theme.backgroundColor};
     }
 

@@ -11,7 +11,7 @@ export const EditProfileModalContainer = styled.div`
   border: 2px solid ${({ theme }) => theme.border};
   border-radius: 10px;
 
-  @media screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     width: 300px;
   }
 `;

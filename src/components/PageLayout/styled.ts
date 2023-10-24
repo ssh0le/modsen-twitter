@@ -45,6 +45,8 @@ export const ContentWrapper = styled.div`
   flex-grow: 1;
   height: fit-content;
   width: auto;
+  border-right: 1px solid ${({ theme }) => theme.border};
+  border-left: 1px solid ${({ theme }) => theme.border};
 `;
 
 const AsideBar = styled.aside`
@@ -54,14 +56,13 @@ const AsideBar = styled.aside`
   position: sticky;
   top: 0;
   height: fit-content;
-  min-height: 100vh;
+  min-height: 100%;
 `;
 
 export const LeftAside = styled(AsideBar)`
   ${getStrictWidth(300)}
 
   padding: ${({ theme }) => theme.padding.l}px;
-  border-right: 1px solid ${({ theme }) => theme.border};
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     ${getStrictWidth(250)}
@@ -91,7 +92,6 @@ export const RigthAside = styled(AsideBar)`
   ${getStrictWidth(340)}
 
   padding: 28px 20px;
-  border-left: 1px solid ${({ theme }) => theme.border};
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     ${getStrictWidth(250)}

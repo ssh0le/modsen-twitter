@@ -9,6 +9,8 @@ import { selectCurrentUser } from '@/store/selectors';
 import { Tweet as ITweet, User } from '@/types';
 import { fetchUserFullInfo } from '@/utils';
 
+const { profile, userNotFound } = routePathes;
+
 const UserDetailsPage: FC = () => {
   const { profileId } = useAppSelector(selectCurrentUser);
   const { userId } = useParams();
@@ -35,11 +37,11 @@ const UserDetailsPage: FC = () => {
           setUser(user);
           setActivity(activity);
         } else {
-          navigate('user-not-found');
+          navigate(userNotFound);
         }
         setIsLoading(false);
       } else {
-        navigate('user-not-found');
+        navigate(userNotFound);
         setIsLoading(false);
       }
     };
@@ -48,7 +50,7 @@ const UserDetailsPage: FC = () => {
   }, [userId, navigate]);
 
   if (userId === profileId) {
-    return <Navigate to={routePathes.profile} replace />;
+    return <Navigate to={profile} replace />;
   }
 
   const { tweets, followers, following } = activity;

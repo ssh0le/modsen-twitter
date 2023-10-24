@@ -10,7 +10,7 @@ export const UserCardContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     flex-direction: column;
   }
 `;
@@ -20,7 +20,7 @@ export const UserInfoContainer = styled.div<StyledContainerProps>`
   margin-right: 10px;
   gap: ${({ $size }) => ($size === 'log-out' ? 37 : 13)}px;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     gap: 13px;
     justify-content: space-between;
     width: 100%;
@@ -35,7 +35,7 @@ export const UserNamesContainer = styled.div`
   flex-grow: 1;
   cursor: pointer;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs14}px;
   }
 `;

@@ -14,11 +14,11 @@ export const inputStyle = css`
     outline: none;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs16}px;
   }
 
-  @media screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs14}px;
   }
 `;
@@ -32,11 +32,11 @@ export const inputContainerStyle = css`
     outline: solid ${({ theme }) => theme.inputField.color};
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
     padding: 15px;
   }
 
-  @media screen and (max-width: 888px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     padding: 10px;
   }
 `;

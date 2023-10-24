@@ -33,7 +33,7 @@ export const SearchInput = styled.input`
     color: ${({ theme }) => theme.search.placeholder};
   }
 
-  @media only screen and (max-width: 1000px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
     font-size: ${({ theme }) => theme.fontSizes.fs14}px;
   }
 `;
