@@ -17,12 +17,13 @@ import {
 } from './styled';
 import { UserCardProps } from './types';
 
-const { userDeafultTag, followText, unfollowText } = userCardStatics;
+const { userDeafultTag, followText, unfollowText, defaultUserName } =
+  userCardStatics;
 
 const UserCard = (props: UserCardProps) => {
   const {
     size,
-    name = 'Anonymus',
+    name = defaultUserName,
     tag,
     avatar,
     userId,

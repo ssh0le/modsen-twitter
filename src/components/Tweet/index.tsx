@@ -2,7 +2,7 @@ import { MouseEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import UserAvatar from '@/components/UserAvatar';
-import { icons, routePathes } from '@/constants';
+import { icons, routePathes, tweetOptionText } from '@/constants';
 import { getTweetPublishTime } from '@/helpers';
 import { useAppDispatch } from '@/hooks/storeHooks';
 import { deleteUserTweet } from '@/store/slices/thunk/user';
@@ -132,7 +132,7 @@ const Tweet = ({ info, currentUserId }: TweetProps) => {
             {isOwnUserTweet && (
               <>
                 <ActionWrapper onClick={handelDeleteClick}>
-                  Delete
+                  {tweetOptionText}
                 </ActionWrapper>
               </>
             )}

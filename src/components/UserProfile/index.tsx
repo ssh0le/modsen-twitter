@@ -33,6 +33,7 @@ const {
   tweetsListHeading,
   noOwnTweetsMessage,
   noUserTweetsMessage,
+  noTelegramMessage,
 } = profileStatics;
 
 const UserProfile = (props: UserProfileProps) => {
@@ -85,7 +86,7 @@ const UserProfile = (props: UserProfileProps) => {
               </Link>
             </span>
           ) : (
-            'No Telegram'
+            noTelegramMessage
           )}
         </UserStatus>
         <UserSubsctriptionsContainer>

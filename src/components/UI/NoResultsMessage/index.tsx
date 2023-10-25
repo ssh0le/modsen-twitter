@@ -1,3 +1,5 @@
+import { noResultsText } from '@/constants';
+
 import { SerifText } from '../SerifText';
 
 import { NoResultsMessageContainer } from './styled';
@@ -5,7 +7,7 @@ import { NoResultsMessageContainer } from './styled';
 export const NoResultMessage = () => {
   return (
     <NoResultsMessageContainer>
-      <SerifText>No results</SerifText>
+      <SerifText>{noResultsText}</SerifText>
     </NoResultsMessageContainer>
   );
 };

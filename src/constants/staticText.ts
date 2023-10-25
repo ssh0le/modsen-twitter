@@ -94,6 +94,7 @@ export const notFoundPageStatics = {
 
 export const profileStatics = {
   telegramHeading: 'Telegram: ',
+  noTelegramMessage: 'No telegram',
   telegramLinkPrefix: '@',
   followingText: ' Following',
   followersText: ' Followers',
@@ -106,6 +107,7 @@ export const userCardStatics = {
   userDeafultTag: 'Anonymous',
   followText: 'Follow',
   unfollowText: 'Unfollow',
+  defaultUserName: 'Anonymous',
 };
 
 export const placeholders = {
@@ -118,3 +120,8 @@ export const errorBoundaryStatics = {
   message: 'Something went wrong!',
   backButtonText: 'Go to home',
 };
+
+export const closeBadgeText = 'X';
+export const clearBadgeText = closeBadgeText;
+export const tweetOptionText = 'Delete';
+export const noResultsText = 'No results';

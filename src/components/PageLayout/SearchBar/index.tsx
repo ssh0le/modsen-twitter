@@ -1,6 +1,6 @@
 import { ChangeEvent, memo } from 'react';
 
-import { icons } from '@/constants';
+import { clearBadgeText, icons } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { setQuery } from '@/store/slices/search';
 
@@ -30,7 +30,7 @@ const SearchBar = ({ placeholder }: SearchBarProps) => {
         placeholder={placeholder}
       />
       {query.length > 0 && (
-        <ResetButton onClick={handleResetClick}>X</ResetButton>
+        <ResetButton onClick={handleResetClick}>{clearBadgeText}</ResetButton>
       )}
     </SearchInputContainer>
   );

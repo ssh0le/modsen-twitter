@@ -1,7 +1,13 @@
 import { Suspense, useCallback, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
-import { breakpoints, icons, placeholders, routePathes } from '@/constants';
+import {
+  breakpoints,
+  icons,
+  layoutStatics,
+  placeholders,
+  routePathes,
+} from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { LoadPage } from '@/pages/LoadPage';
@@ -36,6 +42,7 @@ import UserSearch from './UserSearch';
 const { LogOutIcon } = icons;
 const { mobile } = breakpoints;
 const { searchTweets, searchUsers } = placeholders;
+const { logoutButtonText } = layoutStatics;
 
 const PageLayout = () => {
   const { name, avatar, tag, profileId } = useAppSelector(selectCurrentUser);
@@ -93,7 +100,7 @@ const PageLayout = () => {
               />
             </UserCardContainer>
             <Button type="log-out" onClick={handleLogOutClick}>
-              <SerifText>Log out</SerifText>
+              <SerifText>{logoutButtonText}</SerifText>
             </Button>
           </CurrentUserContainer>
         ) : (

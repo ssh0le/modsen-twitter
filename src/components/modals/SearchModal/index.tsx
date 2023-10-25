@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 
 import { Modal } from '@/components/UI';
-import { icons } from '@/constants';
+import { closeBadgeText, icons } from '@/constants';
 
 import {
   CloseBadge,
@@ -31,7 +31,7 @@ const SearchModal = ({ children }: { children: ReactNode }) => {
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         <SearchModalContentWrapper>
           <SearchModalContainer>
-            <CloseBadge onClick={handleModalClose}>X</CloseBadge>
+            <CloseBadge onClick={handleModalClose}>{closeBadgeText}</CloseBadge>
             {children}
           </SearchModalContainer>
         </SearchModalContentWrapper>
