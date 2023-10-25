@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { LogoWrapperProps } from './interfaces';
+import { LogoWrapperProps } from './types';
 
 export const LogoWrapper = styled.div<LogoWrapperProps>`
   display: flex;

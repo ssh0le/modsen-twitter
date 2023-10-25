@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { flexColumn } from '@/styles/common';
 
-import { StyledContainerProps } from './interfaces';
+import { StyledContainerProps } from './types';
 
 export const UserCardContainer = styled.div`
   display: flex;

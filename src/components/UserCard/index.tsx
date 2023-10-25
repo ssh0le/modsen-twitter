@@ -6,7 +6,6 @@ import { updateFollowers } from '@/utils';
 import { SerifText } from '../UI';
 import UserAvatar from '../UserAvatar';
 
-import { UserCardProps } from './interfaces';
 import {
   ButtonContainer,
   FollowButton,
@@ -16,6 +15,7 @@ import {
   UserNameWrapper,
   UserTagWrapper,
 } from './styled';
+import { UserCardProps } from './types';
 
 const { userDeafultTag, followText, unfollowText } = userCardStatics;
 

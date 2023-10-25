@@ -1,3 +1,5 @@
+import { ObserverEvent } from '@/types';
+
 const subscribers: Map<ObserverEvent, (() => void)[]> = new Map();
 
 export const publisher = {
@@ -22,5 +24,3 @@ export const publisher = {
     }
   },
 };
-
-type ObserverEvent = 'tweetsUpdate' | 'userUpdate';

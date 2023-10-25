@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import { icons } from '@/constants';
 
-import { LogoProps } from './interfaces';
 import { LogoWrapper } from './styled';
+import { LogoProps } from './types';
 
 const Logo: FC<LogoProps> = ({ size = 'medium' }) => {
   return (

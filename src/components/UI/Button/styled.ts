@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { flexCenter } from '@/styles/common';
 
-import { ButtonWrapperProps } from './interfaces';
+import { ButtonWrapperProps } from './types';
 
 const coloredButtonStyle = css`
   color: ${({ theme }) => theme.coloredButton.color};
