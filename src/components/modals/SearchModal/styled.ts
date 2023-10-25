@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import {
-  adaptiveIconStyle,
   flexCenter,
   flexColumn,
   themedBackgroundColor,
@@ -20,10 +19,6 @@ export const SearchButtonContainer = styled.div`
   border-radius: 50%;
   z-index: 10;
   border: 2px solid ${({ theme }) => theme.border};
-`;
-
-export const SerchIcon = styled.img`
-  ${adaptiveIconStyle};
 `;
 
 export const SearchModalContentWrapper = styled.div`

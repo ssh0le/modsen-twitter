@@ -23,6 +23,7 @@ import {
 
 const { addTweetText } = placeholders;
 const { addTweetButtonText } = layoutStatics;
+const { Media } = icons;
 
 const AddTweetForm = () => {
   const user = useAppSelector(selectCurrentUser);
@@ -86,11 +87,7 @@ const AddTweetForm = () => {
           </PreviewImageContainer>
         )}
         <TweetInputControlsContainer>
-          <img
-            src={icons.media}
-            alt="Add media icon"
-            onClick={handleUploadIconClick}
-          />
+          <Media onClick={handleUploadIconClick} />
           <FileInput
             type="file"
             accept="image/jpeg, image/png"

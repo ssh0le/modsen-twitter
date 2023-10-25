@@ -38,11 +38,6 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const SearchIcon = styled.img`
-  height: 20px;
-  width: 20px;
-`;
-
 export const ResetButton = styled.div`
   ${flexCenter};
   color: ${({ theme }) => theme.search.color};

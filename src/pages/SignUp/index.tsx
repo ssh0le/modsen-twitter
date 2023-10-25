@@ -35,6 +35,8 @@ const {
   loginText,
 } = signUpStatics;
 
+const { GoogleLogo } = icons;
+
 const SignUpPage: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -75,7 +77,7 @@ const SignUpPage: FC = () => {
                   <Button type="sign-up" onClick={handleGoogleAuthClick}>
                     <GoogleButtonContent>
                       <GoogleLogoContainer>
-                        <img src={icons.googleLogo} alt="Google Logo" />
+                        <GoogleLogo />
                       </GoogleLogoContainer>
                       {googleSignUpMessage}
                     </GoogleButtonContent>

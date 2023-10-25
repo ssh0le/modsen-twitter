@@ -8,8 +8,9 @@ import {
   SearchButtonContainer,
   SearchModalContainer,
   SearchModalContentWrapper,
-  SerchIcon,
 } from './styled';
+
+const { SearchIcon } = icons;
 
 const SearchModal = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -25,7 +26,7 @@ const SearchModal = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <SearchButtonContainer onClick={handleModalOpen}>
-        <SerchIcon src={icons.searchIcon} alt="Search button" />
+        <SearchIcon />
       </SearchButtonContainer>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         <SearchModalContentWrapper>

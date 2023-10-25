@@ -21,7 +21,7 @@ import {
   UserNameContainer,
 } from './styled';
 
-const { backArrow, verticalDelimeter } = icons;
+const { BackArrow, VerticalDelimeter } = icons;
 const { backButtonText, userTweetsText } = layoutStatics;
 
 const Header = () => {
@@ -59,8 +59,8 @@ const Header = () => {
         <CurrentLocationContainer>
           <CurrentLocationText>
             <BackButtonContainer onClick={handleBackButtonClick}>
-              {<img src={backArrow} alt="Back arrow" />}
-              {<img src={verticalDelimeter} alt="Dilimiter" />}
+              {<BackArrow />}
+              {<VerticalDelimeter />}
             </BackButtonContainer>
             <SerifText>
               <BoldText $size="large">{backButtonText}</BoldText>

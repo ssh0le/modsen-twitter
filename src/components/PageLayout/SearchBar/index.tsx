@@ -5,12 +5,9 @@ import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { setQuery } from '@/store/slices/search';
 
 import { SearchBarProps } from './interfaces';
-import {
-  ResetButton,
-  SearchIcon,
-  SearchInput,
-  SearchInputContainer,
-} from './styled';
+import { ResetButton, SearchInput, SearchInputContainer } from './styled';
+
+const { SearchIcon } = icons;
 
 const SearchBar = ({ placeholder }: SearchBarProps) => {
   const dispatch = useAppDispatch();
@@ -26,7 +23,7 @@ const SearchBar = ({ placeholder }: SearchBarProps) => {
 
   return (
     <SearchInputContainer>
-      <SearchIcon src={icons.searchIcon} alt="Search icon" />
+      <SearchIcon />
       <SearchInput
         value={query}
         onChange={handleSearchChange}
