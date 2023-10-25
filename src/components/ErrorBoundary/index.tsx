@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+import { errorBoundaryStatics } from '@/constants';
+
 import { SerifText } from '../UI';
 
 import { ErrorBoundaryProps, ErrorBoundaryState } from './interfaces';
@@ -8,6 +10,8 @@ import {
   ErrorBoundaryContainer,
   MessageContainer,
 } from './styled';
+
+const { message, backButtonText } = errorBoundaryStatics;
 
 export default class ErrorBoundary extends Component<
   ErrorBoundaryProps,
@@ -38,10 +42,10 @@ export default class ErrorBoundary extends Component<
       return (
         <ErrorBoundaryContainer>
           <MessageContainer>
-            <SerifText>Something went wrong!</SerifText>
+            <SerifText>{message}</SerifText>
           </MessageContainer>
           <ButtonContainer>
-            <button onClick={this.handleButtonClick}>Go to home</button>
+            <button onClick={this.handleButtonClick}>{backButtonText}</button>
           </ButtonContainer>
         </ErrorBoundaryContainer>
       );

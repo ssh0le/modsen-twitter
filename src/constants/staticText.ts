@@ -113,3 +113,8 @@ export const placeholders = {
   searchUsers: 'Search users',
   searchTweets: 'Search tweets',
 };
+
+export const errorBoundaryStatics = {
+  message: 'Something went wrong!',
+  backButtonText: 'Go to home',
+};
